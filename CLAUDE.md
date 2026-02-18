@@ -29,6 +29,11 @@ machine-readable/         # For LLM consumption
 ├── reference.yaml        # Condensed index (~2K tokens)
 └── llms.txt              # AI indexation file
 
+whitepapers/              # Focused whitepapers (FR + EN)
+├── fr/                   # 10 source files in French (.qmd)
+└── en/                   # 10 translated files in English (.qmd)
+# Published at: https://www.florian.bruniaux.com/guides
+
 tools/                    # Interactive utilities
 ├── audit-prompt.md       # Setup audit prompt
 └── onboarding-prompt.md  # Personalized learning prompt

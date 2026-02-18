@@ -463,6 +463,24 @@ TDD/SDD/BDD are not optional with Claude Code. AI accelerates bad code as much a
 
 ---
 
+## 📄 Whitepapers (FR + EN)
+
+A series of 9 focused whitepapers covering Claude Code in depth. Each covers a specific topic and is available in both **French and English**.
+
+- **00** — *De Zéro à Productif / From Zero to Productive* — Foundations, first steps
+- **01** — *Prompts qui Marchent / Prompts That Work* — Prompting method, context, hooks
+- **02** — *Personnaliser Claude / Customizing Claude* — CLAUDE.md, custom agents, skills
+- **03** — *Sécurité en Production / Security in Production* — 17 security hooks, threat DB, permissions
+- **04** — *L'Architecture Démystifiée / Architecture Demystified* — Agent loop, context, token pricing
+- **05** — *Déployer en Équipe / Team Deployment* — CI/CD, observability, 50+ devs adoption
+- **06** — *Privacy & Compliance* — Anthropic data, ZDR, retention policies
+- **07** — *Guide de Référence / Reference Guide* — Complete synthesis + advanced workflows
+- **08** — *Agent Teams* — Multi-agent orchestration and coordination
+
+→ **[Download all whitepapers](https://www.florian.bruniaux.com/guides)**
+
+---
+
 ## 🌍 Ecosystem
 
 ### Claude Cowork (Non-Developers)

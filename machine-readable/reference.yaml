@@ -44,6 +44,7 @@ deep_dive:
   # Session management
   session_search: "guide/observability.md:29"
   session_search_script: "examples/scripts/session-search.sh"
+  cc_sessions_script: "examples/scripts/cc-sessions.py"
   session_resume_limitations: "guide/observability.md:117"
   session_cross_folder_migration: "guide/observability.md:117"
   session_migration_manual: "guide/observability.md:135"
@@ -77,7 +78,11 @@ deep_dive:
   # PDF Generation
   pdf_generation: "guide/workflows/pdf-generation.md"
   pdf_generator_skill: "examples/skills/pdf-generator.md"
-  whitepapers_example: "whitepapers/README.md"  # Local example only (gitignored)
+  # Whitepapers (FR + EN) — 9 focused whitepapers on Claude Code
+  whitepapers_url: "https://www.florian.bruniaux.com/guides"
+  whitepapers_fr: "whitepapers/fr/"  # FR sources (Quarto .qmd)
+  whitepapers_en: "whitepapers/en/"  # EN sources (Quarto .qmd)
+  whitepapers_topics: "foundations, prompting, customization, security, architecture, team, privacy, reference, agent-teams"
   # Learning with AI (guide/learning-with-ai.md)
   learning_quick_check: "guide/learning-with-ai.md:31"
   learning_uval_protocol: "guide/learning-with-ai.md:127"

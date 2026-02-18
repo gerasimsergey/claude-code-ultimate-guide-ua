@@ -537,6 +537,7 @@ where.exe claude; claude doctor; claude mcp list
 - **Official docs**: [docs.anthropic.com/claude-code](https://docs.anthropic.com/en/docs/claude-code)
 - **Advanced guide**: [Claudelog.com](https://claudelog.com/) - Tips & patterns
 - **Full guide**: `ultimate-guide.md` (this repo)
+- **Whitepapers (FR + EN)**: [florian.bruniaux.com/guides](https://www.florian.bruniaux.com/guides) — 9 focused PDFs
 - **Project memory**: Create `CLAUDE.md` at project root
 - **DeepSeek (cost-effective)**: Configure via `ANTHROPIC_BASE_URL`
 

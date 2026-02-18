@@ -696,7 +696,8 @@ claude --resume
 claude mcp call serena list_sessions
 
 # Recommended: Fast search with ready-to-use resume commands
-# See examples/scripts/session-search.sh (zero dependencies, 15ms list, 400ms search)
+# See examples/scripts/session-search.sh (bash, zero dependencies, 15ms list, 400ms search)
+# See examples/scripts/cc-sessions.py (Python, incremental index, partial resume, branch filter)
 cs                    # List 10 most recent sessions
 cs "authentication"   # Full-text search across all sessions
 
@@ -705,7 +706,7 @@ You: /exit
 Session ID: abc123def (saved for resume)
 ```
 
-> **Session Search Tool**: For fast session search with copy-paste resume commands, see [Observability Guide](./observability.md#session-search--resume) and [session-search.sh](../examples/scripts/session-search.sh).
+> **Session Search Tools**: For fast session search, see [session-search.sh](../examples/scripts/session-search.sh) (bash, lightweight) and [cc-sessions.py](../examples/scripts/cc-sessions.py) (Python, advanced features: incremental index, partial ID resume, branch filter). Also: [Observability Guide](./observability.md#session-search--resume).
 
 **Common use cases**:
 
@@ -18889,6 +18890,26 @@ If you work with non-technical team members, **Cowork** brings Claude's agentic 
 > See [AI Ecosystem Section 9](./ai-ecosystem.md#9-claude-cowork-research-preview) for details.
 
 ## Further Reading
+
+### Whitepapers (FR + EN)
+
+A series of 9 focused whitepapers covering Claude Code topics in depth, available in French and English:
+
+| # | Topic | Scope |
+|---|-------|-------|
+| 00 | Foundations | First steps, core concepts |
+| 01 | Effective Prompts | Prompting method, context, hooks |
+| 02 | Customization | CLAUDE.md, agents, skills |
+| 03 | Security | 17 hooks, threat DB, permissions |
+| 04 | Architecture | Agent loop, context, token pricing |
+| 05 | Team Deployment | CI/CD, observability, 50+ devs |
+| 06 | Privacy & Compliance | Anthropic data, ZDR, retention |
+| 07 | Reference Guide | Complete synthesis + workflows |
+| 08 | Agent Teams | Multi-agent orchestration |
+
+→ **[Download all whitepapers (FR + EN)](https://www.florian.bruniaux.com/guides)**
+
+---
 
 ### Advanced Workflows
 

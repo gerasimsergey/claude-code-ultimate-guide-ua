@@ -17,6 +17,7 @@ Utility scripts for Claude Code power users.
 | `clean-reinstall-claude.sh/.ps1` | Clean reinstall of Claude Code |
 | `fresh-context-loop.sh` | Run Claude Code in fresh context loops |
 | `session-search.sh` | Search across Claude Code session histories |
+| `cc-sessions.py` | Advanced session search with incremental indexing (Python) |
 | `session-stats.sh` | Statistics about Claude Code sessions |
 | `bridge.py` | Bridge: Claude Code → doobidoo → LM Studio |
 
@@ -259,6 +260,38 @@ Search across all Claude Code session histories.
 ```bash
 ./session-search.sh "authentication"
 ```
+
+---
+
+## Session Manager (Advanced)
+
+Advanced CLI for session search, browse & resume with incremental indexing.
+
+**vs session-search.sh**: Faster search (~200ms vs ~400ms), partial ID resume, branch filter, worktree support, incremental JSONL index.
+
+```bash
+# Search in current project
+cc-sessions search "notion"
+
+# Search all projects
+cc-sessions --all search "stripe"
+
+# Filter by date and branch
+cc-sessions search "auth" --since 7d --branch develop
+
+# Recent sessions
+cc-sessions recent 10
+
+# Resume with partial ID
+cc-sessions resume 8d472d
+
+# JSON output for scripting
+cc-sessions --json search "prisma" | jq -r '.[].id'
+```
+
+**Installation**: `cp cc-sessions.py ~/bin/cc-sessions && chmod +x ~/bin/cc-sessions`
+
+> [Gist source](https://gist.github.com/FlorianBruniaux/992d4d1107592d9e98ca9d89838871c6)
 
 ---
 
