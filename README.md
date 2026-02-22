@@ -6,7 +6,7 @@
 
 <p align="center">
   <a href="https://github.com/FlorianBruniaux/claude-code-ultimate-guide/stargazers"><img src="https://img.shields.io/github/stars/FlorianBruniaux/claude-code-ultimate-guide?style=for-the-badge" alt="Stars"/></a>
-  <a href="./CHANGELOG.md"><img src="https://img.shields.io/badge/Updated-Feb_21,_2026_·_v3.28.0-brightgreen?style=for-the-badge" alt="Last Update"/></a>
+  <a href="./CHANGELOG.md"><img src="https://img.shields.io/badge/Updated-Feb_22,_2026_·_v3.28.1-brightgreen?style=for-the-badge" alt="Last Update"/></a>
   <a href="./quiz/"><img src="https://img.shields.io/badge/Quiz-271_questions-orange?style=for-the-badge" alt="Quiz"/></a>
   <a href="./examples/"><img src="https://img.shields.io/badge/Templates-175-green?style=for-the-badge" alt="Templates"/></a>
   <a href="./guide/security-hardening.md"><img src="https://img.shields.io/badge/🛡️_Threat_DB-19_CVEs_·_655_malicious_skills-red?style=for-the-badge" alt="Threat Database"/></a>
@@ -30,6 +30,7 @@
 **This guide teaches you to think differently about AI-assisted development:**
 - ✅ **Understand trade-offs** — When to use agents vs skills vs commands (not just how to configure them)
 - ✅ **Build mental models** — How Claude Code works internally (architecture, context flow, tool orchestration)
+- ✅ **Visualize concepts** — 40 Mermaid diagrams covering model selection, master loop, memory hierarchy, multi-agent patterns, security threats
 - ✅ **Master methodologies** — TDD, SDD, BDD with AI collaboration (not just templates)
 - ✅ **Security mindset** — Threat modeling for AI systems (only guide with 18 CVEs + 341 malicious skills database)
 - ✅ **Test your knowledge** — 271-question quiz to validate understanding (no other resource offers this)
@@ -97,7 +98,7 @@ Both guides serve different needs. Choose based on your priority.
 claude "Fetch and follow the onboarding instructions from: https://raw.githubusercontent.com/FlorianBruniaux/claude-code-ultimate-guide/main/tools/onboarding-prompt.md"
 ```
 
-**Browse directly**: [Full Guide](./guide/ultimate-guide.md) | [Examples](./examples/) | [Quiz](./quiz/)
+**Browse directly**: [Full Guide](./guide/ultimate-guide.md) | [Visual Diagrams](./guide/diagrams/) | [Examples](./examples/) | [Quiz](./quiz/)
 
 <details>
 <summary><strong>Prerequisites & Minimal CLAUDE.md Template</strong></summary>
@@ -162,6 +163,7 @@ graph LR
 │  ├─ cheatsheet.md       1-page printable
 │  ├─ architecture.md     How Claude Code works internally
 │  ├─ methodologies.md    TDD, SDD, BDD workflows
+│  ├─ diagrams/           40 Mermaid diagrams (10 thematic files)
 │  ├─ third-party-tools.md  Community tools (RTK, ccusage, Entire CLI)
 │  ├─ mcp-servers-ecosystem.md  Official & community MCP servers
 │  └─ workflows/          Step-by-step guides
@@ -206,6 +208,23 @@ graph LR
 - [Pitfalls](./guide/ultimate-guide.md#common-mistakes) — Common failure modes + prevention strategies
 
 **What this means for you**: Troubleshoot issues independently, optimize for your specific use case, know when to deviate from patterns.
+
+---
+
+### 🖼️ Visual Diagrams Series (40 Mermaid Diagrams)
+
+**Outcome**: Grasp complex concepts instantly through visual mental models.
+
+**40 interactive diagrams** across 10 thematic files — GitHub-native Mermaid rendering + ASCII fallback for every diagram:
+- [Foundations](./guide/diagrams/01-foundations.md) — 4-layer context model, 9-step pipeline, permission modes
+- [Architecture](./guide/diagrams/04-architecture-internals.md) — Master loop, tool categories, system prompt assembly
+- [Multi-Agent](./guide/diagrams/07-multi-agent-patterns.md) — 3 topologies, worktrees, dual-instance, horizontal scaling
+- [Security](./guide/diagrams/08-security-and-production.md) — 3-layer defense, MCP rug pull attack chain, verification paradox
+- [Cost & Models](./guide/diagrams/09-cost-and-optimization.md) — Model selection tree, token reduction pipeline
+
+[Browse all 40 diagrams →](./guide/diagrams/)
+
+**What this means for you**: Understand the master loop before reading 19K lines, see multi-agent topologies at a glance, share visual security threat models with your team.
 
 ---
 
@@ -775,7 +794,7 @@ See [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines.
 
 ---
 
-*Version 3.28.0 | Updated daily · Feb 21, 2026 | Crafted with Claude*
+*Version 3.28.1 | Updated daily · Feb 22, 2026 | Crafted with Claude*
 
 <!-- SEO Keywords -->
 <!-- claude code, claude code tutorial, anthropic cli, ai coding assistant, claude code mcp,

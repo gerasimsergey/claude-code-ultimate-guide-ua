@@ -6,8 +6,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [3.28.1] - 2026-02-22
+
 ### Added
 
+- **Visual Diagrams Series** — 40 Mermaid interactive diagrams in new `guide/diagrams/` directory (10 thematic files)
+  - Files: 01-foundations, 02-context-and-sessions, 03-configuration-system, 04-architecture-internals, 05-mcp-ecosystem, 06-development-workflows, 07-multi-agent-patterns, 08-security-and-production, 09-cost-and-optimization, 10-adoption-and-learning
+  - Each diagram: Mermaid (GitHub-native rendering) + ASCII fallback in `<details>` + source link
+  - Consistent Bold Guy palette across all diagrams (6-color system)
+  - Cross-linked from `visual-reference.md`, `guide/README.md`, and `reference.yaml`
+  - Covers: 4-layer model, master loop, memory hierarchy, model selection, MCP rug pull attack, 3-layer defense, multi-agent topologies, TDD/spec-first/plan-driven workflows, UVAL protocol, trust calibration
+
+- **guide/ultimate-guide.md — Managing Large MCP Server Sets** (section 8.3)
+  - Problème documenté : charger trop de servers globalement dégrade le tool selection de Claude
+  - Pattern recommandé : config globale minimale (2-3 servers) + per-project `.mcp.json`
+  - Mention outil communautaire cc-setup (TUI registry avec health checks)
 - **guide/workflows/plan-driven.md — Section "Advanced: Custom Markdown Plans (Boris Tane Pattern)"** (+169 lignes)
   - Workflow 3 phases : Research emphatic → Annotation Cycle → Implémentation mécanique
   - Table comparative `/plan` natif vs custom `.md` (critères de choix)

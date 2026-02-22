@@ -20,7 +20,8 @@ Use `/plan` mode for anything non-trivial. Claude explores the codebase (read-on
 4. [Plan File Structure](#plan-file-structure)
 5. [Integration with Other Workflows](#integration-with-other-workflows)
 6. [Tips](#tips)
-7. [See Also](#see-also)
+7. [Advanced: Custom Markdown Plans (Boris Tane Pattern)](#advanced-custom-markdown-plans-boris-tane-pattern)
+8. [See Also](#see-also)
 
 ---
 
@@ -245,6 +246,175 @@ Plans in `.claude/plans/` serve as decision documentation:
 - Why certain approaches were chosen
 - What files were expected to change
 - Implementation order rationale
+
+---
+
+## Advanced: Custom Markdown Plans (Boris Tane Pattern)
+
+> **Source**: Boris Tane, Engineering Lead @ Cloudflare — ["How I use Claude Code"](https://boristane.com/blog/how-i-use-claude-code/) (Feb 2026). 9 months of production usage.
+> **Confidence**: Tier 2 — Practitioner-validated pattern, not official Anthropic documentation.
+
+When `/plan` isn't enough — iterative human/agent planning before any code is written.
+
+### Why Custom Plans Over /plan
+
+| Factor | /plan (native) | Custom .md plan |
+|--------|----------------|-----------------|
+| **Persistence** | Lost on context compaction | Survives compaction, shareable |
+| **Review surface** | Chat-based, linear | Structured file, diffs |
+| **Iteration** | Back-and-forth in conversation | Annotate file, re-run |
+| **Shared state** | Per-session | "Shared mutable state" between human and agent |
+| **Best for** | Standard features, <30 min tasks | Complex features, architectural decisions |
+
+**Decision rule**: Use `/plan` for known scope. Use custom `.md` plans when you expect misunderstandings or want explicit sign-off on approach before a single line of code.
+
+---
+
+### The Three-Phase Workflow
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│  Phase 1: RESEARCH                                              │
+│  → Emphatic prompt → research.md (written, not verbal)          │
+├─────────────────────────────────────────────────────────────────┤
+│  Phase 2: PLANNING (Annotation Cycle)                           │
+│  → plan.md draft → human annotates → agent updates → repeat    │
+│  → Exit: plan approved, no open questions                       │
+├─────────────────────────────────────────────────────────────────┤
+│  Phase 3: IMPLEMENTATION                                        │
+│  → Mechanical execution, decisions already made                 │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+### Phase 1: Emphatic Research
+
+Claude skims without strong signal. Use emphatic language to force depth:
+
+```
+Research the authentication system in this codebase deeply.
+Understand the intricacies of how sessions are managed, in great detail.
+Cover edge cases, existing patterns, and any non-obvious dependencies.
+
+Write your findings to research.md — do not implement anything.
+```
+
+**Why it works**: "deeply", "in great detail", "intricacies" shift Claude from surface scan to thorough investigation. Output must be written to a file — verbal summaries disappear on context compaction.
+
+**Research.md should include**:
+- Existing patterns and conventions
+- File paths and key functions
+- Non-obvious dependencies
+- Constraints and risks identified
+
+---
+
+### Phase 2: The Annotation Cycle
+
+The core of the Boris Tane pattern. Iterate on `plan.md` until ready, **before any implementation**.
+
+```
+┌──────────────────────────────────────────────────────────────┐
+│                    ANNOTATION CYCLE                           │
+│                                                              │
+│  Human prompt ──→ Agent writes plan.md                       │
+│       ↑                    ↓                                 │
+│  Annotate plan    Human reviews plan.md                      │
+│  (add comments,          ↓                                   │
+│   ask questions,   Issues found?                             │
+│   flag trade-offs)       ├─ Yes → Annotate → loop           │
+│                          └─ No  → Approved → Phase 3        │
+│                                                              │
+│  Typical: 1-6 iterations before approval                     │
+└──────────────────────────────────────────────────────────────┘
+```
+
+**Guard prompt** — always include this to prevent premature implementation:
+
+```
+Based on research.md, write a plan for implementing [feature].
+
+Include: approach, affected file paths, code snippets for key decisions,
+trade-offs considered, and open questions.
+
+Write to plan.md. Do NOT implement anything yet.
+```
+
+**What plan.md should contain**:
+
+```markdown
+# Plan: [Feature Name]
+
+## Approach
+[Strategy and rationale]
+
+## Files Affected
+- path/to/file.ts — what changes and why
+- path/to/other.ts — what changes and why
+
+## Key Implementation Details
+[Code snippets for non-obvious parts — not the full implementation]
+
+## Trade-offs
+- Option A vs B: chose A because X
+- Considered but rejected: Y (reason)
+
+## Open Questions
+- [ ] Should we handle edge case Z?
+- [ ] Does this affect the mobile client?
+```
+
+**Annotation example**:
+
+```markdown
+## Approach
+Use JWT tokens stored in httpOnly cookies.
+<!-- Human annotation: ✓ Agreed. But also consider refresh token rotation -->
+
+## Open Questions
+- [ ] Should we handle token expiry in middleware?
+<!-- Human annotation: Yes, centralize this — don't leave it to each route -->
+```
+
+**Exit criteria** — plan is ready when:
+- No open questions remain
+- Trade-offs are documented and agreed
+- File paths are specific (not "some auth file")
+- Key snippets show the approach, not just describe it
+
+> "The markdown file acts as shared mutable state between you and the agent." — Boris Tane
+
+---
+
+### Phase 3: Mechanical Implementation
+
+Once the plan is approved, implementation becomes execution — no creative decisions left.
+
+```
+Implement everything in plan.md.
+Work through each item sequentially.
+Mark tasks as completed as you go with [x].
+Do not stop between tasks to ask for confirmation — keep going until done.
+```
+
+**Feedback during implementation**:
+- Keep it terse: short phrases or screenshots, not paragraphs
+- Decisions are already made — redirect scope changes back to plan.md
+- If something unexpected comes up: pause, update plan.md, continue
+
+**Mindset shift**: Phase 3 is mechanical. All thinking happened in Phase 2.
+
+---
+
+### Complementary Techniques
+
+| Technique | What | When |
+|-----------|------|------|
+| **Cherry-picking** | Implement subset of plan.md | Plan too large, ship incrementally |
+| **Scope trimming** | Remove items from plan before implementing | Reduce risk, focus on core |
+| **Reference-based guidance** | Point to existing code: "do it like auth.ts" | Enforce consistency |
+| **Revert & re-scope** | `git revert` + restart with narrower plan | Plan went wrong, reset cleanly |
 
 ---
 

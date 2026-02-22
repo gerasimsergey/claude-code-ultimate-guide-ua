@@ -16,7 +16,7 @@ tags: [guide, reference, workflows, agents, hooks, mcp, security]
 
 **Last updated**: January 2026
 
-**Version**: 3.28.0
+**Version**: 3.28.1
 
 ---
 
@@ -4466,7 +4466,7 @@ The `.claude/` folder is your project's Claude Code directory for memory, settin
 | Personal preferences | `CLAUDE.md` | ❌ Gitignore |
 | Personal permissions | `settings.local.json` | ❌ Gitignore |
 
-### 3.28.0 Version Control & Backup
+### 3.28.1 Version Control & Backup
 
 **Problem**: Without version control, losing your Claude Code configuration means hours of manual reconfiguration across agents, skills, hooks, and MCP servers.
 
@@ -5284,6 +5284,45 @@ This pattern has real overhead. Be honest about whether you need it:
 The break-even point is roughly **3+ developers with 2+ different AI tools**. Below that, the file management overhead exceeds the benefits.
 
 > For the full step-by-step implementation workflow, see [Team AI Instructions](workflows/team-ai-instructions.md).
+
+### AI Code Disclosure Policy (Team Governance)
+
+When multiple developers use Claude Code on the same codebase, hidden AI generation creates a silent quality problem: code gets merged without anyone understanding what it does or why.
+
+**The pattern** (from production teams): make AI generation visible without blocking it.
+
+**Disclosure threshold**: if Claude generates more than ~10 consecutive lines, the author declares it in the PR.
+
+**PR template addition**:
+
+```markdown
+## AI Involvement
+
+**What AI did**: [list affected files or sections]
+**What I did**: [review, adapted, tested, understood]
+**Reviewed**: [yes / no — explain if no]
+```
+
+**Why it works**:
+- Forces the author to actually read and understand the generated code before merging
+- Makes code review more effective (reviewers know what to scrutinize)
+- Prevents "vibe coding" from silently accumulating technical debt
+- Creates a paper trail for architectural decisions
+
+**Graduated enforcement** — match to your team's maturity:
+
+| Developer level | Disclosure requirement |
+|-----------------|----------------------|
+| Junior / onboarding | Mandatory — every AI-generated block |
+| Intermediate | Recommended — non-trivial features |
+| Senior | Optional — own judgment |
+
+**What it's NOT**:
+- Not a ban on AI generation
+- Not a line-counting exercise
+- Not a blame mechanism
+
+> **Anti-pattern**: Skipping disclosure to move faster. The hidden cost is reviewers approving code nobody understands, compounding over months into sections of the codebase that are opaque to the whole team.
 
 ---
 
@@ -9239,11 +9278,67 @@ API key: sk-1234567890abcdef
 
 | Aspect | Cost | Notes |
 |--------|------|-------|
-| **API compression** | ~$0.15 per 100 observations | AI summarization via Claude |
+| **API compression** | ~$0.15 per 100 observations | AI summarization (model configurable) |
 | **Storage** | Free (local SQLite) | 10-20 MB/month (light use), 100-200 MB/month (heavy use) |
 | **Queries** | Free (local vectors) | Chroma indexation runs locally |
 
 **Typical monthly cost**: $5-15 for heavy users (100+ sessions/month)
+
+**Cost optimization — use Gemini instead of Claude for compression**:
+
+By default, claude-mem uses Claude (Haiku) for AI summarization. You can configure Gemini 2.5 Flash instead for significant cost savings:
+
+```bash
+# In claude-mem dashboard settings (localhost:37777)
+# Set compression model to: gemini-2.5-flash
+```
+
+| Model | Cost/month (~400 sessions) | Savings |
+|-------|---------------------------|---------|
+| Claude Haiku (default) | ~$102 | — |
+| Gemini 2.5 Flash | ~$14 | **-86%** |
+
+Gemini 2.5 Flash produces comparable compression quality at a fraction of the cost. If you're running claude-mem at scale, this is the single highest-ROI configuration change.
+
+**Critical installation gotcha — hooks coexistence**:
+
+claude-mem adds hooks on `SessionStart`, `PostToolUse`, `Stop`, and `SessionEnd`. If you already have hooks in `settings.json`, **claude-mem will not automatically merge them** — it will overwrite the hooks arrays.
+
+Before installing:
+1. Back up your current `settings.json`
+2. Note all existing hooks (PostToolUse, UserPromptSubmit arrays)
+3. After installation, manually verify the hooks arrays contain both your existing hooks AND the new claude-mem hooks
+
+```json
+// ✅ Correct — both hooks coexist
+"hooks": {
+  "PostToolUse": [
+    {"matcher": "...", "hooks": [{"type": "command", "command": "your-existing-hook.sh"}]},
+    {"matcher": "...", "hooks": [{"type": "command", "command": "claude-mem-hook.sh"}]}
+  ]
+}
+
+// ❌ Wrong — claude-mem silently replaced your hooks
+"hooks": {
+  "PostToolUse": [
+    {"matcher": "...", "hooks": [{"type": "command", "command": "claude-mem-hook.sh"}]}
+  ]
+}
+```
+
+**Reliability: fail-open architecture (v9.1.0+)**:
+
+If the claude-mem worker process is down (crash, restart, port conflict), Claude Code continues working normally — it does not block or error. Sessions simply aren't captured until the worker restarts.
+
+```bash
+# Check worker status
+open http://localhost:37777  # dashboard — if unreachable, worker is down
+
+# Restart worker manually if needed
+npx claude-mem@latest start
+```
+
+This fail-open behavior makes claude-mem safe to install in production workflows — a dead worker never blocks your work.
 
 **Limitations**:
 
@@ -10022,6 +10117,24 @@ npm install @microsoft/playwright-mcp
 |----------|------------|
 | `${workspaceFolder}` | Current project path |
 | `${env:VAR_NAME}` | Environment variable |
+
+### Managing Large MCP Server Sets
+
+When you accumulate many MCP servers, enabling them all globally degrades Claude's tool selection — each server adds tool descriptions to the context, making the model less precise at picking the right one.
+
+**Pattern**: keep a minimal global config (2-3 core servers) and activate project-specific servers via per-project `.mcp.json`.
+
+```
+# Global (~/.claude/mcp.json) → always loaded
+context7, sequential-thinking
+
+# Per-project (.claude/mcp.json) → only when needed
+postgres        # database project
+playwright      # frontend project
+serena          # large codebase
+```
+
+Community tools (e.g. [cc-setup](https://github.com/rhuss/cc-setup)) are emerging to provide a TUI registry with per-project toggling and health checks — useful if you manage 8+ servers regularly.
 
 ### CLI-Based MCP Configuration
 
@@ -20069,4 +20182,4 @@ We'll evaluate and add it to this section if it meets quality criteria.
 
 **Contributions**: Issues and PRs welcome.
 
-**Last updated**: January 2026 | **Version**: 3.28.0
+**Last updated**: January 2026 | **Version**: 3.28.1

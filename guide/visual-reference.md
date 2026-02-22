@@ -9,6 +9,8 @@ tags: [reference, architecture, cheatsheet]
 All diagrams in one place. Quick visual overview of Claude Code's key concepts.
 For detailed docs → [Ultimate Guide](./ultimate-guide.md) | [Cheatsheet](./cheatsheet.md)
 
+> **Interactive Mermaid diagrams available**: For 40 interactive diagrams covering model selection, agent lifecycle, memory hierarchy, multi-agent patterns, security threats, and more — see **[guide/diagrams/](./diagrams/)**. This file contains ASCII versions of key concepts.
+
 > **20 diagrams**: 8 new (this file) + 12 from existing guides, all consolidated here.
 
 ---

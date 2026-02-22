@@ -132,6 +132,8 @@ Document your team's plan-first triggers:
 
 **See also**: [Plan Mode documentation](./ultimate-guide.md#23-plan-mode) for `/plan` command usage.
 
+> **Advanced pattern**: For an iterative annotation-based approach to plan-driven development, see [Custom Markdown Plans (Boris Tane Pattern)](./workflows/plan-driven.md#advanced-custom-markdown-plans-boris-tane-pattern).
+
 ---
 
 ### Tier 2: Specification & Architecture
