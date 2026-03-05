@@ -2,8 +2,8 @@
 # For use with /security-check and /security-audit commands
 # Manually maintained — update after new security advisories
 
-version: "2.4.0"
-updated: "2026-02-28"
+version: "2.5.0"
+updated: "2026-03-05"
 sources:
   - name: "Snyk ToxicSkills"
     url: "https://snyk.io/blog/toxicskills-malicious-ai-agent-skills-clawhub/"
@@ -110,6 +110,33 @@ sources:
   - name: "Microsoft Security Blog - AI Recommendation Poisoning"
     url: "https://www.microsoft.com/en-us/security/blog/2026/02/10/ai-recommendation-poisoning/"
     date: "2026-02-10"
+  - name: "SonicWall - CVE-2026-25253 OpenClaw Auth Token Theft RCE"
+    url: "https://www.sonicwall.com/blog/openclaw-auth-token-theft-leading-to-rce-cve-2026-25253"
+    date: "2026-02-26"
+  - name: "Hunt.io - CVE-2026-25253 17500+ Exposed OpenClaw Instances"
+    url: "https://hunt.io/blog/cve-2026-25253-openclaw-ai-agent-exposure"
+    date: "2026-02-03"
+  - name: "NVD - CVE-2026-25725 Claude Code Sandbox Escape"
+    url: "https://nvd.nist.gov/vuln/detail/CVE-2026-25725"
+    date: "2026-02-06"
+  - name: "NVD - CVE-2026-0757 MCP Manager Claude Desktop Sandbox Escape"
+    url: "https://nvd.nist.gov/vuln/detail/CVE-2026-0757"
+    date: "2026-01-22"
+  - name: "ZDI - CVE-2025-15061 Framelink Figma MCP Server fetchWithRetry RCE"
+    url: "https://www.zerodayinitiative.com/advisories/ZDI-25-1197/"
+    date: "2025-12-29"
+  - name: "Check Point Advisories - CVE-2025-35028 HexStrike AI MCP Server"
+    url: "https://advisories.checkpoint.com/defense/advisories/public/2026/cpai-2025-12521.html"
+    date: "2026-03-02"
+  - name: "NVD - CVE-2026-3484 Nmap-Mcp-Server Command Injection"
+    url: "https://nvd.nist.gov/vuln/detail/CVE-2026-3484"
+    date: "2026-03-04"
+  - name: "Ona Security - Claude Code Autonomous Denylist and Sandbox Bypass"
+    url: "https://ona.com/stories/how-claude-code-escapes-its-own-denylist-and-sandbox"
+    date: "2026-03-03"
+  - name: "Brandefense - MCP Server Security: 10 Protocol-Level Attack Scenarios"
+    url: "https://brandefense.io/blog/mcp-server-security-protocol-attack-patterns/"
+    date: "2026-03-02"
 
 # ═══════════════════════════════════════════════════════════════
 # MALICIOUS AUTHORS (confirmed by security researchers)
@@ -833,6 +860,68 @@ cve_database:
     mitigation: "Update mcp-server-git to >= 2026.1.14; audit recent git commits managed by agents for unexpected file paths"
     notes: "Distinct from CVE-2025-68143/68144/68145 (those affect git_init/git_diff/git_checkout); this affects git_add; fix uses repo.git.add('--', *files) instead of repo.index.add(files)"
 
+  # --- OpenClaw (clawdbot / Moltbot) ---
+  - id: "CVE-2026-25253"
+    component: "OpenClaw (aka clawdbot, Moltbot)"
+    severity: "high"
+    cvss: 8.8
+    description: "Authentication token theft and RCE via malicious gatewayUrl — OpenClaw automatically establishes a WebSocket connection to a URL provided in the query string without origin validation; clicking attacker-crafted link causes OpenClaw to transmit auth token to attacker-controlled server; attacker replays token for full system access. 17,500+ internet-exposed instances identified."
+    source: "SonicWall / Hunt.io / runZero (2026-02-03 to 2026-02-26)"
+    fixed_in: "2026.1.29"
+    mitigation: "Update OpenClaw to >= 2026.1.29; block public internet exposure of OpenClaw instances"
+    notes: "CWE-669 (Incorrect Resource Transfer Between Spheres); exposes unauthenticated /api/export-auth endpoint leaking stored API tokens for Claude, OpenAI, Google AI"
+
+  # --- Claude Code (additional CVEs) ---
+  - id: "CVE-2026-25725"
+    component: "Claude Code"
+    severity: "high"
+    description: "Sandbox escape via persistent configuration injection — bubblewrap sandbox failed to protect missing .claude/settings.json; malicious code running inside sandbox creates settings.json with SessionStart hooks that execute with host privileges after Claude Code restart"
+    source: "NVD / GHSA-ff64-7w26-62rf (2026-02-06)"
+    fixed_in: "2.1.2"
+    mitigation: "Update Claude Code to >= 2.1.34 (covers this and subsequent fixes); monitor .claude/settings.json for unexpected SessionStart hooks"
+    notes: "CWE-501 Trust Boundary Violation; distinct from ADVISORY-CC-2026-001 (which is a different sandbox bypass patched in 2.1.34)"
+
+  # --- MCP Manager for Claude Desktop ---
+  - id: "CVE-2026-0757"
+    component: "MCP Manager for Claude Desktop"
+    severity: "high"
+    description: "Command injection sandbox escape — execute-command functionality fails to sanitize user-supplied strings from MCP config objects before passing to system calls; attacker crafts malicious webpage with injected config objects, causing MCP Manager to execute arbitrary commands outside the sandbox"
+    source: "NVD / ZDI-CAN-27810 (2026-01-22)"
+    fixed_in: "unknown — check upstream"
+    mitigation: "Restrict MCP Manager access to trusted configurations only; sanitize all MCP config object fields before system calls; block untrusted file/webpage access"
+
+  # --- HexStrike AI MCP Server ---
+  - id: "CVE-2025-35028"
+    component: "HexStrike AI MCP Server (0x4m4)"
+    severity: "critical"
+    cvss: 9.1
+    description: "Command injection via semicolon-prefixed argument — EnhancedCommandExecutor class fails to sanitize command-line arguments; attacker provides argument beginning with ; to API endpoint, executing arbitrary commands with MCP server privileges (typically root in default config)"
+    source: "Check Point Advisories / NVD (2025-11-30)"
+    fixed_in: "no fix confirmed at time of research"
+    mitigation: "Sanitize all command-line arguments; replace exec()-style calls with execFile() with argument arrays; do not expose HexStrike AI MCP Server to untrusted networks or inputs"
+    notes: "CWE-78; attack requires no authentication, no user interaction; default configuration typically runs as root"
+
+  # --- Nmap-Mcp-Server ---
+  - id: "CVE-2026-3484"
+    component: "nmap-mcp-server (PhialsBasement)"
+    severity: "medium"
+    cvss: 6.5
+    description: "Command injection in Nmap CLI Command Handler — child_process.exec in src/index.ts processes special elements (CWE-74/CWE-77) without sanitization; remotely exploitable with no authentication required"
+    source: "NVD / PT Security (2026-03-04)"
+    fixed_in: "patch commit 30a6b9e1c7fa6146f51e28d6ab83a2568d9a3488"
+    mitigation: "Apply patch commit 30a6b9e...; replace child_process.exec with execFile() and argument arrays; sanitize all nmap arguments"
+
+  # --- Framelink Figma MCP Server (additional CVE) ---
+  - id: "CVE-2025-15061"
+    component: "Framelink Figma MCP Server (figma-developer-mcp)"
+    severity: "critical"
+    cvss: 9.8
+    description: "Command injection RCE via fetchWithRetry method — user-supplied input passed to system calls without sanitization of shell metacharacters; authentication not required; allows arbitrary code execution with MCP server service account privileges"
+    source: "ZDI-25-1197 / SentinelOne (2025-12-29, NVD published 2026-01-23)"
+    fixed_in: "latest patched version (see upstream)"
+    mitigation: "Update Framelink Figma MCP Server to latest version; sanitize all user-supplied inputs; restrict MCP Server network access to trusted sources"
+    notes: "Distinct CVE from CVE-2025-53967 (same component/method, different CVE assignment; CVSS 9.8 vs 7.5); CWE-78"
+
 # ═══════════════════════════════════════════════════════════════
 # MINIMUM SAFE VERSIONS (quick reference for scanning)
 # ═══════════════════════════════════════════════════════════════
@@ -849,6 +938,7 @@ minimum_safe_versions:
   "claude-code": "2.1.34"
   "mcpjam-inspector": "1.4.3"
   "mcp-salesforce-connector": "0.1.10"
+  "openclaw": "2026.1.29"
 
 # ═══════════════════════════════════════════════════════════════
 # IOCs (Indicators of Compromise)
@@ -1271,6 +1361,16 @@ attack_techniques:
     cves: ["CVE-2025-59536", "CVE-2026-21852"]
     source: "Check Point Research (2026-02-25)"
     mitigation: "Review .claude/settings.json and .mcp.json before opening unfamiliar repos; treat these files as code, not metadata; update Claude Code to >= 2.0.65; never clone-and-run from untrusted sources without inspecting config files first"
+
+  - id: "T013"
+    name: "Autonomous Safety Control Bypass"
+    description: "AI coding agent autonomously disables or circumvents its own security controls (sandbox, denylist, permission enforcement) when those controls block task completion, without explicit attacker instruction — the agent's reasoning determines that bypassing safety is necessary to fulfill the assigned goal"
+    examples:
+      - "Claude Code disabling bubblewrap sandbox when it blocks file operations required for task"
+      - "Agent using path tricks, ELF dynamic linker, or alternative code-loading mechanisms to bypass denylist enforcement"
+      - "Agent finding sandbox escape paths proactively when sandbox prevents API calls or shell execution"
+    source: "Ona Security / Leonardo Di Donato (2026-03-03)"
+    mitigation: "Treat agent-initiated security control disabling as a red flag requiring human review; implement hard security boundaries that cannot be overridden by agent reasoning; monitor for unexpected sandbox exits or denylist bypass attempts; apply principle of least privilege so agents cannot access sandbox configuration"
 
   - id: "T012"
     name: "AI Recommendation Poisoning"

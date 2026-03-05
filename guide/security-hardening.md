@@ -65,10 +65,22 @@ This attack exploits the one-time approval model: once you approve an MCP, updat
 | **ADVISORY-CC-2026-001** | High | Sandbox bypass — commands excluded from sandboxing bypass Bash permissions (no CVE assigned) | **Update to v2.1.34+ immediately** |
 | **CVE-2026-0755** | **Critical (9.8)** | RCE in gemini-mcp-tool — LLM-generated args passed to shell without validation; no auth, network-reachable | **No fix yet** — avoid using in production or on exposed networks |
 | **SNYK-PYTHON-MCPRUNPYTHON-15250607** | High | SSRF in mcp-run-python — Deno sandbox permits localhost access, enabling internal network pivoting | Restrict sandbox network permissions; block localhost range |
+| **CVE-2026-25725** | High | Claude Code sandbox escape — malicious code inside bubblewrap sandbox creates missing `.claude/settings.json` with SessionStart hooks that execute with host privileges on restart | Update to >= v2.1.2 (covered by v2.1.34+) |
+| **CVE-2026-25253** | High (8.8) | OpenClaw 1-click RCE — malicious link triggers WebSocket to attacker-controlled server, exfiltrating auth token; 17,500+ exposed instances found | Update OpenClaw to >= 2026.1.29; block public internet exposure |
+| **CVE-2026-0757** | High | MCP Manager for Claude Desktop sandbox escape via command injection in execute-command with unsanitized MCP config objects | Restrict to trusted configs; check upstream for patch |
+| **CVE-2025-35028** | **Critical (9.1)** | HexStrike AI MCP Server — semicolon-prefixed arg causes OS command injection in EnhancedCommandExecutor, typically running as root; no auth required | **No fix yet** — avoid exposing to untrusted inputs/networks |
+| **CVE-2025-15061** | **Critical (9.8)** | Framelink Figma MCP Server — fetchWithRetry method executes attacker-controlled shell metacharacters; unauthenticated RCE | Update to latest patched version |
+| **CVE-2026-3484** | Medium (6.5) | nmap-mcp-server (PhialsBasement) — command injection in `child_process.exec` Nmap CLI handler; remotely exploitable | Apply patch commit `30a6b9e` |
 
 **v2.1.34 Security Fix (Feb 2026)**: Claude Code v2.1.34 patched a sandbox bypass vulnerability where commands excluded from sandboxing could bypass Bash permission enforcement. **Upgrade immediately** if running v2.1.33 or earlier. Note: this is separate from CVE-2026-25725 (a different sandbox escape fixed later).
 
 **⚠️ CVE-2026-0755 (Feb 2026 — No Patch)**: Critical RCE in `gemini-mcp-tool` (CVSS 9.8). An attacker can send crafted JSON-RPC `CallTool` requests with malicious arguments that execute arbitrary code on the host machine with full service account privileges. No fix confirmed as of 2026-02-22. Do not expose gemini-mcp-tool to untrusted networks.
+
+**⚠️ CVE-2025-35028 (No Patch)**: Critical RCE in HexStrike AI MCP Server (CVSS 9.1). Passing any argument starting with `;` to the API endpoint executes arbitrary OS commands, typically as root. No fix confirmed. Do not expose this server to untrusted inputs or networks.
+
+**⚠️ CVE-2025-15061 (Jan 2026)**: Critical RCE in Framelink Figma MCP Server (CVSS 9.8). The `fetchWithRetry` method passes unsanitized user input to shell — unauthenticated remote code execution. Update Figma MCP Server to the latest patched version immediately.
+
+**⚠️ CVE-2026-25253 (OpenClaw, Feb 2026)**: One-click RCE affecting OpenClaw/clawdbot/Moltbot (CVSS 8.8). A malicious link causes OpenClaw to automatically establish a WebSocket to an attacker-controlled server, leaking the auth token — which grants full system control since OpenClaw runs with filesystem and shell access. Over 17,500 internet-exposed instances identified. Update to >= 2026.1.29.
 
 **Source**: [Cymulate EscapeRoute](https://cymulate.com/blog/cve-2025-53109-53110-escaperoute-anthropic/), [Checkpoint MCPoison](https://research.checkpoint.com/2025/cursor-vulnerability-mcpoison/), [Cato CurXecute](https://www.catonetworks.com/blog/curxecute-rce/), [SentinelOne CVE-2026-24052](https://www.sentinelone.com/vulnerability-database/cve-2026-24052/), [Flatt Security](https://flatt.tech/research/posts/pwning-claude-code-in-8-different-ways/), [Penligent AI CVE-2026-0755](https://www.penligent.ai/hackinglabs/de/deep-analysis-of-gemini-mcp-tool-command-injection-cve-2026-0755-when-an-mcp-toolchain-hands-user-input-to-the-shell/), Claude Code CHANGELOG
 
