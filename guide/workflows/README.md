@@ -113,6 +113,46 @@ Systematically explore and understand unfamiliar codebases.
 
 ---
 
+## Multi-Agent & Advanced
+
+### [Agent Teams](./agent-teams.md)
+
+Orchestrate multiple specialized agents working in parallel on complex tasks.
+
+**When to use**: Tasks that benefit from parallelism, specialized expertise, or independent verification
+
+### [Agent Teams Quick Start](./agent-teams-quick-start.md)
+
+Fast-track guide to setting up your first agent team in under 30 minutes.
+
+**When to use**: New to multi-agent patterns, want to experiment before committing to full setup
+
+### [Dual-Instance Planning](./dual-instance-planning.md)
+
+Run Opus for planning and Sonnet for execution in two coordinated Claude Code instances.
+
+**When to use**: Complex features needing deep reasoning for architecture, cost-effective execution
+
+### [Event-Driven Agents](./event-driven-agents.md)
+
+Coordinate agents through hook events rather than direct orchestration.
+
+**When to use**: Reactive workflows, hook-triggered automation, loosely-coupled agent pipelines
+
+### [Plan Pipeline](./plan-pipeline.md)
+
+Full end-to-end plan pipeline: /plan-start, /plan-validate, /plan-execute as a coherent workflow.
+
+**When to use**: Any significant feature where planning rigor pays off before writing code
+
+### [Task Management](./task-management.md)
+
+Multi-session task tracking with TodoWrite, tasks API, and context persistence across sessions.
+
+**When to use**: Long-running tasks spanning multiple sessions, team coordination, complex backlogs
+
+---
+
 ## Quick Selection Guide
 
 | Your Situation | Recommended Workflow |
@@ -128,6 +168,12 @@ Systematically explore and understand unfamiliar codebases.
 | **Documentation** | [PDF Generation](./pdf-generation.md) |
 | **Conference talk from raw material** | [Talk Preparation Pipeline](./talk-pipeline.md) |
 | **Audio feedback** | [TTS Setup](./tts-setup.md) |
+| **Multi-agent tasks** | [Agent Teams](./agent-teams.md) |
+| **First agent team** | [Agent Teams Quick Start](./agent-teams-quick-start.md) |
+| **Cost-optimized planning** | [Dual-Instance Planning](./dual-instance-planning.md) |
+| **Hook-driven automation** | [Event-Driven Agents](./event-driven-agents.md) |
+| **Full plan workflow** | [Plan Pipeline](./plan-pipeline.md) |
+| **Multi-session tracking** | [Task Management](./task-management.md) |
 
 ---
 
@@ -146,4 +192,4 @@ New workflow ideas? Open an issue or PR in the main repository.
 
 ---
 
-**Last updated**: February 2026
+**Last updated**: March 2026

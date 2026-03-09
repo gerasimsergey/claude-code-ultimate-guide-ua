@@ -106,9 +106,35 @@ Context full → /compact or /clear
 
 ---
 
+## Choose Your Path
+
+The guide has 11 chapters and 22,000+ lines. You don't need to read everything — here's what matters for your situation:
+
+| I am... | Read this | Skip this | Time |
+|---------|-----------|-----------|------|
+| **Developer, getting started** | Ch.1 → Ch.2 → Ch.3 | Ch.9, Ch.11, Appendix | 3h |
+| **Developer, intermediate** | Ch.2.6 → Ch.4 → Ch.5 → Ch.7 | Ch.1, Ch.10 ref only | 4h |
+| **Power user / senior** | Ch.9 (Advanced) → Ch.4-8 | Ch.1 Quick Start | 2h |
+| **Tech Lead / EM** | Ch.3.5 → Ch.9.17 → Ch.9.20 → Ch.11 | Ch.5-6 detail | 1h30 |
+| **Just need a reference** | [Ch.10.5 Cheatsheet](#105-cheatsheet) | Everything else | 5 min |
+
+---
+
+## Top 5 sections by ROI
+
+If you only have time for 5 sections:
+
+1. **[2.6 Mental Model](#26-mental-model)** — Understand how Claude Code thinks (20 min)
+2. **[3.1 CLAUDE.md](#31-memory-files-claudemd)** — Persistent memory that survives sessions (30 min)
+3. **[9.1 The Trinity](#91-the-trinity)** — The core pattern for agentic work (20 min)
+4. **[7.4 Security Hooks](#74-security-hooks)** — Automate guardrails you won't forget (30 min)
+5. **[10.5 Cheatsheet](#105-cheatsheet)** — Daily reference, bookmark it (5 min)
+
+---
+
 ## Table of Contents
 
-- [1. Quick Start (Day 1)](#1-quick-start-day-1)
+- [1. Quick Start (Day 1)](#1-quick-start-day-1) `🟢 Beginner` `⏱ 45 min`
   - [1.1 Installation](#11-installation)
   - [1.2 First Workflow](#12-first-workflow)
   - [1.3 Essential Commands](#13-essential-commands)
@@ -117,7 +143,7 @@ Context full → /compact or /clear
   - [1.6 Migrating from Other AI Coding Tools](#16-migrating-from-other-ai-coding-tools)
   - [1.7 Trust Calibration](#17-trust-calibration-when-and-how-much-to-verify)
   - [1.8 Eight Beginner Mistakes](#18-eight-beginner-mistakes-and-how-to-avoid-them)
-- [2. Core Concepts](#2-core-concepts)
+- [2. Core Concepts](#2-core-concepts) `🟡 Intermediate` `⏱ 60 min`
   - [2.1 The Interaction Loop](#21-the-interaction-loop)
   - [2.2 Context Management](#22-context-management)
   - [2.3 Plan Mode](#23-plan-mode)
@@ -129,42 +155,42 @@ Context full → /compact or /clear
   - [2.9 Semantic Anchors](#29-semantic-anchors)
   - [2.10 Data Flow & Privacy](#210-data-flow--privacy)
   - [2.11 Under the Hood](#211-under-the-hood)
-- [3. Memory & Settings](#3-memory--settings)
+- [3. Memory & Settings](#3-memory--settings) `🟢 Beginner` `⏱ 30 min`
   - [3.1 Memory Files (CLAUDE.md)](#31-memory-files-claudemd)
   - [3.2 The .claude/ Folder Structure](#32-the-claude-folder-structure)
   - [3.3 Settings & Permissions](#33-settings--permissions)
   - [3.4 Precedence Rules](#34-precedence-rules)
   - [3.5 Team Configuration at Scale](#35-team-configuration-at-scale)
-- [4. Agents](#4-agents)
+- [4. Agents](#4-agents) `🟡 Intermediate` `⏱ 45 min`
   - [4.1 What Are Agents](#41-what-are-agents)
   - [4.2 Creating Custom Agents](#42-creating-custom-agents)
   - [4.3 Agent Template](#43-agent-template)
   - [4.4 Best Practices](#44-best-practices)
   - [4.5 Agent Examples](#45-agent-examples)
-- [5. Skills](#5-skills)
+- [5. Skills](#5-skills) `🟡 Intermediate` `⏱ 30 min`
   - [5.1 Understanding Skills](#51-understanding-skills)
   - [5.2 Creating Skills](#52-creating-skills)
   - [5.3 Skill Template](#53-skill-template)
   - [5.4 Skill Examples](#54-skill-examples)
-- [6. Commands](#6-commands)
+- [6. Commands](#6-commands) `🟡 Intermediate` `⏱ 30 min`
   - [6.1 Slash Commands](#61-slash-commands)
   - [6.2 Creating Custom Commands](#62-creating-custom-commands)
   - [6.3 Command Template](#63-command-template)
   - [6.4 Command Examples](#64-command-examples)
-- [7. Hooks](#7-hooks)
+- [7. Hooks](#7-hooks) `🟡 Intermediate` `⏱ 45 min`
   - [7.1 The Event System](#71-the-event-system)
   - [7.2 Creating Hooks](#72-creating-hooks)
   - [7.3 Hook Templates](#73-hook-templates)
   - [7.4 Security Hooks](#74-security-hooks)
   - [7.5 Hook Examples](#75-hook-examples)
-- [8. MCP Servers](#8-mcp-servers)
+- [8. MCP Servers](#8-mcp-servers) `🟡 Intermediate` `⏱ 40 min`
   - [8.1 What is MCP](#81-what-is-mcp)
   - [8.2 Available Servers](#82-available-servers)
   - [8.3 Configuration](#83-configuration)
   - [8.4 Server Selection Guide](#84-server-selection-guide)
   - [8.5 Plugin System](#85-plugin-system)
   - [8.6 MCP Security](#86-mcp-security)
-- [9. Advanced Patterns](#9-advanced-patterns)
+- [9. Advanced Patterns](#9-advanced-patterns) `🔴 Advanced` `⏱ 3h`
   - [9.1 The Trinity](#91-the-trinity)
   - [9.2 Composition Patterns](#92-composition-patterns)
   - [9.3 CI/CD Integration](#93-cicd-integration)
@@ -187,14 +213,14 @@ Context full → /compact or /clear
   - [9.20 Agent Teams (Multi-Agent Coordination)](#920-agent-teams-multi-agent-coordination)
   - [9.21 Legacy Codebase Modernization](#921-legacy-codebase-modernization)
   - [9.22 Remote Control (Mobile Access)](#922-remote-control-mobile-access)
-- [10. Reference](#10-reference)
+- [10. Reference](#10-reference) `🟢 All levels` `⏱ As needed`
   - [10.1 Commands Table](#101-commands-table)
   - [10.2 Keyboard Shortcuts](#102-keyboard-shortcuts)
   - [10.3 Configuration Reference](#103-configuration-reference)
   - [10.4 Troubleshooting](#104-troubleshooting)
   - [10.5 Cheatsheet](#105-cheatsheet)
   - [10.6 Daily Workflow & Checklists](#106-daily-workflow--checklists)
-- [11. AI Ecosystem: Complementary Tools](#11-ai-ecosystem-complementary-tools)
+- [11. AI Ecosystem: Complementary Tools](#11-ai-ecosystem-complementary-tools) `🟡 Intermediate` `⏱ 20 min`
   - [11.1 Why Complementarity Matters](#111-why-complementarity-matters)
   - [11.2 Tool Matrix](#112-tool-matrix)
   - [11.3 Practical Workflows](#113-practical-workflows)
@@ -217,6 +243,8 @@ _Quick jump:_ [Installation](#11-installation) · [First Workflow](#12-first-wor
 **Skill level**: Beginner
 
 **Goal**: Go from zero to productive
+
+> **Already using Claude Code?** Skip to [1.6 Migration guide](#16-migrating-from-other-ai-coding-tools) or go directly to [Ch.2 Core Concepts](#2-core-concepts).
 
 ## 1.1 Installation
 
@@ -1466,6 +1494,8 @@ Before your next session, verify:
 _Quick jump:_ [The Interaction Loop](#21-the-interaction-loop) · [Context Management](#22-context-management) · [Plan Mode](#23-plan-mode) · [Rewind](#24-rewind) · [Model Selection](#25-model-selection--thinking-guide) · [Mental Model](#26-mental-model) · [Config Decision Guide](#27-configuration-decision-guide) · [Data Flow & Privacy](#210-data-flow--privacy)
 
 ---
+
+> **Experienced with Claude Code?** Jump to [2.6 Mental Model](#26-mental-model) — the highest-ROI section in this chapter.
 
 ## 📌 Section 2 TL;DR (2 minutes)
 
@@ -9205,6 +9235,8 @@ Security hooks are critical for protecting your system.
 > **Advanced patterns**: For comprehensive security including Unicode injection detection, MCP config integrity verification, and CVE-specific mitigations, see [Security Hardening Guide](./security-hardening.md).
 
 > **Claude Code Security (research preview)**: Anthropic offers a dedicated codebase vulnerability scanner that traces data flows across files, challenges findings internally before surfacing them (adversarial validation), and generates patch suggestions. Separate from the Security Auditor Agent above — waitlist access only. See [Security Hardening Guide → Claude Code as Security Scanner](./security-hardening.md#claude-code-as-security-scanner-research-preview).
+>
+> **Validated at scale**: In a March 2026 partnership with Mozilla, Claude Opus 4.6 scanned ~6,000 C++ files in Firefox's JS engine in two weeks, surfacing 22 confirmed vulnerabilities (14 high severity) — roughly one fifth of all high-severity Firefox CVEs fixed in 2025. Demonstrates the model's practical depth for production security work, well beyond surface-level linting.
 
 ### Recommended Security Rules
 
@@ -12717,6 +12749,10 @@ claude
 _Quick jump:_ [The Trinity](#91-the-trinity) · [Composition Patterns](#92-composition-patterns) · [CI/CD Integration](#93-cicd-integration) · [IDE Integration](#94-ide-integration) · [Tight Feedback Loops](#95-tight-feedback-loops)
 
 ---
+
+> **Prerequisite**: Read [4.1 What Are Agents](#41-what-are-agents) and [3.1 CLAUDE.md](#31-memory-files-claudemd) before diving into 9.17-9.20.
+
+> **New to Claude Code?** Start with Ch.1-3 first. Chapter 9 makes most sense after 1-2 months of daily use.
 
 ## 📌 Section 9 TL;DR (3 minutes)
 
@@ -20716,6 +20752,7 @@ _Quick jump:_ [Commands Table](#101-commands-table) · [Keyboard Shortcuts](#102
 | `/init` | Generate starter CLAUDE.md based on project structure | Config |
 | `/login` | Log in to Claude account | Auth |
 | `/logout` | Log out and re-authenticate | Auth |
+| `/loop [interval] [prompt]` | Run a prompt or slash command on a recurring interval (e.g. `/loop 5m check the deploy`) — v2.1.71+ | Automation |
 | `/mcp` | Manage Model Context Protocol servers | Config |
 | `/memory` | View and edit auto-memory (context Claude automatically saved across sessions via MEMORY.md) — v2.1.59+ | Config |
 | `/mobile` | Show App Store and Google Play download links | Info |
@@ -20773,6 +20810,22 @@ _Quick jump:_ [Commands Table](#101-commands-table) · [Keyboard Shortcuts](#102
 |----------|--------|
 | `Alt+T` (`Option+T` on macOS) | Toggle thinking mode on/off |
 | `Ctrl+O` | View thinking blocks |
+
+### Voice Input
+
+| Shortcut | Action |
+|----------|--------|
+| `Space` (hold) | Push-to-talk — hold to speak, release to send (default binding) |
+
+**Rebinding**: The `voice:pushToTalk` binding is configurable in `~/.claude/keybindings.json` (v2.1.71+). Add a custom binding if Space conflicts with your workflow:
+
+```json
+{
+  "voice:pushToTalk": "ctrl+space"
+}
+```
+
+Toggle voice on/off with `/voice`. The push-to-talk binding only activates when voice mode is active.
 
 ### Agent Teams Navigation
 

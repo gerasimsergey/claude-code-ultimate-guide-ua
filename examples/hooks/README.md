@@ -41,6 +41,9 @@ Hooks are scripts that execute automatically on Claude Code events. They enable 
 | [pre-commit-secrets.sh](./bash/pre-commit-secrets.sh) | Git hook | Block secrets from entering commits | Bash |
 | [pre-commit-evaluator.sh](./bash/pre-commit-evaluator.sh) | Git hook | LLM-as-a-Judge pre-commit validation | Bash |
 | [notification.sh](./bash/notification.sh) | Notification | Contextual macOS sound alerts | Bash (macOS) |
+| [auto-rename-session.sh](./bash/auto-rename-session.sh) | SessionEnd | AI-powered session title generation via Haiku | Bash |
+| [security-gate.sh](./bash/security-gate.sh) | PreToolUse | Detect vulnerable code patterns before writing to source files | Bash |
+| [velocity-governor.sh](./bash/velocity-governor.sh) | PreToolUse | Rate-limit tool calls to avoid API throttling | Bash |
 | [security-check.ps1](./powershell/security-check.ps1) | PreToolUse | Block secrets in commands | PowerShell |
 | [auto-format.ps1](./powershell/auto-format.ps1) | PostToolUse | Auto-format after edits | PowerShell |
 

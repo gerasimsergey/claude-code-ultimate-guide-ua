@@ -87,42 +87,48 @@ flowchart LR
 
 ---
 
-### Memory Hierarchy — 5 Types
+### Memory Hierarchy — 6 Types
 
-Claude Code has 5 distinct memory types with different scopes and persistence. Knowing which memory type to use for each piece of information is key to effective sessions.
+Claude Code has 6 distinct memory types with different scopes and persistence. Knowing which memory type to use for each piece of information is key to effective sessions.
 
 ```mermaid
 flowchart TD
     A["🌍 Global CLAUDE.md<br/>~/.claude/CLAUDE.md"] --> B["📁 Project CLAUDE.md<br/>/project-root/CLAUDE.md"]
     B --> C["📂 Subdirectory CLAUDE.md<br/>/src/CLAUDE.md, /tests/CLAUDE.md"]
-    C --> D["💬 In-Conversation Context<br/>Messages + tool results this session"]
+    C --> AM["🧠 Auto-Memory Native<br/>~/.claude/projects/*/memory/MEMORY.md<br/>v2.1.59+"]
+    AM --> D["💬 In-Conversation Context<br/>Messages + tool results this session"]
     D --> E["⚡ Ephemeral State<br/>MCP server state, tool cache"]
 
     A1["Scope: ALL projects<br/>Persists: Always<br/>Use: Global prefs, API keys"] --> A
     B1["Scope: This project<br/>Persists: Always<br/>Use: Project conventions"] --> B
     C1["Scope: This directory<br/>Persists: Always<br/>Use: Module-specific rules"] --> C
+    AM1["Scope: Per project<br/>Persists: Cross-session<br/>Use: Auto-saved memories, /memory"] --> AM
     D1["Scope: This session<br/>Persists: Session only<br/>Use: Task context"] --> D
     E1["Scope: This session<br/>Persists: Session only<br/>Use: Computed results"] --> E
 
     style A fill:#E87E2F,color:#fff
     style B fill:#6DB3F2,color:#fff
     style C fill:#6DB3F2,color:#fff
+    style AM fill:#7BC47F,color:#333
     style D fill:#F5E6D3,color:#333
     style E fill:#B8B8B8,color:#333
     style A1 fill:#B8B8B8,color:#333
     style B1 fill:#B8B8B8,color:#333
     style C1 fill:#B8B8B8,color:#333
+    style AM1 fill:#B8B8B8,color:#333
     style D1 fill:#B8B8B8,color:#333
     style E1 fill:#B8B8B8,color:#333
 
     click A href "https://github.com/FlorianBruniaux/claude-code-ultimate-guide/blob/main/guide/ultimate-guide.md#31-memory-files-claudemd" "Global CLAUDE.md"
     click B href "https://github.com/FlorianBruniaux/claude-code-ultimate-guide/blob/main/guide/ultimate-guide.md#31-memory-files-claudemd" "Project CLAUDE.md"
     click C href "https://github.com/FlorianBruniaux/claude-code-ultimate-guide/blob/main/guide/ultimate-guide.md#31-memory-files-claudemd" "Subdirectory CLAUDE.md"
+    click AM href "https://github.com/FlorianBruniaux/claude-code-ultimate-guide/blob/main/guide/ultimate-guide.md#31-memory-files-claudemd" "Auto-Memory Native"
     click D href "https://github.com/FlorianBruniaux/claude-code-ultimate-guide/blob/main/guide/ultimate-guide.md#22-context-management" "In-Conversation Context"
     click E href "https://github.com/FlorianBruniaux/claude-code-ultimate-guide/blob/main/guide/architecture.md#3-context-management-internals" "Ephemeral State"
     click A1 href "https://github.com/FlorianBruniaux/claude-code-ultimate-guide/blob/main/guide/ultimate-guide.md#31-memory-files-claudemd" "Global scope — always persists"
     click B1 href "https://github.com/FlorianBruniaux/claude-code-ultimate-guide/blob/main/guide/ultimate-guide.md#31-memory-files-claudemd" "Project scope — always persists"
     click C1 href "https://github.com/FlorianBruniaux/claude-code-ultimate-guide/blob/main/guide/ultimate-guide.md#31-memory-files-claudemd" "Directory scope — always persists"
+    click AM1 href "https://github.com/FlorianBruniaux/claude-code-ultimate-guide/blob/main/guide/ultimate-guide.md#31-memory-files-claudemd" "Cross-session auto-memory"
     click D1 href "https://github.com/FlorianBruniaux/claude-code-ultimate-guide/blob/main/guide/ultimate-guide.md#22-context-management" "Session scope only"
     click E1 href "https://github.com/FlorianBruniaux/claude-code-ultimate-guide/blob/main/guide/architecture.md#3-context-management-internals" "Session scope only"
 ```
@@ -131,21 +137,24 @@ flowchart TD
 <summary>ASCII version</summary>
 
 ```
-PERMANENT ──────────────────────── SESSION ONLY
+PERMANENT ──────────────────────────────── SESSION ONLY
 
-~/.claude/CLAUDE.md          In-conversation context
-      │                             │
-/project/CLAUDE.md          Ephemeral MCP state
+~/.claude/CLAUDE.md              In-conversation context
+      │                                      │
+/project/CLAUDE.md               Ephemeral MCP state
       │
 /subdir/CLAUDE.md
+      │
+Auto-Memory (MEMORY.md)  ← cross-session, per project
 
 Higher = broader scope, always persists
 Lower = narrower scope, survives restarts
+Auto-Memory = persists cross-session, scoped per project
 ```
 
 </details>
 
-> **Source**: [Memory System](../ultimate-guide.md#memory-system) — Line ~3160 & ~3986
+> **Source**: [Memory System](../ultimate-guide.md#memory-system) — Line ~3160 & ~3986 | Auto-Memory: v2.1.59+ (v3.30.0)
 
 ---
 

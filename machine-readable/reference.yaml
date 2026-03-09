@@ -168,6 +168,7 @@ deep_dive:
   trust_calibration_maintainability_nuance: "guide/ultimate-guide.md:1097"  # Nuance: defect rates ≠ maintenance burden (Borg et al. 2025)
   session_naming_template: "examples/claude-md/session-naming.md"
   session_naming_guide: "guide/ultimate-guide.md:815"
+  session_auto_rename: 859
   learning_mode_template: "examples/claude-md/learning-mode.md"
   learn_quiz_command: "examples/commands/learn/quiz.md"
   learn_teach_command: "examples/commands/learn/teach.md"
@@ -451,6 +452,8 @@ deep_dive:
   agent_template: 5636
   agent_examples: 5836
   skills: 6246
+  skills_taxonomy: 6718
+  skills_evals: 6954
   skill_template: 6384
   skill_examples: 6452
   design_patterns_skill: 6630
@@ -964,10 +967,10 @@ deep_dive:
   myths_tasks_api_autonomous: 20965
   myths_100x_faster: 20997
   myths_reliable_sources: 20983
-  # Quiz System (264 questions, 15 categories)
+  # Quiz System (271 questions, 15 categories)
   quiz_overview: "quiz/README.md"
   quiz_file: "quiz/questions.json"
-  quiz_count: 264
+  quiz_count: 271
   quiz_categories: 15
   quiz_beginner: "quiz/categories/basics,commands,shortcuts,reference"
   quiz_beginner_count: 60
@@ -1346,7 +1349,7 @@ rules:
 ecosystem:
   this_guide:
     focus: "Education - Learn & master"
-    unique: ["architecture docs", "TDD/SDD methodologies", "264-question quiz", "YAML index", "MCP server"]
+    unique: ["architecture docs", "TDD/SDD methodologies", "271-question quiz", "YAML index", "MCP server"]
   mcp_server:
     npm: "claude-code-ultimate-guide-mcp"
     install: "npx -y claude-code-ultimate-guide-mcp"
@@ -1470,7 +1473,7 @@ ecosystem:
       local: "/Users/florianbruniaux/Sites/perso/claude-code-ultimate-guide-landing/"
       purpose: "Marketing site for Claude Code guide"
       audience: "Developers discovering the guide"
-      features: ["badges (version, templates, lines)", "quiz (264 questions)", "FAQ", "cross-links to Cowork"]
+      features: ["badges (version, templates, lines)", "quiz (271 questions)", "FAQ", "cross-links to Cowork"]
       sync_with: "Guide Code (version, templates count, guide lines)"
     cowork_landing:
       local: "/Users/florianbruniaux/Sites/perso/claude-cowork-guide-landing/"
@@ -1494,10 +1497,13 @@ ecosystem:
 # ONBOARDING MATRIX METADATA
 # ════════════════════════════════════════════════════════════════
 onboarding_matrix_meta:
-  version: "2.0.0"
-  last_updated: "2026-02-05"
+  version: "2.1.0"
+  last_updated: "2026-03-09"
   aligned_with_guide: "3.32.2"
   changelog:
+    - version: "2.1.0"
+      date: "2026-03-09"
+      changes: "Quiz count 264→271, skills_taxonomy/skills_evals/session_auto_rename deep_dive keys, plan_pipeline adaptive triggers in build_agents+learn_everything, v3.21-3.32 version refs updated"
     - version: "2.0.0"
       date: "2026-02-05"
       changes: "Adaptive architecture (core+adaptive topics), v3.21-3.22 coverage (git_mcp, sandbox_native, config_hierarchy, mcp_secrets, dual_instance), security-first (sandbox in beginner_5min), time budgets validated, learn_security goal added"
@@ -1516,7 +1522,7 @@ onboarding_matrix_meta:
 # ════════════════════════════════════════════════════════════════
 onboarding_matrix:
   # Adaptive architecture: Each profile has core (always) + adaptive (context-based) topics
-  # Adaptive triggers: keywords in user messages → relevant v3.21-3.22 topics
+  # Adaptive triggers: keywords in user messages → relevant v3.21-3.32 topics
   # Time budgets: Validated (6-8 min/topic average, respects topics_max limits)
 
   get_started:
@@ -1568,7 +1574,7 @@ onboarding_matrix:
         - default: batch_operations
       time_budget: "30 min"
       topics_max: 4
-      note: "Adaptive: picks up to 2 from adaptive based on user context (v3.21-3.22)"
+      note: "Adaptive: picks up to 2 from adaptive based on user context (v3.21-3.32)"
 
     power_60min:
       core: [context_triage, cost_optimization, config_hierarchy]
@@ -1579,10 +1585,12 @@ onboarding_matrix:
           topics: [mcp_secrets_management]
         - trigger: "security|sandbox|isolation"
           topics: [sandbox_native_guide]
+        - trigger: "plan|pipeline"
+          topics: [plan_pipeline_workflow]
         - default: [batch_operations, rtk_guide]
       time_budget: "60 min"
       topics_max: 7
-      note: "Comprehensive optimization with all v3.21-3.22 topics"
+      note: "Comprehensive optimization with all v3.21-3.32 topics"
 
   build_agents:
     intermediate_30min:
@@ -1606,6 +1614,8 @@ onboarding_matrix:
           topics: [dual_instance_planning]
         - trigger: "validation|checklist|production|deploy"
           topics: [agent_validation_checklist]
+        - trigger: "plan|pipeline|validate|execute"
+          topics: [plan_pipeline_workflow]
         - default: agent_validation_checklist
       time_budget: "60 min"
       topics_max: 6
@@ -1651,17 +1661,19 @@ onboarding_matrix:
       core: [plan_mode, agents, skills, config_hierarchy, git_mcp_guide, hooks, mcp_servers]
       time_budget: "120 min"
       topics_max: 7
-      note: "Agents + v3.21-3.22 topics (config/git)"
+      note: "Agents + v3.21-3.32 topics (config/git)"
 
     power_120min:
       core: [architecture, dual_instance_planning, mcp_secrets_management, cost_optimization, cicd]
       adaptive:
         - trigger: "security"
           topics: [security_hardening, sandbox_native_guide]
+        - trigger: "plan|pipeline|validate|execute"
+          topics: [plan_pipeline_workflow]
         - default: [rtk_guide, bridge_guide]
       time_budget: "120 min"
       topics_max: 9
-      note: "Advanced patterns + all v3.21-3.22 features"
+      note: "Advanced patterns + all v3.21-3.32 features"
 
 # ════════════════════════════════════════════════════════════════
 # ONBOARDING QUESTIONS - Structure for interactive profiling

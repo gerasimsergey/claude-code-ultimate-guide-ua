@@ -20,6 +20,12 @@ Utility scripts for Claude Code power users.
 | `cc-sessions.py` | Advanced session search with incremental indexing (Python) |
 | `session-stats.sh` | Statistics about Claude Code sessions |
 | `bridge.py` | Bridge: Claude Code → doobidoo → LM Studio |
+| `bridge-plan-schema.json` | JSON Schema for bridge plan v1 format |
+| `migrate-arguments-syntax.sh` | Migrate v1 → v2 slash command argument syntax (bash) |
+| `migrate-arguments-syntax.ps1` | Migrate v1 → v2 slash command argument syntax (PowerShell) |
+| `rtk-benchmark.sh` | Benchmark RTK token savings vs raw commands |
+| `sync-claude-config.sh` | Sync Claude config files across machines |
+| `sonnetplan.sh` | Run Claude with Sonnet replacing Opus (cost optimization alias) |
 
 ---
 

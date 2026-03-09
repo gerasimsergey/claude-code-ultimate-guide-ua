@@ -32,6 +32,7 @@ __pycache__/
 
 # Personal notes & temp files
 to-ignore/
+docs/drafts/
 .grepai/
 whitepapers/
 claudedocs/

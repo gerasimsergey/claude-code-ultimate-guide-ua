@@ -1,6 +1,6 @@
 ---
 title: "Claude Code — Visual Diagrams"
-description: "40 Mermaid interactive diagrams covering all major Claude Code concepts"
+description: "41 Mermaid interactive diagrams covering all major Claude Code concepts"
 tags: [reference, architecture, diagrams, mermaid]
 ---
 

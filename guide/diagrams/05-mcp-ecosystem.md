@@ -25,6 +25,8 @@ flowchart TD
         O1["context7<br/>Library documentation"]
         O2["sequential-thinking<br/>Multi-step reasoning"]
         O3["playwright<br/>Browser automation"]
+        O4["git-mcp<br/>Local git operations"]
+        O5["github-mcp<br/>GitHub platform"]
     end
 
     subgraph DEV["👨‍💻 Community: Dev Tools"]
@@ -49,6 +51,8 @@ flowchart TD
     style O1 fill:#7BC47F,color:#333
     style O2 fill:#7BC47F,color:#333
     style O3 fill:#7BC47F,color:#333
+    style O4 fill:#7BC47F,color:#333
+    style O5 fill:#7BC47F,color:#333
     style D1 fill:#6DB3F2,color:#fff
     style D2 fill:#6DB3F2,color:#fff
     style D3 fill:#6DB3F2,color:#fff
@@ -63,6 +67,8 @@ flowchart TD
     click O1 href "https://github.com/FlorianBruniaux/claude-code-ultimate-guide/blob/main/guide/ultimate-guide.md#82-available-servers" "context7 — Library docs"
     click O2 href "https://github.com/FlorianBruniaux/claude-code-ultimate-guide/blob/main/guide/ultimate-guide.md#82-available-servers" "sequential-thinking"
     click O3 href "https://github.com/FlorianBruniaux/claude-code-ultimate-guide/blob/main/guide/ultimate-guide.md#82-available-servers" "playwright — Browser automation"
+    click O4 href "https://github.com/FlorianBruniaux/claude-code-ultimate-guide/blob/main/guide/ultimate-guide.md#82-available-servers" "git-mcp — Local git operations"
+    click O5 href "https://github.com/FlorianBruniaux/claude-code-ultimate-guide/blob/main/guide/ultimate-guide.md#82-available-servers" "github-mcp — GitHub platform"
     click D1 href "https://github.com/FlorianBruniaux/claude-code-ultimate-guide/blob/main/guide/ultimate-guide.md#82-available-servers" "semgrep — Security scanning"
     click D2 href "https://github.com/FlorianBruniaux/claude-code-ultimate-guide/blob/main/guide/ultimate-guide.md#82-available-servers" "github — PR management"
     click D3 href "https://github.com/FlorianBruniaux/claude-code-ultimate-guide/blob/main/guide/ultimate-guide.md#82-available-servers" "grepai — Semantic search"
@@ -79,7 +85,7 @@ flowchart TD
 
 ```
 Claude Code
-├── Official: context7, sequential-thinking, playwright
+├── Official: context7, sequential-thinking, playwright, git-mcp, github-mcp
 ├── Community Dev: semgrep, github, grepai, filesystem-enhanced
 ├── Community Ops: kubernetes, docker, aws
 └── Local/Custom: project MCPs, internal API wrappers

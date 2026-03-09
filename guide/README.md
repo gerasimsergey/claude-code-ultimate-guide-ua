@@ -19,7 +19,7 @@ Core documentation for mastering Claude Code.
 | [known-issues.md](./known-issues.md) | **Critical bugs tracker**: security issues, token consumption, verified community reports | 15 min |
 | [cheatsheet.md](./cheatsheet.md) | 1-page printable quick reference | 5 min |
 | [visual-reference.md](./visual-reference.md) | Visual cheatsheet — ASCII diagrams for key concepts | 5 min |
-| [diagrams/](./diagrams/) | **Visual Diagrams Series**: 40 Mermaid interactive diagrams for model selection, agent lifecycle, security, multi-agent patterns | 15 min |
+| [diagrams/](./diagrams/) | **Visual Diagrams Series**: 41 Mermaid interactive diagrams for model selection, agent lifecycle, security, multi-agent patterns | 15 min |
 | [architecture.md](./architecture.md) | How Claude Code works internally (master loop, tools, context) | 25 min |
 | [learning-with-ai.md](./learning-with-ai.md) | Guide for juniors on using AI without losing skills | 15 min |
 | [adoption-approaches.md](./adoption-approaches.md) | Implementation strategies for teams | 15 min |
@@ -33,6 +33,11 @@ Core documentation for mastering Claude Code.
 | [sandbox-isolation.md](./sandbox-isolation.md) | Docker Sandboxes, cloud alternatives, safe autonomy workflows | 10 min |
 | [ai-ecosystem.md](./ai-ecosystem.md) | Complementary AI tools (Perplexity, Gemini, Kimi, NotebookLM, TTS) | 30 min |
 | [cowork.md](./cowork.md) | Claude Cowork: Summary (see [dedicated repo](https://github.com/FlorianBruniaux/claude-cowork-guide) for full docs) | 5 min |
+| [ai-roles.md](./ai-roles.md) | AI roles mapping: when to use Claude Code vs Claude Desktop vs API | 10 min |
+| [production-safety.md](./production-safety.md) | Production safety: guardrails, review gates, rollback strategies | 15 min |
+| [remarkable-ai.md](./remarkable-ai.md) | Remarkable AI usage patterns and power-user techniques | 10 min |
+| [sandbox-native.md](./sandbox-native.md) | Native Claude Code sandbox: configuration and security model | 10 min |
+| [search-tools-cheatsheet.md](./search-tools-cheatsheet.md) | Search tools quick reference: rg, grepai, Serena, ast-grep | 5 min |
 | [workflows/](./workflows/) | Practical workflow guides for Claude Code | 30 min |
 
 ### Cowork Documentation
@@ -60,6 +65,18 @@ Hands-on guides for effective development patterns:
 | [workflows/iterative-refinement.md](./workflows/iterative-refinement.md) | Iterative improvement loops |
 | [workflows/tts-setup.md](./workflows/tts-setup.md) | Add text-to-speech narration to Claude Code (18 min) |
 | [workflows/task-management.md](./workflows/task-management.md) | Multi-session task tracking, TodoWrite migration |
+| [workflows/agent-teams.md](./workflows/agent-teams.md) | Orchestrating multi-agent teams for complex tasks |
+| [workflows/agent-teams-quick-start.md](./workflows/agent-teams-quick-start.md) | Quick start guide for agent team patterns |
+| [workflows/dual-instance-planning.md](./workflows/dual-instance-planning.md) | Dual-instance planning: Opus plans, Sonnet executes |
+| [workflows/event-driven-agents.md](./workflows/event-driven-agents.md) | Event-driven agent coordination patterns |
+| [workflows/plan-pipeline.md](./workflows/plan-pipeline.md) | End-to-end plan pipeline: start, validate, execute |
+| [workflows/design-to-code.md](./workflows/design-to-code.md) | Convert Figma/wireframes to working code |
+| [workflows/exploration-workflow.md](./workflows/exploration-workflow.md) | Systematically explore unfamiliar codebases |
+| [workflows/pdf-generation.md](./workflows/pdf-generation.md) | Generate professional PDFs with Quarto/Typst |
+| [workflows/search-tools-mastery.md](./workflows/search-tools-mastery.md) | Master rg, grepai, Serena, ast-grep combined workflows |
+| [workflows/skeleton-projects.md](./workflows/skeleton-projects.md) | Use battle-tested repos as scaffolding for new projects |
+| [workflows/talk-pipeline.md](./workflows/talk-pipeline.md) | 6-stage talk preparation: raw material to slides |
+| [workflows/team-ai-instructions.md](./workflows/team-ai-instructions.md) | Scale CLAUDE.md across multi-developer teams |
 
 ## Recommended Reading Order
 

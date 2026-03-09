@@ -188,20 +188,29 @@ Hooks let you run custom code at key points in Claude Code's lifecycle — for s
 
 ```mermaid
 flowchart TD
-    A([User sends message]) --> B{PreToolUse Hook}
+    INIT([Session starts]) -.->|v2.1.69+| INST{InstructionsLoaded Hook}
+    INST -.-> A
+
+    A([User sends message]) --> UPS{UserPromptSubmit Hook}
+    UPS -->|Exit 0: proceed| B{PreToolUse Hook}
+    UPS -->|Exit 2: feedback| A
     B -->|Exit 0: allow| C[Tool executes]
-    B -->|Exit 1: block| D([Tool blocked<br/>Clause stops])
+    B -->|Exit 1: block| D([Tool blocked<br/>Claude stops])
     C --> E{PostToolUse Hook}
     E --> F[Next tool or response]
     F --> G{More tool calls?}
     G -->|Yes| B
     G -->|No| H([Session ends])
-    H --> I{Stop Hook}
+    H --> I{Stop / SessionEnd Hook}
     I --> J([Complete])
 
     K{PreCompact Hook} -.->|Before /compact| L[/compact runs]
     L --> M{PostCompact Hook}
 
+    NOTE["Hook types:<br/>bash (exit 0/1/2)<br/>http (POST JSON → URL, v2.1.63+)"] -.-> B
+
+    style INST fill:#6DB3F2,color:#fff
+    style UPS fill:#6DB3F2,color:#fff
     style B fill:#E87E2F,color:#fff
     style D fill:#E85D5D,color:#fff
     style E fill:#E87E2F,color:#fff
@@ -210,8 +219,12 @@ flowchart TD
     style M fill:#6DB3F2,color:#fff
     style C fill:#7BC47F,color:#333
     style J fill:#7BC47F,color:#333
+    style NOTE fill:#F5E6D3,color:#333
 
+    click INIT href "https://github.com/FlorianBruniaux/claude-code-ultimate-guide/blob/main/guide/ultimate-guide.md#71-the-event-system" "Session starts"
+    click INST href "https://github.com/FlorianBruniaux/claude-code-ultimate-guide/blob/main/guide/ultimate-guide.md#71-the-event-system" "InstructionsLoaded Hook — v2.1.69+"
     click A href "https://github.com/FlorianBruniaux/claude-code-ultimate-guide/blob/main/guide/ultimate-guide.md#71-the-event-system" "User sends message"
+    click UPS href "https://github.com/FlorianBruniaux/claude-code-ultimate-guide/blob/main/guide/ultimate-guide.md#71-the-event-system" "UserPromptSubmit Hook"
     click B href "https://github.com/FlorianBruniaux/claude-code-ultimate-guide/blob/main/guide/ultimate-guide.md#71-the-event-system" "PreToolUse Hook"
     click C href "https://github.com/FlorianBruniaux/claude-code-ultimate-guide/blob/main/guide/architecture.md#2-the-tool-arsenal" "Tool executes"
     click D href "https://github.com/FlorianBruniaux/claude-code-ultimate-guide/blob/main/guide/ultimate-guide.md#71-the-event-system" "Tool blocked"
@@ -219,7 +232,7 @@ flowchart TD
     click F href "https://github.com/FlorianBruniaux/claude-code-ultimate-guide/blob/main/guide/ultimate-guide.md#71-the-event-system" "Next tool or response"
     click G href "https://github.com/FlorianBruniaux/claude-code-ultimate-guide/blob/main/guide/ultimate-guide.md#71-the-event-system" "More tool calls?"
     click H href "https://github.com/FlorianBruniaux/claude-code-ultimate-guide/blob/main/guide/ultimate-guide.md#71-the-event-system" "Session ends"
-    click I href "https://github.com/FlorianBruniaux/claude-code-ultimate-guide/blob/main/guide/ultimate-guide.md#71-the-event-system" "Stop Hook"
+    click I href "https://github.com/FlorianBruniaux/claude-code-ultimate-guide/blob/main/guide/ultimate-guide.md#71-the-event-system" "Stop / SessionEnd Hook"
     click J href "https://github.com/FlorianBruniaux/claude-code-ultimate-guide/blob/main/guide/ultimate-guide.md#72-creating-hooks" "Complete"
     click K href "https://github.com/FlorianBruniaux/claude-code-ultimate-guide/blob/main/guide/ultimate-guide.md#71-the-event-system" "PreCompact Hook"
     click L href "https://github.com/FlorianBruniaux/claude-code-ultimate-guide/blob/main/guide/ultimate-guide.md#71-the-event-system" "/compact runs"
@@ -230,8 +243,12 @@ flowchart TD
 <summary>ASCII version</summary>
 
 ```
+Session starts
+     │ (InstructionsLoaded Hook — v2.1.69+)
 User message
      │
+ UserPromptSubmit ──exit 2──► feedback to Claude (loop)
+     │ exit 0
  PreToolUse ──exit 1──► BLOCKED
      │ exit 0
      ▼
@@ -243,13 +260,15 @@ More tools? ──yes──► PreToolUse (loop)
      │ no
 Session ends
      │
-  Stop Hook
+  Stop / SessionEnd Hook
      │
  Complete
 
 Separately: PreCompact ──► /compact ──► PostCompact
+
+Hook types: bash (exit 0/1/2) | http POST JSON (v2.1.63+)
 ```
 
 </details>
 
-> **Source**: [Hooks System](../ultimate-guide.md#hooks) — Line ~5350
+> **Source**: [Hooks System](../ultimate-guide.md#hooks) — Line ~5350 | UserPromptSubmit + HTTP hooks: v2.1.63+ | InstructionsLoaded: v2.1.69+

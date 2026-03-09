@@ -8,7 +8,7 @@ tags: [reference, integration, plugin]
 
 > Community tools for token tracking, session management, configuration, and alternative UIs.
 >
-> **Last verified**: February 2026
+> **Last verified**: March 2026
 
 ## Table of Contents
 
@@ -507,6 +507,39 @@ Claude Code → hook-forwarder → Unix Domain Socket → Athena Flow runtime �
 First shipped workflow: autonomous E2E test builder (Playwright CI-ready output). Roadmap: visual regression, API testing, Codex support.
 
 **Not recommended yet** — source audit pending, project too new to assess stability. Revisit in 4-6 weeks.
+
+---
+
+### Pipelex + MTHDS
+
+**GitHub**: [github.com/Pipelex/pipelex](https://github.com/Pipelex/pipelex) — 623 stars (Mars 2026)
+**License**: MIT | **Language**: Python | **Standard**: [mthds.ai](https://mthds.ai)
+
+> **Architectural distinction**: Pipelex n'orchestre pas des agents Claude Code — il fournit un **DSL déclaratif** (fichiers `.mthds`) pour définir des AI methods réutilisables. Là où Ruflo gère des swarms d'agents, Pipelex gère des pipelines multi-LLM typés et git-versionables.
+
+Runtime Python pour le standard ouvert MTHDS. Une "AI method" est un workflow multi-étapes qui chaîne LLMs, OCR, et génération d'image — chaque étape typée et validée avant exécution. Les méthodes sont git-versionables, partageables via le hub communautaire [mthds.sh](https://mthds.sh), et peuvent être auto-générées par Claude Code.
+
+**Intégration Claude Code** (Path A recommandé) :
+```bash
+pip install pipelex
+npm install -g mthds
+```
+```
+# Dans Claude Code :
+/plugin marketplace add mthds-ai/skills
+/plugin install mthds@mthds-ai-skills
+/exit  # Relancer Claude Code
+
+# Générer une méthode :
+/mthds-build Analyse des CVs → scorecard + questions d'entretien
+
+# Exécuter :
+/mthds-run
+```
+
+**Cas d'usage** : workflows répétables à fort volume — traitement de documents, scoring de candidats, classification d'emails, analyse de contrats. Pas adapté à l'exploration créative open-ended où les agents natifs Claude Code restent plus appropriés.
+
+**Status** : Watch — 8 mois d'existence, standard MTHDS pas encore validé à grande échelle. Surveiller la traction d'ici Q3 2026.
 
 ---
 

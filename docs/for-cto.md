@@ -29,7 +29,7 @@ Full breakdown: WP06 — Privacy & GDPR Compliance *(whitepaper, coming soon)* (
 
 ### Threat landscape
 
-This is the only public resource tracking AI coding tool CVEs: **24 vulnerabilities and 655 malicious skills catalogued**. Key vectors relevant to enterprise:
+This is the only public resource tracking AI coding tool vulnerabilities: **15 vulnerabilities and 655 malicious skills catalogued**. Key vectors relevant to enterprise:
 
 - Prompt injection via untrusted file content (e.g. malicious comments in dependencies)
 - Supply chain attacks via MCP servers (treat like npm packages)

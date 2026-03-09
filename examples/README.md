@@ -14,18 +14,21 @@ Annotated templates that teach you **why** patterns work, not just how to config
 
 | Folder | Description | Count |
 |--------|-------------|-------|
-| [`agents/`](./agents/) | Custom AI personas for specialized tasks | 9 |
-| [`commands/`](./commands/) | Slash commands (workflow automation) | 26 |
-| [`hooks/`](./hooks/) | Event-driven security & automation scripts | 31 |
-| [`skills/`](./skills/) | Reusable knowledge modules — [9 on SkillHub](https://skills.palebluedot.live/owner/FlorianBruniaux) | 15 |
-| [`claude-md/`](./claude-md/) | CLAUDE.md configuration profiles | 6 |
-| [`config/`](./config/) | Settings, MCP, git templates | 5 |
+| [`agents/`](./agents/) | Custom AI personas for specialized tasks | 14 + 2 collections |
+| [`commands/`](./commands/) | Slash commands (workflow automation) | 31 |
+| [`hooks/`](./hooks/) | Event-driven security & automation scripts | 34 |
+| [`skills/`](./skills/) | Reusable knowledge modules — [9 on SkillHub](https://skills.palebluedot.live/owner/FlorianBruniaux) | 17 |
+| [`claude-md/`](./claude-md/) | CLAUDE.md configuration profiles | 7 |
+| [`config/`](./config/) | Settings, MCP, git templates | 8 |
 | [`memory/`](./memory/) | CLAUDE.md memory file templates | 2 |
-| [`scripts/`](./scripts/) | Diagnostic & utility scripts | 13 |
+| [`rules/`](./rules/) | Behavioral rules for common review patterns | 5 |
+| [`scripts/`](./scripts/) | Diagnostic & utility scripts | 16 |
+| [`team-config/`](./team-config/) | Team onboarding templates | 3 |
+| [`templates/`](./templates/) | Session and workflow templates | 1 |
 | [`github-actions/`](./github-actions/) | CI/CD workflows | 4 |
 | [`workflows/`](./workflows/) | Advanced development workflows | 3 |
 | [`plugins/`](./plugins/) | Community plugins (SE-CoVe, claude-mem) | 2 |
-| [`integrations/`](./integrations/) | External tool integrations (Agent Vibes TTS) | 4 |
+| [`integrations/`](./integrations/) | External tool integrations (Agent Vibes TTS) | 1 |
 | [`mcp-configs/`](./mcp-configs/) | MCP server configurations | 1 |
 | [`modes/`](./modes/) | Behavioral modes (SuperClaude) | 1 |
 | [`semantic-anchors/`](./semantic-anchors/) | Precise vocabulary for better LLM outputs | 1 |
@@ -53,7 +56,7 @@ Annotated templates that teach you **why** patterns work, not just how to config
 
 ## Templates Index
 
-### Agents (9)
+### Agents (16)
 
 | File | Purpose | Model |
 |------|---------|-------|
@@ -66,8 +69,15 @@ Annotated templates that teach you **why** patterns work, not just how to config
 | [planner.md](./agents/planner.md) | Strategic planning — read-only, before implementation | Opus |
 | [implementer.md](./agents/implementer.md) | Mechanical execution — bounded scope | Haiku |
 | [architecture-reviewer.md](./agents/architecture-reviewer.md) | Architecture & design review — read-only | Opus |
+| [adr-writer.md](./agents/adr-writer.md) | Architecture Decision Record generator — read-only | Opus |
+| [integration-reviewer.md](./agents/integration-reviewer.md) | Runtime integration validator — read-only | Sonnet |
+| [plan-challenger.md](./agents/plan-challenger.md) | Adversarial plan review across 5 dimensions — read-only | Sonnet |
+| [planning-coordinator.md](./agents/planning-coordinator.md) | Synthesis agent for dynamic research teams — read-only | Sonnet |
+| [security-patcher.md](./agents/security-patcher.md) | Apply security patches from audit findings — proposes for review | Sonnet |
+| [analytics-with-eval/](./agents/analytics-with-eval/) | Collection: analytics agent + evaluation hooks | — |
+| [cyber-defense/](./agents/cyber-defense/) | Collection: anomaly detector, log ingestor, risk classifier, threat reporter | — |
 
-### Skills (15) — [9 on SkillHub](https://skills.palebluedot.live/owner/FlorianBruniaux)
+### Skills (17) — [9 on SkillHub](https://skills.palebluedot.live/owner/FlorianBruniaux)
 
 | File | Purpose |
 |------|---------|
@@ -84,10 +94,12 @@ Annotated templates that teach you **why** patterns work, not just how to config
 | [ccboard/](./skills/ccboard/) | Comprehensive TUI/Web dashboard for Claude Code monitoring |
 | [guide-recap/](./skills/guide-recap/) | Transform CHANGELOG entries into social content (LinkedIn, Twitter/X, Slack) |
 | [release-notes-generator/](./skills/release-notes-generator/) | Generate release notes in 3 formats from git commits |
-| [pr-triage/](./skills/pr-triage/) | 3-phase PR backlog management (audit, deep review, validated comments) |
+| [pr-triage/](./skills/pr-triage/) | 4-phase PR backlog management (audit, deep review, validated comments, worktree setup) |
 | [issue-triage/](./skills/issue-triage/) | 3-phase issue backlog management (audit, deep analysis, validated actions) |
+| [cyber-defense-team/](./skills/cyber-defense-team/) | Multi-agent cyber defense team orchestration |
+| [talk-pipeline/](./skills/talk-pipeline/) | 6-stage pipeline: raw material to slides via Kimi |
 
-### Commands (26)
+### Commands (31)
 
 | File | Trigger | Purpose |
 |------|---------|---------|
@@ -117,12 +129,17 @@ Annotated templates that teach you **why** patterns work, not just how to config
 | [learn/quiz.md](./commands/learn/quiz.md) | `/learn:quiz` | Self-testing for learning concepts |
 | [learn/teach.md](./commands/learn/teach.md) | `/learn:teach` | Step-by-step concept explanations |
 | [learn/alternatives.md](./commands/learn/alternatives.md) | `/learn:alternatives` | Compare different approaches |
+| [audit-codebase.md](./commands/audit-codebase.md) | `/audit-codebase` | Codebase health audit scoring 7 categories |
+| [plan-start.md](./commands/plan-start.md) | `/plan-start` | 5-phase planning: PRD analysis, design review, technical decisions, research team, metrics |
+| [plan-execute.md](./commands/plan-execute.md) | `/plan-execute` | Execute validated plan: worktree isolation, TDD scaffolding, parallel agents, PR creation |
+| [plan-validate.md](./commands/plan-validate.md) | `/plan-validate` | 2-layer plan validation: structural checks + specialist agents, auto-fix issues |
+| [review-plan.md](./commands/review-plan.md) | `/review-plan` | Structured plan review across 4 axes before writing code |
 
-### Hooks (31)
+### Hooks (34)
 
 Security-first: 12 security hooks, 8 productivity hooks, 5 automation hooks, 5 monitoring hooks.
 
-**Security Hooks** (12 bash):
+**Security Hooks** (13 bash):
 
 | File | Event | Purpose |
 |------|-------|---------|
@@ -138,8 +155,9 @@ Security-first: 12 security hooks, 8 productivity hooks, 5 automation hooks, 5 m
 | [claudemd-scanner.sh](./hooks/bash/claudemd-scanner.sh) | SessionStart | Detect CLAUDE.md injection attacks |
 | [output-secrets-scanner.sh](./hooks/bash/output-secrets-scanner.sh) | PostToolUse | Prevent API keys/tokens in Claude responses |
 | [pre-commit-secrets.sh](./hooks/bash/pre-commit-secrets.sh) | Git hook | Block secrets from entering commits |
+| [security-gate.sh](./hooks/bash/security-gate.sh) | PreToolUse | Detect vulnerable code patterns before writing to source files |
 
-**Productivity Hooks** (8):
+**Productivity Hooks** (10):
 
 | File | Event | Purpose |
 |------|-------|---------|
@@ -151,8 +169,10 @@ Security-first: 12 security hooks, 8 productivity hooks, 5 automation hooks, 5 m
 | [rtk-baseline.sh](./hooks/bash/rtk-baseline.sh) | SessionStart | Save RTK baseline for session savings tracking |
 | [setup-init.sh](./hooks/bash/setup-init.sh) | SessionStart | Initialize session environment |
 | [subagent-stop.sh](./hooks/bash/subagent-stop.sh) | Stop | Clean up sub-agent resources |
+| [auto-rename-session.sh](./hooks/bash/auto-rename-session.sh) | SessionEnd | AI-powered session title generation (Haiku) |
+| [velocity-governor.sh](./hooks/bash/velocity-governor.sh) | PreToolUse | Rate-limit tool calls to avoid API throttling |
 
-**Monitoring Hooks** (5):
+**Monitoring Hooks** (6):
 
 | File | Event | Purpose |
 |------|-------|---------|
@@ -180,7 +200,7 @@ Security-first: 12 security hooks, 8 productivity hooks, 5 automation hooks, 5 m
 
 > **See [hooks/README.md](./hooks/README.md) for full documentation, configuration examples, and security hardening patterns**
 
-### Config (5)
+### Config (8)
 
 | File | Purpose |
 |------|---------|
@@ -189,6 +209,9 @@ Security-first: 12 security hooks, 8 productivity hooks, 5 automation hooks, 5 m
 | [.gitignore-claude](./config/.gitignore-claude) | Git ignore patterns |
 | [CONTRIBUTING-ai-disclosure.md](./config/CONTRIBUTING-ai-disclosure.md) | AI disclosure template for CONTRIBUTING.md |
 | [PULL_REQUEST_TEMPLATE-ai.md](./config/PULL_REQUEST_TEMPLATE-ai.md) | PR template with AI attribution |
+| [sandbox-native.json](./config/sandbox-native.json) | Native Claude Code sandbox configuration |
+| [settings-personalization.json](./config/settings-personalization.json) | UI personalization: spinner verbs, custom tips carousel |
+| [settings.local.json.example](./config/settings.local.json.example) | Local overrides example (gitignored) |
 
 ### Memory (2)
 
@@ -197,7 +220,7 @@ Security-first: 12 security hooks, 8 productivity hooks, 5 automation hooks, 5 m
 | [CLAUDE.md.project-template](./memory/CLAUDE.md.project-template) | Team project memory |
 | [CLAUDE.md.personal-template](./memory/CLAUDE.md.personal-template) | Personal global memory |
 
-### CLAUDE.md Configurations (6)
+### CLAUDE.md Configurations (7)
 
 | File | Purpose |
 |------|---------|
@@ -207,11 +230,12 @@ Security-first: 12 security hooks, 8 productivity hooks, 5 automation hooks, 5 m
 | [tts-enabled.md](./claude-md/tts-enabled.md) | Text-to-speech enabled configuration |
 | [rtk-optimized.md](./claude-md/rtk-optimized.md) | RTK token-optimized configuration |
 | [session-naming.md](./claude-md/session-naming.md) | Auto-rename sessions with descriptive titles for parallel work |
+| [design-reference-file.md](./claude-md/design-reference-file.md) | Brand-book and UI kit context for consistent UI generation |
 
 > **See [guide/learning-with-ai.md](../guide/learning-with-ai.md) for learning mode documentation**
 > **See [guide/devops-sre.md](../guide/devops-sre.md) for DevOps/SRE guide**
 
-### Scripts (13)
+### Scripts (16)
 
 | File | Purpose | Output |
 |------|---------|--------|
@@ -222,14 +246,41 @@ Security-first: 12 security hooks, 8 productivity hooks, 5 automation hooks, 5 m
 | [clean-reinstall-claude.ps1](./scripts/clean-reinstall-claude.ps1) | Clean reinstall procedure (Windows) | Human |
 | [session-stats.sh](./scripts/session-stats.sh) | Analyze session logs & costs | JSON / Human |
 | [session-search.sh](./scripts/session-search.sh) | Fast session search & resume | Human |
+| [cc-sessions.py](./scripts/cc-sessions.py) | Advanced session search with incremental indexing | Human |
 | [fresh-context-loop.sh](./scripts/fresh-context-loop.sh) | Auto-restart sessions at context limits | Human |
 | [bridge.py](./scripts/bridge.py) | Plan bridging between sessions | JSON |
+| [bridge-plan-schema.json](./scripts/bridge-plan-schema.json) | JSON Schema for bridge plan v1 format | — |
 | [migrate-arguments-syntax.sh](./scripts/migrate-arguments-syntax.sh) | Migrate v1 → v2 argument syntax (bash) | Human |
 | [migrate-arguments-syntax.ps1](./scripts/migrate-arguments-syntax.ps1) | Migrate v1 → v2 argument syntax (PowerShell) | Human |
 | [rtk-benchmark.sh](./scripts/rtk-benchmark.sh) | Benchmark RTK token savings | Human |
 | [sync-claude-config.sh](./scripts/sync-claude-config.sh) | Sync Claude config across machines | Human |
+| [sonnetplan.sh](./scripts/sonnetplan.sh) | Alias to run Claude with Sonnet instead of Opus (cost optimization) | Human |
 
 > **See [scripts/README.md](./scripts/README.md) for detailed usage**
+
+### Rules (5)
+
+| File | Purpose |
+|------|---------|
+| [architecture-review.md](./rules/architecture-review.md) | Rules for architecture review sessions |
+| [code-quality-review.md](./rules/code-quality-review.md) | Rules for code quality review sessions |
+| [first-principles.md](./rules/first-principles.md) | First-principles reasoning rules |
+| [performance-review.md](./rules/performance-review.md) | Rules for performance review sessions |
+| [test-review.md](./rules/test-review.md) | Rules for test review sessions |
+
+### Team Config (3)
+
+| File | Purpose |
+|------|---------|
+| [claude-skeleton.md](./team-config/claude-skeleton.md) | Minimal CLAUDE.md skeleton for new team members |
+| [profile-template.yaml](./team-config/profile-template.yaml) | Profile assembly template for multi-tool teams |
+| [sync-script.ts](./team-config/sync-script.ts) | Sync Claude config across team machines |
+
+### Templates (1)
+
+| File | Purpose |
+|------|---------|
+| [session-handoff-lorenz.md](./templates/session-handoff-lorenz.md) | Session handoff template for context continuity |
 
 ### GitHub Actions (4)
 

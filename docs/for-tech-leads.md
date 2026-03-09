@@ -66,7 +66,7 @@ See [Guide Ch.7.4 — Security Hooks](../guide/ultimate-guide.md#74-security-hoo
 
 ## Security posture overview
 
-This guide maintains the **only public threat database for Claude Code**: 24 CVEs and 655 malicious skills catalogued. Key risks for teams:
+This guide maintains the **only public threat database for Claude Code**: 15 vulnerabilities and 655 malicious skills catalogued. Key risks for teams:
 
 - **Prompt injection** via untrusted file content or MCP servers
 - **Overly permissive settings** — `allowedTools: ["*"]` in production
