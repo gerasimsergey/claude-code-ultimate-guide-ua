@@ -6,6 +6,88 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [3.34.10] - 2026-03-13
+
+### Added
+
+- **Quiz expanded: 277 → 311 questions (+34)** — 33 new questions covering topics added since the last quiz audit, across 9 categories: `modelOverrides`/`autoMemoryDirectory` settings (v2.1.73-74), tool-qualified deny format `Read(file_path:*.env*)`, CLAUDE.md HTML comment hiding (v2.1.72), `spinnerVerbs`/`spinnerTipsOverride` terminal personalization, team config at scale (N×M×P fragmentation, 59% token reduction), `/loop`/`/simplify`/`/batch`/`/stats`/`/rename` commands (v2.1.63-71), `WorktreeCreate`/`WorktreeRemove`/`TeammateIdle`/`TaskCompleted` hook events (v2.1.50 + v2.1.32+), auto-rename-session hook pattern, Git MCP vs GitHub MCP (12 local tools vs remote Copilot-required), Context Engineering 150% ceiling + ACE pipeline, Plan-Validate-Execute 3-command workflow, dual-instance planning (Jon Williams, $100-200/month), `isolation: "worktree"` in agent frontmatter, simplified effort levels ○◐● (v2.1.72, max removed), Fast mode (2.5x faster/6x price), `model` parameter restored on Agent tool (v2.1.72), `/context` actionable suggestions (v2.1.74), METR RCT 2025 (19% slower on large codebases), Borg "Echoes of AI" RCT 2025 (30.7% faster, no maintainability regression), Contribution Metrics platform feature (+67% PRs/day), enterprise governance 4 guardrail tiers (Starter/Standard/Strict/Regulated), MCP governance workflow + YAML registry, native sandbox OS primitives (macOS Seatbelt vs Linux bubblewrap), `dangerouslyDisableSandbox` escape hatch, RTK (60-92% token reduction, TOML Filter DSL), Google Antigravity (agent-first IDE). 1 question corrected: `12-architecture-internals/002` updated to reflect Tasks API replacing TodoWrite (v2.1.16+).
+- **Quiz counters synced**: `machine-readable/reference.yaml` (`quiz_count: 311`), `llms.txt` + `llms-full.txt` + `machine-readable/llms.txt` (`Quiz Questions: 311`).
+
+## [3.34.9] - 2026-03-13
+
+### Added
+
+- **`guide/workflows/gstack-workflow.md`** — New workflow guide (140 lines) documenting the "Cognitive Mode Switching" pattern: switching between specialist roles across the ship cycle (strategic gate → architecture → paranoid review → release → browser QA → retrospective). Reference implementation: [gstack](https://github.com/garrytan/gstack) by Garry Tan (YC CEO). Covers the 6 gears table, the pre-implementation strategic gate concept ("are we building the right thing?"), `/browse` non-MCP native browser architecture (persistent Chromium daemon, ~100ms/cmd vs MCP), full cycle demo, and when to use vs Plan Pipeline.
+
+- **`examples/commands/plan-ceo-review.md`** — New command template for the strategic product gate. Three modes: SCOPE EXPANSION (find the 10-star product), HOLD SCOPE (make the plan bulletproof), SCOPE REDUCTION (strip to MVP). Includes full prompt template, concrete example (photo upload → smart listing creation), and integration notes. Inspired by gstack's `/plan-ceo-review` skill.
+
+- **`examples/commands/plan-eng-review.md`** — New command template for the engineering architecture gate. Forces diagram generation (architecture, sequence, state machine), sync/async boundary decisions, failure mode inventory, trust boundary map, and test matrix before implementation. Includes Mermaid diagram examples and integration notes. Inspired by gstack's `/plan-eng-review` skill.
+
+### Updated
+
+- **`guide/workflows/README.md`**: Added Cognitive Mode Switching entry to Development Workflows section. Added two rows to Quick Selection Guide: "Strategic gate before coding" and "Non-MCP browser automation".
+
+- **`guide/ecosystem/third-party-tools.md`** (Plugin Ecosystem section): Added gstack as the first entry under a new "Notable skill packs" subsection, with cross-reference to the workflow guide.
+
+## [3.34.8] - 2026-03-12
+
+### Added
+
+- **`examples/hooks/bash/smart-suggest.sh`** — Production-ready `UserPromptSubmit` hook implementing a 3-tier behavioral coaching architecture (Tier 0: enforcement, Tier 1: discovery, Tier 2: contextual). Features: max 1 suggestion per prompt, dedup guard (never suggests a command already in the prompt), JSONL ROI logging to `~/.claude/logs/smart-suggest.jsonl`, and silent exit on no match. Includes changelog fragment enforcement as the canonical Tier 0 example (conditional "if PR-intent without fragment-mention" pattern), plus 10 additional patterns across all three tiers. Directly reusable as a starting point for any project-level behavioral enforcement hook.
+
+- **`guide/workflows/changelog-fragments.md`** — New workflow guide documenting the 3-layer changelog fragment enforcement pattern: (1) CLAUDE.md workflow rule for autonomous fragment creation by Claude, (2) `UserPromptSubmit` hook with tier-priority system for pre-prompt interception, (3) CI gate with two independent jobs (fragment validation + migration flag check). Explains why each layer is necessary, how they compose without conflicting, and how to adopt the pattern independent of the TypeScript implementation.
+
+### Updated
+
+- **`guide/ultimate-guide.md`** (§ Release Notes Generation): Added `### Changelog Fragments: Per-PR Enforcement Pattern` subsection covering the 3-layer approach with fragment YAML example, hook snippet, and assembly command. Positioned as an alternative to commit-based release notes generation, with links to the workflow guide and hook example.
+
+- **`guide/workflows/README.md`**: Added Changelog Fragments entry to Development Workflows section with key topics (CLAUDE.md rule, UserPromptSubmit 3-tier hook, conditional suggestion pattern, independent CI migration check). Added to Quick Selection Guide under "Enforce mandatory workflow steps".
+
+## [3.34.7] - 2026-03-12
+
+### Added
+
+- **`guide/diagrams/11-context-engineering.md`** — 4 new Mermaid diagrams covering context engineering: 3-layer context system (global/project/session scopes), context budget and adherence degradation curve (95%→45% zones + path-scoping fix), monolithic vs modular CLAUDE.md architecture (anti-pattern vs path-scoped approach), and rule placement decision tree.
+
+- **`guide/diagrams/12-enterprise-governance.md`** — 3 new Mermaid diagrams covering enterprise governance: 4-tier risk model (Starter/Team/Production/Regulated with controls per tier), MCP governance approval workflow (sequenceDiagram: submit → audit → classify → registry → deploy → monitor), and data classification matrix (PUBLIC/INTERNAL/CONFIDENTIAL/RESTRICTED with access rules).
+
+### Updated
+
+- **`guide/diagrams/01-foundations.md`**: Added Plan Mode and dontAsk as two new permission mode subgraphs (was showing 3/5 modes, now all 5 CLI permission modes are documented).
+
+- **`guide/diagrams/04-architecture-internals.md`**: Added Control Flow Tools as a 6th tool category (EnterPlanMode/ExitPlanMode, EnterWorktree/ExitWorktree, AskUserQuestion). Count updated 5→6.
+
+- **`guide/diagrams/05-mcp-ecosystem.md`**: Added clarifying note that local + user scopes both live in `~/.claude.json` (separate configuration keys), not in separate files. Description updated "4 different locations" → "4 priority levels (3 actual files)".
+
+- **`guide/diagrams/07-multi-agent-patterns.md`**: Fixed disconnected B2 node — now properly connected as a third branch off the pattern-selection flow.
+
+- **`guide/diagrams/09-cost-and-optimization.md`**: Replaced hardcoded USD prices with relative ratios (Haiku ~5x cheaper than Sonnet, Opus ~5x more than Sonnet) and added disclaimer pointing to anthropic.com/pricing.
+
+- **`guide/diagrams/README.md`**: Updated diagram count 41→48, extended navigation table with files 11 and 12, added two new use-case navigation sections ("govern Claude Code across my team", "improve Claude's context adherence").
+
+## [3.34.6] - 2026-03-12
+
+### Added
+
+- **`guide/workflows/rpi.md`** — New RPI (Research → Plan → Implement) workflow guide (560 lines). 3-phase feature development pattern with explicit validation gates: GO/NO-GO gate after Research, plan approval gate before any code is written, and per-step test gates during implementation. Includes full RESEARCH.md and PLAN.md templates, 3 slash command templates (`/rpi:research`, `/rpi:plan`, `/rpi:implement`), worked example (API rate limiting), comparison table vs dual-instance/spec-first/TDD/direct, and troubleshooting section. Inspired by community patterns from claude-code-best-practice.
+
+- **LLM Day-to-Day Performance Variance** (`guide/core/known-issues.md`): New section documenting session-to-session output variance as expected behavior (not a bug). Covers root causes (MoE routing variance, infrastructure variance, probabilistic inference, context sensitivity), observable signals table (response length, refusals, code style, creativity, verbosity), clear distinction from the Aug-Sep 2025 infrastructure bugs, and 5 mitigation strategies (constrain prompts, fresh context, reformulate and retry, compare against known-good prompt, calibrate by task type).
+
+### Updated
+
+- **`guide/ultimate-guide.md`** (§ Quick Decision Tree): Added RPI entry — "Feasibility is unknown → workflows/rpi.md"
+- **`machine-readable/reference.yaml`**: Added 8 new entries — `rpi_workflow`, `rpi_when_to_use`, `rpi_phase1_research`, `rpi_phase2_plan`, `rpi_phase3_implement`, `rpi_slash_commands`, `rpi_vs_other_workflows`, `known_issues_llm_variance`
+
+## [3.34.5] - 2026-03-12
+
+### Added
+
+- **Blast-Radius Pattern** (grepai section, §8.2): Named pre-refactoring workflow using `grepai trace callers/callees` to enumerate all affected call sites before touching a widely-used function. Run before the refactor, not after compile errors. Includes 3-step bash example.
+
+- **Pre-structural indexing** (§9.13 Token-Saving Techniques): New technique #6 documenting the concept of building a codebase structural index before starting a session. Replaces 5-10 sequential file reads with 1 graph query (~75% fewer tool calls for discovery tasks). Includes CodeXRay setup example (`npx codexray`, `cxr watch`).
+
+- **Dead code & circular dependency detection** (§9.13): Documents three structural analysis patterns — dead code detection (`grepai trace callers` returning zero results), circular dependency identification, and hotspot analysis — as token optimization strategies. References CodeXRay and Claudette as alpha-stage community implementations with grepai as the stable alternative.
+
 ## [3.34.4] - 2026-03-12
 
 ### Documentation

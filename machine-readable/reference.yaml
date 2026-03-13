@@ -3,8 +3,8 @@
 # Source: guide/ultimate-guide.md
 # Purpose: Condensed index for LLMs to quickly answer user questions about Claude Code
 
-version: "3.34.3"
-updated: "2026-03-03"
+version: "3.34.9"
+updated: "2026-03-13"
 
 # ════════════════════════════════════════════════════════════════
 # DEEP DIVE - Line numbers in guide/ultimate-guide.md
@@ -12,12 +12,12 @@ updated: "2026-03-03"
 # For architecture internals, see guide/core/architecture.md
 # ════════════════════════════════════════════════════════════════
 deep_dive:
-  # Visual Diagrams Series (40 Mermaid diagrams)
+  # Visual Diagrams Series (41 Mermaid diagrams)
   mermaid_diagrams:
     path: "guide/diagrams/"
     description: "41 interactive Mermaid diagrams: model selection, agent lifecycle, memory hierarchy, security threats, multi-agent patterns, AI fluency paths"
     files: 10
-    total_diagrams: 40
+    total_diagrams: 41
   # AI-Assisted Development Workflows (from MetalBear/arXiv research)
   exploration_workflow: "guide/workflows/exploration-workflow.md"
   script_generation: "guide/workflows/iterative-refinement.md:200"
@@ -97,6 +97,15 @@ deep_dive:
   known_issues_github_bug: "guide/core/known-issues.md:7"  # GitHub auto-creation bug
   known_issues_token_consumption: "guide/core/known-issues.md:105"  # Excessive token usage
   known_issues_model_quality_aug2025: "guide/core/known-issues.md:197"  # Resolved: Aug 2025 degradation
+  known_issues_llm_variance: "guide/core/known-issues.md:237"  # LLM day-to-day performance variance (expected behavior, not a bug)
+  # RPI Workflow (Research -> Plan -> Implement)
+  rpi_workflow: "guide/workflows/rpi.md"
+  rpi_when_to_use: "guide/workflows/rpi.md:55"  # Decision heuristic + scenarios
+  rpi_phase1_research: "guide/workflows/rpi.md:86"  # Research template + NO-GO criteria
+  rpi_phase2_plan: "guide/workflows/rpi.md:173"  # Plan template + review checklist
+  rpi_phase3_implement: "guide/workflows/rpi.md:237"  # Step-gate pattern + failure protocol
+  rpi_slash_commands: "guide/workflows/rpi.md:281"  # /rpi:research /rpi:plan /rpi:implement templates
+  rpi_vs_other_workflows: "guide/workflows/rpi.md:391"  # Comparison table: RPI vs dual-instance vs spec-first
   # Template Installation
   install_templates_script: "scripts/install-templates.sh"
   # Session management
@@ -143,6 +152,24 @@ deep_dive:
   # PDF Generation
   pdf_generation: "guide/workflows/pdf-generation.md"
   pdf_generator_skill: "examples/skills/pdf-generator.md"
+  # OG Image Generation (Satori + resvg + Astro 5) - Added 2026-03-11
+  og_image_generation_guide: "guide/workflows/og-image-generation.md"
+  og_image_astro_template: "examples/scripts/og-image-astro.ts"
+  og_image_stack: "Satori (JSX → SVG) + resvg-js (SVG → PNG) + Astro 5 static endpoint"
+  og_image_gotchas: "woff1 only (no woff2/ttf), static file shadowing, dynamic stat counting from content dirs"
+  og_image_testing: "opengraph.xyz + LinkedIn Post Inspector"
+  # Cognitive Mode Switching / gstack (Added 2026-03-13)
+  gstack_workflow: "guide/workflows/gstack-workflow.md"
+  gstack_6_gears: "guide/workflows/gstack-workflow.md:34"  # Table: 6 roles, core questions, when to switch
+  gstack_strategic_gate: "guide/workflows/gstack-workflow.md:47"  # Pre-implementation product gate concept
+  gstack_plan_ceo_review: "examples/commands/plan-ceo-review.md"  # Strategic product gate command template
+  gstack_plan_eng_review: "examples/commands/plan-eng-review.md"  # Engineering architecture gate command template
+  gstack_browse_non_mcp: "guide/workflows/gstack-workflow.md:106"  # /browse native Chromium daemon vs MCP (~100ms)
+  gstack_full_cycle: "guide/workflows/gstack-workflow.md:130"  # Full ship cycle demo (plan-ceo → plan-eng → review → ship → browse)
+  gstack_when_to_use: "guide/workflows/gstack-workflow.md:198"  # Comparison vs Plan Pipeline and other workflows
+  gstack_upstream: "https://github.com/garrytan/gstack"
+  gstack_purpose: "6-skill workflow suite: strategic gate + architecture + paranoid review + release + browser QA + retro"
+  third_party_tools_skill_packs: "guide/ecosystem/third-party-tools.md:558"  # Notable skill packs (gstack)
   # Talk Preparation Pipeline (6-stage: extract → research → concepts → position → script → revision)
   talk_pipeline_workflow: "guide/workflows/talk-pipeline.md"
   talk_pipeline_skills: "examples/skills/talk-pipeline/"
@@ -1017,7 +1044,7 @@ deep_dive:
   # Quiz System (271 questions, 15 categories)
   quiz_overview: "quiz/README.md"
   quiz_file: "quiz/questions.json"
-  quiz_count: 271
+  quiz_count: 311
   quiz_categories: 15
   quiz_beginner: "quiz/categories/basics,commands,shortcuts,reference"
   quiz_beginner_count: 60
@@ -1416,6 +1443,10 @@ ecosystem:
       - "get_cheatsheet(section?) — cheatsheet full or filtered"
       - "get_threat(id) — look up CVE or attack technique from threat database"
       - "list_threats(category?) — browse threat-db: global summary or section list"
+      - "init_official_docs() — fetch and store local baseline snapshot of official Anthropic docs (run once)"
+      - "refresh_official_docs() — update current snapshot without touching baseline"
+      - "diff_official_docs() — compare baseline vs current at section level, zero network calls"
+      - "search_official_docs(query) — search official docs, loads only matching sections"
     resources:
       - "claude-code-guide://reference — 94KB YAML index (~900 entries)"
       - "claude-code-guide://releases — CC releases history"
@@ -1423,7 +1454,7 @@ ecosystem:
     prompt: "claude-code-expert — activates expert mode with optimal search workflow"
     slash_commands:
       location: "~/.claude/commands/ccguide/"
-      commands: ["/ccguide:search", "/ccguide:cheatsheet", "/ccguide:digest", "/ccguide:example", "/ccguide:examples", "/ccguide:release", "/ccguide:changelog", "/ccguide:topics"]
+      commands: ["/ccguide:search", "/ccguide:cheatsheet", "/ccguide:digest", "/ccguide:example", "/ccguide:examples", "/ccguide:release", "/ccguide:changelog", "/ccguide:topics", "/ccguide:init-docs", "/ccguide:refresh-docs", "/ccguide:diff-docs", "/ccguide:search-docs", "/ccguide:daily"]
     agent: ".claude/agents/claude-code-guide.md — Haiku, read-only, searches before answering"
     bundle_size: "132KB compressed (YAML indexes bundled, markdown lazy-fetched)"
     cache: "~/.cache/claude-code-guide/{version}/ — 24h TTL"
@@ -1546,7 +1577,7 @@ ecosystem:
 onboarding_matrix_meta:
   version: "2.1.0"
   last_updated: "2026-03-09"
-  aligned_with_guide: "3.34.3"
+  aligned_with_guide: "3.34.4"
   changelog:
     - version: "2.1.0"
       date: "2026-03-09"
