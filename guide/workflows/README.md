@@ -91,6 +91,25 @@ Build features in three locked phases: Research feasibility first, plan the impl
 
 **When to use**: Features with unclear feasibility, more than a day of work, unknown technical territory, or anywhere discovering a wrong assumption late is costly
 
+### [GitHub Actions Workflows](./github-actions.md) ⭐ NEW
+
+**5 production-ready patterns for automating PR reviews, issue triage, and quality gates**
+
+Connect Claude directly to your GitHub workflow via the official `claude-code-action`. Two modes: interactive (`@claude` mentions) and fully automated (push/schedule triggers).
+
+**Key Topics**:
+- Setup via `/install-github-app` (30-second quickstart)
+- Pattern 1: On-demand PR review via `@claude` mention
+- Pattern 2: Automatic review on every push
+- Pattern 3: Issue triage and labeling
+- Pattern 4: Security-focused review on sensitive paths
+- Pattern 5: Scheduled weekly repo health check
+- Cost control, concurrency, fork safety
+
+**When to use**: Any team wanting AI-powered code review without managing infrastructure
+
+---
+
 ### [Cognitive Mode Switching](./gstack-workflow.md) ⭐ NEW
 
 Switch between specialist roles across your ship cycle: strategic product gate, architecture review, paranoid code review, automated release, native browser QA, and retrospective.

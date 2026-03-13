@@ -2,8 +2,8 @@
 # For use with /security-check and /security-audit commands
 # Manually maintained — update after new security advisories
 
-version: "2.6.0"
-updated: "2026-03-09"
+version: "2.7.0"
+updated: "2026-03-13"
 sources:
   - name: "Snyk ToxicSkills"
     url: "https://snyk.io/blog/toxicskills-malicious-ai-agent-skills-clawhub/"
@@ -143,6 +143,21 @@ sources:
   - name: "Brandefense - MCP Server Security: 10 Protocol-Level Attack Scenarios"
     url: "https://brandefense.io/blog/mcp-server-security-protocol-attack-patterns/"
     date: "2026-03-02"
+  - name: "THN / Tenable - CVE-2026-26118 Azure MCP Server SSRF"
+    url: "https://thehackernews.com/2026/03/microsoft-patches-84-flaws-in-march.html"
+    date: "2026-03-11"
+  - name: "ReversingLabs - OpenClaw and agentic AI risk: 3 application security lessons"
+    url: "https://www.reversinglabs.com/blog/openclaw-agentic-ai-risk"
+    date: "2026-03-10"
+  - name: "GitHub Security Lab - Taskflow Agent open-source vulnerability scanner"
+    url: "https://github.blog/security/how-to-scan-for-vulnerabilities-with-github-security-labs-open-source-ai-powered-framework/"
+    date: "2026-03-06"
+  - name: "OpenAI - Codex Security research preview"
+    url: "https://openai.com/index/codex-security-now-in-research-preview/"
+    date: "2026-03-05"
+  - name: "DryRun Security - AI coding agents introduce vulnerabilities in 87% of PRs"
+    url: "https://markets.businessinsider.com/news/stocks/new-dryrun-security-research-anthropic-s-claude-generates-the-most-unresolved-security-flaws-in-ai-built-applications-1035918593"
+    date: "2026-03-11"
 
 # ═══════════════════════════════════════════════════════════════
 # MALICIOUS AUTHORS (confirmed by security researchers)
@@ -917,6 +932,17 @@ cve_database:
     fixed_in: "patch commit 30a6b9e1c7fa6146f51e28d6ab83a2568d9a3488"
     mitigation: "Apply patch commit 30a6b9e...; replace child_process.exec with execFile() and argument arrays; sanitize all nmap arguments"
 
+  # --- Azure MCP Server (Microsoft) ---
+  - id: "CVE-2026-26118"
+    component: "Azure MCP Server Tools (Microsoft Azure)"
+    severity: "high"
+    cvss: 8.8
+    description: "SSRF leading to managed identity token theft and privilege escalation — attacker sends crafted input to exposed Azure MCP Server endpoint; server forwards request to attacker-controlled URL including its managed identity token; attacker captures token and gains all permissions associated with the MCP server's managed identity (can reach Azure resources, management APIs, subscriptions)"
+    source: "Microsoft Patch Tuesday March 2026 / Tenable / The Hacker News (2026-03-10)"
+    fixed_in: "March 10, 2026 Patch Tuesday update"
+    mitigation: "Apply Microsoft March 2026 security update; restrict Azure MCP Server endpoints to trusted callers; audit managed identity permissions (principle of least privilege); monitor for unexpected outbound requests from MCP server processes"
+    notes: "CWE-918 SSRF; rated 'Exploitation Less Likely' by Microsoft; part of 84-CVE March 2026 Patch Tuesday"
+
   # --- Framelink Figma MCP Server (additional CVE) ---
   - id: "CVE-2025-15061"
     component: "Framelink Figma MCP Server (figma-developer-mcp)"
@@ -945,6 +971,7 @@ minimum_safe_versions:
   "mcpjam-inspector": "1.4.3"
   "mcp-salesforce-connector": "0.1.10"
   "openclaw": "2026.1.29"
+  "azure-mcp-server": "March 2026 Patch Tuesday (2026-03-10)"
 
 # ═══════════════════════════════════════════════════════════════
 # IOCs (Indicators of Compromise)
@@ -1260,6 +1287,16 @@ campaigns:
       - "https://adnanthekhan.com/posts/clinejection/"
       - "https://thehackernews.com/2026/02/cline-cli-230-supply-chain-attack.html"
 
+  - name: "ClawHub Wave 3 / VirusTotal Bypass"
+    source: "ReversingLabs / Paul McCarty (OpenSourceMalware)"
+    date: "2026-03-10"
+    platform: "ClawHub / OpenClaw"
+    technique: "After OpenClaw integrated VirusTotal scanning, attackers pivoted to hosting malware on lookalike OpenClaw websites; skills are used as decoys with no embedded payload (passing VirusTotal clean), but direct victims to attacker-controlled lookalike domains for 'installation prerequisites'. Bypasses hash-based scanning entirely."
+    notes: "Tactical evolution from ClawHavoc (direct payload in SKILL.md) and Wave 2 (mixed payloads). Now requires domain-level blocking of lookalike sites, not just skill content scanning. Concurrent with Jamieson O'Reilly research finding worm-friendly XSS in ClawHub marketplace itself enabling one-click account takeover."
+    sources:
+      - "https://www.reversinglabs.com/blog/openclaw-agentic-ai-risk"
+      - "https://www.adminbyrequest.com/en/blogs/openclaw-went-from-viral-ai-agent-to-security-crisis-in-just-three-weeks"
+
   - name: "ClawHub Wave 2 (71 Skills)"
     source: "Oasis Security / The Hacker News"
     date: "2026-02-28"
@@ -1415,6 +1452,16 @@ attack_techniques:
     affected_platforms: ["OpenClaw (patched v2026.2.26)"]
     source: "Oasis Security (2026-02-26)"
     mitigation: "Update OpenClaw to >= v2026.2.26; apply rate limiting to ALL connections including localhost; require explicit user confirmation for device pairing; block WebSocket connections from browser contexts to localhost AI agent ports; use CORS headers to prevent cross-origin WebSocket upgrades"
+
+  - id: "T016"
+    name: "Lookalike Platform / Scanner Evasion"
+    description: "Attacker hosts malware on lookalike AI agent platform websites (fake ClawHub, fake skills.sh); skills on the real platform are clean decoys that redirect victims to lookalike domains for 'prerequisites' or 'dependencies'. Bypasses hash-based scanner integrations (e.g. VirusTotal) because the skill file itself contains no malicious payload."
+    examples:
+      - "Post-VirusTotal-integration ClawHavoc evolution: clean skills instruct users to download from openclaw-tools[.]io or similar lookalike domains"
+      - "Skills referencing 'official installation docs' hosted on attacker-controlled domains"
+    campaigns: ["ClawHub Wave 3 / VirusTotal Bypass"]
+    source: "ReversingLabs / Paul McCarty (OpenSourceMalware) 2026-03-10"
+    mitigation: "Domain verification for all external links in SKILL.md; never follow SKILL.md instructions to external websites; use network egress filtering; check domain registration dates for 'official' skill installer links"
 
   - id: "T015"
     name: "Log Poisoning via WebSocket for Prompt Injection"
@@ -1603,6 +1650,34 @@ scanning_tools:
       - "Cloud-based — requires sending server metadata to external platform"
       - "Not open-source"
 
+  - name: "GitHub Security Lab Taskflow Agent"
+    vendor: "GitHub Security Lab"
+    type: "cli"
+    url: "https://github.blog/security/how-to-scan-for-vulnerabilities-with-github-security-labs-open-source-ai-powered-framework/"
+    capabilities:
+      - "Open-source AI-powered vulnerability scanner for codebases"
+      - "Effective at Auth Bypasses, IDORs, Token Leaks, and high-impact vulnerabilities"
+      - "Filters ~50% of low-severity findings while retaining high-impact ones"
+      - "Agentic reasoning approach — traces data flows and understands component interactions"
+    limitations:
+      - "Code-focused security scanner — does not scan SKILL.md or MCP configs"
+      - "Does not scan ClawHub / skills.sh ecosystems"
+    notes: "GitHub Security Lab open-source AI framework; launched 2026-03-06"
+
+  - name: "OpenAI Codex Security"
+    vendor: "OpenAI"
+    type: "cloud-saas"
+    url: "https://openai.com/index/codex-security-now-in-research-preview/"
+    capabilities:
+      - "AI application security agent combining agentic reasoning with automated validation"
+      - "Detects and patches complex vulnerabilities with 50%+ false positive reduction"
+      - "Over 90% reduction in over-reported severity vs traditional tools"
+      - "Scans 1.2M+ commits at scale (demonstrated on open-source projects)"
+    limitations:
+      - "Research preview — not generally available"
+      - "Code scanning focus — does not scan SKILL.md or agent configurations"
+    notes: "Complementary to Anthropic Claude Code Security; launched research preview 2026-03-05"
+
   - name: "Mend SAST MCP"
     vendor: "Mend.io"
     type: "mcp-server"
@@ -1680,3 +1755,17 @@ defensive_resources:
     url: "https://cycode.com/blog/ai-cybersecurity-tools/"
     type: "platform"
     description: "Cycode's AI Governance module enforces MCP usage policies, tracks tool invocations, and provides AI Guardrails that intercept secrets in real time across IDE prompts, file reads, and MCP tool calls before they reach the LLM or external services. Part of broader SAST/SCA/secrets platform."
+
+  - name: "DryRun Security AI Coding Agent Research"
+    url: "https://markets.businessinsider.com/news/stocks/new-dryrun-security-research-anthropic-s-claude-generates-the-most-unresolved-security-flaws-in-ai-built-applications-1035918593"
+    type: "research"
+    description: "March 2026 study by DryRun Security: 87% of AI coding agent PRs (26/30) introduced at least one vulnerability; 143 total security issues across Claude Sonnet 4.6, OpenAI Codex, and Google Gemini builds. Top recurring flaws: broken access control, unauthenticated endpoints on destructive operations, OAuth missing state parameter, WebSocket auth gaps. Takeaway: AI agents accelerate development but do not apply security by default — requires dedicated security review layer."
+    stats:
+      prs_with_vulns_pct: 87
+      total_issues: 143
+      agents_tested: ["Claude Sonnet 4.6", "OpenAI Codex GPT 5.2", "Google Gemini 2.5 Pro"]
+
+  - name: "Qualys TotalAI MCP Asset Governance"
+    url: "https://blog.qualys.com/product-tech/2026/03/10/from-shadow-models-to-audit-ready-ai-security-a-practical-path-with-qualys-totalai"
+    type: "platform"
+    description: "Qualys TotalAI treats MCP servers as first-class security assets alongside models and endpoints. Supports inventory-first visibility across AI environments — discovers MCP server instances, tracks versions, and detects unmanaged/shadow MCP deployments. Available 2026-03-10."

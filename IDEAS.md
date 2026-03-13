@@ -26,22 +26,9 @@ Unified security research covering MCP vulnerabilities, prompt injection, and se
 
 ## Medium Priority
 
-### CI/CD Workflows Gallery
-Concrete GitHub Actions examples for Claude Code integration.
+### CI/CD Workflows Gallery ✅
 
-**Topics:**
-- Automated PR review workflows
-- Test generation pipelines
-- Cost optimization patterns for API calls in CI
-- Pre-commit hooks integration
-
-**Perplexity Query:**
-```
-GitHub Actions workflows for AI coding assistants 2024-2025:
-- Automated code review with Claude/GPT
-- Cost optimization for API calls in CI/CD
-- Real examples from open source projects
-```
+**Completed**: [GitHub Actions Workflows](./guide/workflows/github-actions.md) — 5 patterns using `anthropics/claude-code-action` (PR review, auto-review, issue triage, security, scheduled maintenance). Includes cost control, fork safety, Bedrock/Vertex auth alternatives. Cross-linked from section 9.3 of the main guide.
 
 ### MCP Server Catalog
 Exhaustive list of MCP servers with real-world use cases.

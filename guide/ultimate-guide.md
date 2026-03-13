@@ -13300,6 +13300,8 @@ For critical work, combine everything:
 
 ## 9.3 CI/CD Integration
 
+> **📖 Complete Workflow Guide**: See [GitHub Actions Workflows](./workflows/github-actions.md) for 5 production-ready patterns using the official `anthropics/claude-code-action` (PR review, triage, security, scheduled maintenance).
+
 ### Headless Mode
 
 Run Claude Code without interactive prompts:
@@ -14797,6 +14799,33 @@ Claude: [writes handoff to claudedocs/handoffs/oauth-implementation.md]
 - Session handoffs: See [Session Handoffs](#session-handoffs) (line 2278)
 
 **The insight:** Rusitschka's "Vibe Coding, Level 2" is Claude Code's native workflow — it just needed explicit framing as an anti-pattern antidote. Plan mode prevents context pollution during exploration, fresh context prevents accumulation during implementation, and handoffs enable clean phase transitions.
+
+### Fighting Vibe Code Degradation
+
+Vibe coding gets things built fast. The codebases it produces tend to rot in ways that are hard to see: abstractions drift, naming becomes inconsistent, error handling gets done three different ways. The code still works, but working in it gets progressively worse.
+
+**Desloppify** ([github.com/peteromallet/desloppify](https://github.com/peteromallet/desloppify)) is a community tool that directly addresses this. It installs a workflow guide into Claude Code as a skill, then runs a prioritized fix loop: scan → get next issue → fix → resolve → repeat until a quality score target is hit. The scoring is designed to resist gaming — improving the number requires actually improving the code.
+
+```bash
+pip install --upgrade "desloppify[full]"
+desloppify update-skill claude   # installs workflow as a Claude Code skill
+
+# Before scanning: exclude generated files, build output, vendored code
+desloppify exclude node_modules
+desloppify exclude .next
+
+desloppify scan --path .
+desloppify next                  # get first prioritized fix
+# fix it, then:
+desloppify resolve <issue-id>
+desloppify next                  # repeat
+```
+
+The loop handles both mechanical issues (dead code, duplication, complexity) and structural ones (naming clarity, abstraction design, module boundaries). A score above 98 is meant to correlate with what a senior engineer would call a clean codebase.
+
+> **Status**: Early-stage (released February 2026, ~2K GitHub stars). Promising native Claude Code integration but not yet battle-tested at scale. Evaluate token cost before running on large codebases — multi-pass LLM review across a full codebase can be substantial.
+
+---
 
 ### Skeleton Projects
 

@@ -8,6 +8,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
+- **`guide/workflows/github-actions.md`** — New workflow guide (5 production-ready patterns using `anthropics/claude-code-action`, 6.2k stars, v1.0). Covers: (1) on-demand PR review via `@claude` mention, (2) automatic review on every push, (3) issue triage and labeling, (4) security-focused review on sensitive path changes, (5) scheduled weekly repo health check. Includes setup via `/install-github-app`, authentication alternatives (OAuth vs API key), cost control (concurrency limits, token caps), and fork safety (`pull_request_target` vs `pull_request`).
+
+- **`guide/ultimate-guide.md`** — Two additions: (1) Cross-reference callout to `github-actions.md` in the CI/CD section. (2) New "Fighting Vibe Code Degradation" subsection covering **desloppify** ([github.com/peteromallet/desloppify](https://github.com/peteromallet/desloppify)): a community tool that installs a prioritized fix-loop as a Claude Code skill, scanning for dead code, duplication, and structural issues until a quality score target is hit.
+
+- **`examples/commands/resources/threat-db.yaml`** — Updated to v2.7.0 (2026-03-13). Added 5 new threat intelligence sources: CVE-2026-26118 Azure MCP Server SSRF (THN/Tenable), OpenClaw agentic AI risk analysis (ReversingLabs), Taskflow Agent open-source vulnerability scanner (GitHub Security Lab), OpenAI Codex Security research preview, and DryRun Security research on AI coding agents introducing vulnerabilities in 87% of PRs.
+
+- **`CLAUDE.md`** — Added "Behavioral Rules" section: 5 rules derived from observed friction patterns (always update CHANGELOG.md, exhaustive first-pass analysis, use absolute paths, closing checklist, bias toward action).
+
 - **`examples/scripts/test-prompt-caching.ts`** — Standalone TypeScript script (zero deps, native fetch) to verify Anthropic prompt caching is active on any API key. Runs 3 identical calls and checks write/read metrics. Documents 4 production gotchas not in official docs: (1) `anthropic-beta: prompt-caching-2024-07-31` header is required even for Claude 4.x, (2) effective token threshold for Claude 4.x is ~2048+ not the documented 1024, (3) cached tokens are excluded from `input_tokens`, (4) new nested `cache_creation` object format with `ephemeral_5m_input_tokens` and `ephemeral_1h_input_tokens`. Usage: `ANTHROPIC_API_KEY=sk-ant-... npx tsx test-prompt-caching.ts`.
 
 - **`CLAUDE.md` Behavioral Rules section** — New `## Behavioral Rules` section with 5 rules derived from observed session friction patterns (via `/insights` analysis): (1) always update `CHANGELOG.md` after any modification, (2) be exhaustive on first pass for audits and reviews, (3) use absolute paths in reports and documentation, (4) closing checklist confirming files changed + changelog + commit hash, (5) bias toward action — no extended planning loops without deliverables.
