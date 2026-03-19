@@ -16,7 +16,7 @@ tags: [guide, reference, workflows, agents, hooks, mcp, security]
 
 **Last updated**: January 2026
 
-**Version**: 3.37.1
+**Version**: 3.37.2
 
 ---
 
@@ -1527,6 +1527,19 @@ VERIFY: Login persists after browser refresh
 **Mistake**: "Fix the auth bug AND refactor the database AND add new tests"
 
 **Fix**: One focused task per session. `/clear` between different tasks.
+
+**How to size a task for Claude Code:**
+
+| Signal | Too big | Right size | Too small |
+|--------|---------|------------|-----------|
+| Description | Uses "AND" between behaviors | One vertical slice, one user behavior | A single line change you could do faster manually |
+| Session | Runs out of context or drifts | Completes within one session | Takes 30 seconds |
+| Review | Reviewer can't hold the full diff in mind | Diff is reviewable in one pass | Not worth a review |
+| Rollback | Reverting breaks other things | `git revert` cleanly undoes everything | N/A |
+
+**Splitting heuristic**: if your task description requires "and" between two user-facing behaviors, split it. "Users can reset passwords" is one task. "Users can reset passwords AND admins can force-expire sessions" is two.
+
+> **Deep dive**: [Spec-First Workflow — Task Granularity](./workflows/spec-first.md#task-granularity-sizing-work-for-agents) covers the vertical slice pattern, PRD quality checklist, and concrete before/after examples.
 
 ### 8. ❌ Treating Claude Code Like a Chatbot
 
@@ -5166,7 +5179,7 @@ The `.claude/` folder is your project's Claude Code directory for memory, settin
 | Personal preferences | `CLAUDE.md` | ❌ Gitignore |
 | Personal permissions | `settings.local.json` | ❌ Gitignore |
 
-### 3.37.1 Version Control & Backup
+### 3.37.2 Version Control & Backup
 
 **Problem**: Without version control, losing your Claude Code configuration means hours of manual reconfiguration across agents, skills, hooks, and MCP servers.
 
@@ -13135,6 +13148,87 @@ These tools solve different problems at different stages of the development cycl
 | **Status** | v0.1 alpha | v1.1.1 stable |
 
 **Complementary workflow**: Run Vitals weekly to identify which areas of the codebase need attention, then use SE-CoVe when asking Claude to refactor or fix those hotspot files.
+
+#### Lightweight Role-Switch Review
+
+Not every change warrants SE-CoVe's 5-stage pipeline. For everyday review within a single session, you can prompt Claude to switch from author to reviewer explicitly:
+
+```markdown
+You just wrote the implementation above. Now forget you wrote it.
+Review it as a senior engineer who did not author this code.
+
+Check: requirement fidelity, edge cases, error handling, backward
+compatibility, security, performance. For each issue found, cite
+the file and line, explain the problem, and propose a concrete fix.
+
+Verdict: APPROVE, REQUEST CHANGES, or REJECT.
+```
+
+This works because the explicit instruction to "forget you wrote it" forces Claude to re-evaluate rather than defend prior decisions. It catches surface-level issues (missing null checks, inconsistent error handling, naming drift) but shares the same reasoning path as the author, so subtle architectural flaws may survive.
+
+**When to use what:**
+
+| Approach | Cost | Catches | Best for |
+|----------|------|---------|----------|
+| Role-switch (same session) | 1x | Surface issues, naming, obvious bugs | Daily development, quick fixes |
+| SE-CoVe (plugin) | ~2x | Reasoning-path blind spots, subtle logic errors | Security-sensitive code, architecture |
+| Cross-model review (see below) | 1x-2x | Different reasoning patterns, fresh perspective | Critical paths, pre-merge gates |
+| Scope-focused agents | 2-5x | Domain-specific issues in parallel | Large PRs, multi-concern review |
+
+#### Cross-Model Review
+
+A single model reviewing its own code follows the same reasoning patterns that produced the code. Using a different model for review introduces genuinely independent analysis.
+
+**The pattern**: generate with one model, review with another.
+
+```bash
+# Implement with Opus (deep reasoning)
+claude --model opus
+
+# Review the diff with Sonnet (different reasoning path, lower cost)
+claude -p "Review the changes in the last commit. Check for logic errors, \
+  edge cases, backward compatibility, and security issues. \
+  Cite file:line for each finding." --model sonnet
+
+# Quick sanity check with Haiku (fast, cheap, catches obvious issues)
+claude -p "List any bugs, missing error handling, or security issues \
+  in the last commit." --model haiku
+```
+
+**With custom agents:**
+
+```yaml
+# .claude/agents/cross-model-reviewer.md
+---
+name: cross-model-reviewer
+model: sonnet  # Different from your working model
+tools: Read, Grep, Glob
+---
+You are reviewing code you did not write. Your job is to find problems.
+
+Read the files listed below, then check:
+1. Logic errors and edge cases
+2. Error handling completeness
+3. Backward compatibility risks
+4. Security issues (injection, auth gaps, data leaks)
+5. Performance concerns (O(n²), unbounded queries)
+
+For each finding: severity (critical/high/medium), file:line, problem, fix.
+If no issues found, say so explicitly.
+```
+
+**Why different models catch different bugs**: each model has distinct reasoning biases, training distributions, and failure modes. A bug that sits in one model's blind spot may be obvious to another. This is the same principle behind diverse code review teams in traditional engineering.
+
+**Cost-effective patterns:**
+
+| Generation Model | Review Model | Cost Multiplier | When |
+|-----------------|-------------|-----------------|------|
+| Opus | Sonnet | ~1.3x | Default for critical code |
+| Sonnet | Haiku | ~1.05x | High-volume, pre-commit gate |
+| Sonnet | Opus | ~2x | Architecture, security-critical |
+| Any | Same model, fresh session | ~1.5x | Context isolation without model switch |
+
+The fresh session variant (same model, new context via `claude -p`) gives you context isolation without changing the model. Less effective than a true model switch but still better than reviewing in the same session where the code was written.
 
 ---
 
@@ -23482,4 +23576,4 @@ We'll evaluate and add it to this section if it meets quality criteria.
 
 **Contributions**: Issues and PRs welcome.
 
-**Last updated**: January 2026 | **Version**: 3.37.1
+**Last updated**: January 2026 | **Version**: 3.37.2

@@ -155,6 +155,7 @@ Pair this CLAUDE.md with the learning-capture hook to automatically log insights
 {
   "hooks": {
     "Stop": [{
+      "matcher": "",
       "hooks": [{
         "type": "command",
         "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/bash/learning-capture.sh"
