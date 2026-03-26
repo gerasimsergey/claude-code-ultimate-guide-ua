@@ -166,7 +166,9 @@ If you only have time for 5 sections:
   - [4.2 Creating Custom Agents](#42-creating-custom-agents)
   - [4.3 Agent Template](#43-agent-template)
   - [4.4 Best Practices](#44-best-practices)
-  - [4.5 Agent Examples](#45-agent-examples)
+  - [4.5 Agent Memory](#45-agent-memory)
+  - [4.6 Agent Examples](#46-agent-examples)
+  - [4.7 Advanced Agent Patterns](#47-advanced-agent-patterns)
 - [5. Skills](#5-skills) `🟡 Intermediate` `⏱ 30 min`
   - [5.1 Understanding Skills](#51-understanding-skills)
   - [5.2 Creating Skills](#52-creating-skills)
@@ -1086,20 +1088,32 @@ You're ready for Day 2 when you can:
 
 ## 1.6 Migrating from Other AI Coding Tools
 
+> **Last updated**: March 2026. AI coding tools evolve rapidly; verify pricing and features on official sites.
+
 Switching from GitHub Copilot, Cursor, or other AI assistants? Here's what you need to know.
 
 ### Why Claude Code is Different
 
 | Feature | GitHub Copilot | Cursor | Windsurf | Zed | Claude Code |
 |---------|---------------|--------|----------|-----|-------------|
-| **Interaction** | Inline autocomplete | Chat + autocomplete | Cascade agent | Agent panel + inline | CLI + conversation |
-| **Context** | Current file | Open files | ~200K tokens (IDE) | 200-400K tokens | Entire project (agentic search) |
-| **Autonomy** | Suggestions only | Edit + chat | Multi-agent (Wave 13) | Agent panel | Full task execution |
-| **Customization** | Limited | Extensions | Hooks Cascade | BYO providers + Ollama | Agents, skills, hooks, MCP |
-| **Cost Model** | $10-20/month flat | Credit-based ($20 Pro incl. + overages) | Credit-based ($15/mo Pro, 500 credits) | Token-based ($10/mo + list price +10%) | Subscription (Pro $20, Max 5x $100, Max 20x $200) |
-| **Inline autocomplete** | ✅ Native | ✅ Tab | ✅ Supercomplete | ✅ Zeta | ❌ Use Copilot/Cursor alongside |
-| **Offline/local models** | ❌ | ❌ (via LiteLLM) | ❌ | ✅ Ollama | ❌ |
-| **Best for** | Quick suggestions | IDE-native AI UX | Multi-agent IDE | Speed + local models | Terminal/CLI workflows, large refactors |
+| **Interaction** | Agent + Chat + Autocomplete | Agent + Chat + Autocomplete | Cascade agent | Agent panel + Zeta2 | CLI + conversation |
+| **Context** | Full codebase (agent mode) | Codebase-aware (Composer) | ~200K tokens (IDE) | Up to 1M tokens | Entire project (agentic) |
+| **Autonomy** | Agent mode + coding agent | Agent + Background Agents | Cascade (Cognition AI) | Agent + subagents | Full task execution |
+| **Customization** | MCP, custom agents, AGENTS.md | MCP Apps, .cursorrules | Cascade hooks | ACP Registry, MCP | Agents, skills, hooks, MCP |
+| **MCP support** | ✅ GA (auto-approve) | ✅ MCP Apps v2.6 | Not documented | ✅ OAuth | ✅ Native |
+| **Inline autocomplete** | ✅ Native | ✅ Tab | ✅ Supercomplete | ✅ Zeta2 | ❌ Use alongside |
+| **Offline/local** | ❌ | ❌ | ❌ | BYO providers | ❌ |
+| **Best for** | IDE-native, GitHub teams | IDE-native AI UX | Multi-agent IDE | Speed + open-source | Terminal/CLI, large refactors |
+
+#### Pricing comparison (March 2026)
+
+| Tool | Free | Pro | Power/Plus | Teams | Enterprise |
+|------|------|-----|------------|-------|------------|
+| **GitHub Copilot** | ✅ (2K completions) | $10/mo | Pro+ $39/mo | Business $19/seat | $39/seat |
+| **Cursor** | ✅ (2K completions) | $20/mo | Ultra $200/mo | $40/seat | — |
+| **Windsurf** | ✅ (25 prompts) | $20/mo | $200/mo | $30/seat | $60/seat |
+| **Zed** | — | $10/mo | — | — | — |
+| **Claude Code** | — | $20/mo | Max $100-200/mo | — | Via Anthropic |
 
 **Key mindset shift**: Claude Code is a **structured context system**, not a chatbot or autocomplete tool. You build persistent context (CLAUDE.md, skills, hooks) that compounds over time — see [§2.5](#from-chatbot-to-context-system).
 
@@ -1110,14 +1124,18 @@ Switching from GitHub Copilot, Cursor, or other AI assistants? Here's what you n
 - **Inline suggestions** - Fast autocomplete as you type
 - **Familiar workflow** - Works inside your editor
 - **Low friction** - No context switching
+- **Agent mode** - Multi-file edits, terminal commands, autonomous iteration (GA in VS Code + JetBrains)
+- **Free tier** - 2K completions + 50 premium requests at $0/month
+- **Model choice** - Claude, Codex, GPT models selectable since Feb 2026
 
 #### What Claude Code Does Better
 
-- **Multi-file refactoring** - Copilot: one file at a time | Claude: reads and edits across files
-- **Complex tasks** - Copilot: suggests lines | Claude: implements features
-- **Understanding context** - Copilot: current file | Claude: can search and read project-wide
-- **Explaining code** - Copilot: limited | Claude: detailed explanations
-- **Debugging** - Copilot: weak | Claude: systematic root cause analysis
+- **Terminal-native workflow** - No IDE dependency; works over SSH, in CI/CD, in any terminal
+- **Persistent context system** - CLAUDE.md + skills + hooks compound over time; Copilot's custom instructions are newer and less granular
+- **Agent orchestration** - Agent teams, sub-agents, parallel execution with deterministic multi-file coordination
+- **Pay-per-use model** - No premium request quotas; Copilot agent mode is constrained by monthly premium limits (300/mo on Pro, 1500/mo on Pro+)
+- **Headless/CI mode** - Run in pipelines, automation, non-interactive contexts
+- **Deep customization** - Custom slash commands, event hooks, skill modules, MCP server composition
 
 #### Hybrid Approach (Recommended)
 
@@ -1125,11 +1143,14 @@ Switching from GitHub Copilot, Cursor, or other AI assistants? Here's what you n
 - Quick autocomplete while typing
 - Boilerplate code generation
 - Simple function completions
+- Straightforward multi-file tasks within your IDE (agent mode)
+- Quick chat questions about visible code
 
 **Use Claude Code for:**
-- Feature implementation (multi-file changes)
-- Debugging complex issues
-- Code reviews and refactoring
+- Feature implementation spanning multiple repos or cutting across architectures
+- Systematic debugging requiring deep codebase traversal
+- CI/CD automation and headless execution
+- Code reviews and refactoring at scale
 - Understanding unfamiliar codebases
 - Writing tests for entire modules
 
@@ -1162,13 +1183,15 @@ You: "Review my changes today. Check for security issues."
 - **Inline editing** - Direct code modifications in editor
 - **GUI interface** - Familiar VS Code experience
 - **Chat + autocomplete** - Both modalities in one tool
+- **Agent mode** - Autonomous multi-file editing (GA March 2026)
+- **Background Agents** - Delegated tasks on remote VMs, parallel execution
 
 #### What Claude Code Does Better
 
 - **Terminal-native workflow** - Better for CLI-heavy developers
 - **Advanced customization** - Agents, skills, hooks, commands
-- **MCP servers** - Extensibility beyond what Cursor offers
-- **Cost efficiency** - Pay for what you use vs. flat $20/month
+- **MCP ecosystem maturity** - Native MCP with broader server compatibility and deeper integration
+- **Cost transparency** - Direct API billing, no credit system or opaque quotas
 - **Git integration** - Native git operations, commit generation
 - **CI/CD integration** - Headless mode for automation
 
@@ -1177,7 +1200,7 @@ You: "Review my changes today. Check for security issues."
 **Stick with Cursor if:**
 - You strongly prefer GUI over CLI
 - You want all-in-one IDE experience
-- You use it >4 hours/day (flat rate is better)
+- You prefer GUI-first workflow with integrated agent mode
 - You don't need advanced customization
 
 **Switch to Claude Code if:**
@@ -1185,7 +1208,7 @@ You: "Review my changes today. Check for security issues."
 - You want deeper customization (agents, hooks)
 - You work with complex, multi-repo projects
 - You want to integrate AI into CI/CD
-- You prefer pay-per-use pricing
+- You want direct API billing without credit pools
 
 #### Running Both
 
@@ -6270,6 +6293,8 @@ All official fields supported by Claude Code ([source](https://code.claude.com/d
 | `project` | `.claude/agent-memory/<name>/` | Project-specific, shareable via git |
 | `local` | `.claude/agent-memory-local/<name>/` | Project-specific, not committed |
 
+> Full coverage of agent memory — 200-line injection limit, MEMORY.md structure, scope selection guide — in [§4.5 Agent Memory](#45-agent-memory).
+
 ### Model Selection
 
 | Model | Best For | Speed | Cost |
@@ -6439,7 +6464,121 @@ ctrl+c
 ```
 
 
-## 4.5 Agent Examples
+## 4.5 Agent Memory
+
+Introduced in **Claude Code v2.1.33** (February 2026), the `memory` frontmatter field gives subagents persistent, markdown-based knowledge that survives across sessions. Before this, every agent invocation started with a blank slate regardless of previous runs.
+
+### Why Agent Memory Matters
+
+Without memory, a code-reviewer agent that discovers your team prefers early-return patterns over nested `if` blocks has no way to carry that observation forward. The next invocation starts cold. Agent memory fixes this: the agent writes its findings to a structured file, and future invocations pick up where the last one left off.
+
+This is distinct from the other memory systems in Claude Code. Each serves a different purpose:
+
+| System | Written by | Read by | Scope | Persists |
+|--------|------------|---------|-------|----------|
+| **CLAUDE.md** | You (manually) | Main Claude + all agents | Project or global | Git-tracked |
+| **Auto-memory** | Main Claude (automatic) | Main Claude only | Per-project per-user | Gitignored |
+| **Agent memory** | The agent itself | That specific agent only | Configurable | Depends on scope |
+
+An agent reads both `CLAUDE.md` (shared project context) and its own memory (agent-specific accumulated knowledge). The two layers are complementary.
+
+### Memory Scopes
+
+Choose a scope based on where the knowledge is useful:
+
+| Scope | Storage location | Version controlled | Best for |
+|-------|-----------------|-------------------|----------|
+| `user` | `~/.claude/agent-memory/<agent-name>/` | No | Cross-project learning — a code reviewer that builds up pattern knowledge across every repo |
+| `project` | `.claude/agent-memory/<agent-name>/` | Yes (committed) | Project-specific knowledge the whole team should share — e.g., API conventions discovered by a scaffolding agent |
+| `local` | `.claude/agent-memory-local/<agent-name>/` | No (gitignored) | Project-specific knowledge that is personal and should not be committed |
+
+These scopes mirror the settings hierarchy (`~/.claude/settings.json` → `.claude/settings.json` → `.claude/settings.local.json`), making the mental model consistent across the whole system.
+
+Activate memory by adding one line to the agent frontmatter:
+
+```yaml
+---
+name: code-reviewer
+description: Reviews code for quality, security, and consistency
+tools: Read, Grep, Glob
+memory: user
+---
+```
+
+### How the 200-Line Injection Works
+
+When an agent starts, Claude Code reads the first 200 lines of `MEMORY.md` in the agent's memory directory and injects them directly into the agent's system prompt. This is automatic — no explicit tool call needed.
+
+```
+~/.claude/agent-memory/code-reviewer/
+├── MEMORY.md                   ← First 200 lines injected at startup
+├── react-patterns.md           ← Topic-specific file, loaded on demand
+└── security-checklist.md       ← Topic-specific file, loaded on demand
+```
+
+Once `MEMORY.md` exceeds 200 lines the agent should move detailed content into topic-specific files and keep `MEMORY.md` as a concise index with references. The agent manages this itself — `Read`, `Write`, and `Edit` are automatically available to any agent with `memory` set.
+
+**Practical implication**: structure `MEMORY.md` like a smart summary, not an append-only log. High-signal entries at the top, topic files for depth.
+
+### MEMORY.md Structure
+
+A well-structured agent memory file makes the injected content immediately useful:
+
+```markdown
+# code-reviewer memory
+Last updated: 2026-03-10
+
+## Project conventions (confirmed)
+- Early return over nested conditionals (consistent across 12 reviews)
+- `zod` for all API boundary validation — never `joi` or raw type checks
+- Auth middleware must be applied before any controller logic
+
+## Recurring issues
+- Missing `await` on async DB calls in `/src/services/` (seen 4× this month)
+- `any` casts in migration scripts accepted as a known exception
+
+## Patterns to watch
+- New contributors tend to skip error boundary wrapping in React trees
+
+## Topic files
+- [react-patterns.md](react-patterns.md) — component structure, hook usage, memoization rules
+- [security-checklist.md](security-checklist.md) — OWASP Top 10 per-category notes
+```
+
+### Prompting Agents to Use Their Memory
+
+Memory is only useful if the agent reads and writes it consistently. Explicit prompting in the agent body makes a large difference:
+
+```yaml
+---
+name: api-developer
+description: Implement API endpoints following team conventions
+tools: Read, Write, Edit, Bash
+memory: project
+---
+
+Before starting any task, review your memory for relevant conventions and
+past decisions. After completing a task, update your memory with new patterns,
+architectural decisions, or recurring issues you observed. Keep MEMORY.md
+under 200 lines — move detailed notes to topic-specific files.
+```
+
+This pattern — skills for static startup knowledge, memory for dynamic accumulated knowledge — gives agents the best of both worlds. Skills inject curated reference material at first run; memory carries forward what the agent discovers on its own.
+
+### Choosing the Right Scope
+
+| Situation | Recommended scope |
+|-----------|------------------|
+| Generic code reviewer used across multiple projects | `user` — knowledge accumulates globally |
+| API scaffolding agent that learns your team's endpoint conventions | `project` — commit the memory so teammates benefit |
+| Personal refactoring agent with your preferred style preferences | `local` — stays on your machine only |
+| Agent for a client project you do not want to mix with personal knowledge | `local` — isolated, not committed |
+
+> **Sources**: [Create custom subagents](https://code.claude.com/docs/en/sub-agents) · [Manage Claude's memory](https://code.claude.com/docs/en/memory) · Claude Code v2.1.33 release notes
+
+---
+
+## 4.6 Agent Examples
 
 ### Example 1: Code Reviewer Agent
 
@@ -6590,7 +6729,7 @@ Use this agent when:
 - Document architectural decisions
 ```
 
-## 4.6 Advanced Agent Patterns
+## 4.7 Advanced Agent Patterns
 
 ### Tool SEO - Optimizing Agent Descriptions
 
@@ -17199,13 +17338,13 @@ Team practices:
 □ Review cost metrics in retrospectives
 ```
 
-### Alternative: Flat-Rate via Copilot Pro+
+### Alternative: Flat-Rate via Copilot Pro
 
-For heavy usage, consider **cc-copilot-bridge** to route requests through GitHub Copilot Pro+ ($10/month flat) instead of per-token billing.
+For heavy usage, consider **cc-copilot-bridge** to route requests through GitHub Copilot Pro ($10/month) instead of per-token billing.
 
 ```bash
 # Switch to Copilot mode (flat rate)
-ccc  # Uses Copilot Pro+ subscription
+ccc  # Uses Copilot Pro subscription
 
 # Back to direct Anthropic (per-token)
 ccd  # Uses ANTHROPIC_API_KEY
@@ -17214,7 +17353,7 @@ ccd  # Uses ANTHROPIC_API_KEY
 **When this makes sense:**
 - You're hitting rate limits frequently
 - Monthly costs exceed $50-100
-- You already have Copilot Pro+ subscription
+- You already have a Copilot Pro subscription
 
 See [Section 11.2: Multi-Provider Setup](#multi-provider-setup-cc-copilot-bridge) for full details.
 
@@ -18404,7 +18543,7 @@ Communication via docs with @mention
 | Tool | Best For | Cost | Key Feature |
 |------|----------|------|-------------|
 | **Cursor Parallel Agents** | Solo/small teams | $20-40/month | UI integrated, git worktrees built-in |
-| **Windsurf Cascade** | Large codebases | $15/month | 10x faster context (Codemaps) |
+| **Windsurf Cascade** | Large codebases | $20/month | 10x faster context (Codemaps) |
 | **Sequential Claude** | Most teams | $20/month | 1-2 instances with better prompting |
 
 ---
@@ -21832,37 +21971,161 @@ Toggle voice on/off with `/voice`. The push-to-talk binding only activates when 
 
 ### CLI Flags Reference
 
-Complete reference for all Claude Code command-line flags.
+Complete reference for all Claude Code command-line flags, subcommands, and startup environment variables.
 
-| Flag | Description | Example |
-|------|-------------|---------|
-| `-p, --print` | Print response and exit (non-interactive) | `claude -p "analyze app.ts"` |
-| `--output-format` | Output format (text/json/stream-json) | `claude --output-format json` |
-| `--json-schema` | JSON Schema for structured output validation | `claude --json-schema '{"type":"object","properties":{"name":{"type":"string"}}}' ` |
-| `--input-format` | Input format (text/stream-json) | `claude --input-format stream-json` |
-| `--replay-user-messages` | Re-emit user messages in stream | `claude --replay-user-messages` |
-| `--allowedTools` | Whitelist specific tools | `claude --allowedTools "Edit,Read,Bash(git *)"` |
-| `--disallowedTools` | Blacklist specific tools | `claude --disallowedTools "WebFetch"` |
-| `--mcp-config` | Load MCP servers from JSON file | `claude --mcp-config ./mcp.json` |
-| `--strict-mcp-config` | Only use MCP servers from config | `claude --strict-mcp-config` |
-| `--plugin-dir` | Load plugins from directory (repeatable) | `claude --plugin-dir ~/.claude/plugins` |
-| `--append-system-prompt` | Add to system prompt | `claude --append-system-prompt "Use TypeScript"` |
-| `--permission-mode` | Permission mode (default/acceptEdits/plan/dontAsk/bypassPermissions) | `claude --permission-mode plan` |
-| `--model` | Model selection | `claude --model sonnet` |
-| `--max-budget-usd` | Maximum API spend limit (with `--print` only) | `claude -p "analyze" --max-budget-usd 5.00` |
-| `--tools` | Enable specific tools for the session | `claude --tools "Edit,Read,Bash"` |
-| `--agent` | Specify agent for session | `claude --agent security-reviewer` |
-| `--system-prompt` | Override system prompt entirely | `claude --system-prompt "You are a reviewer"` |
-| `--add-dir` | Allow tool access to additional directories | `claude --add-dir ../shared ../utils` |
-| `--worktree` / `-w` | Run in isolated git worktree | `claude --worktree` |
-| `--continue` | Continue last conversation (in current directory) | `claude --continue` |
-| `-r, --resume` | Resume session by ID or show picker | `claude --resume abc123` |
-| `--dangerously-skip-permissions` | Skip all permission prompts | `claude --dangerously-skip-permissions` |
-| `--debug` | Enable debug mode (supports categories: `"api,mcp"`) | `claude --debug` |
-| `--verbose` | Verbose output | `claude --verbose` |
-| `--version` | Show version | `claude --version` |
+#### Session & Context
 
-> **Note**: This table covers the most commonly used flags. The full CLI reference (~45 flags) is available at [docs.anthropic.com](https://docs.anthropic.com/en/docs/claude-code/cli-reference).
+| Flag | Short | Description |
+|------|-------|-------------|
+| `--continue` | `-c` | Continue the most recent conversation in the current directory |
+| `--resume <ID>` | `-r` | Resume a specific session by UUID or name, or show interactive picker |
+| `--from-pr <NUMBER\|URL>` | | Resume sessions linked to a specific GitHub PR |
+| `--fork-session` | | Create a new session ID when resuming (use with `--resume` or `--continue`) |
+| `--session-id <UUID>` | | Use a specific session UUID |
+| `--no-session-persistence` | | Disable session persistence (print mode only) |
+| `--remote` | | Create a new web session on claude.ai |
+| `--teleport` | | Resume a web session in your local terminal |
+
+#### Model & Configuration
+
+| Flag | Short | Description |
+|------|-------|-------------|
+| `--model <NAME>` | | Set model with alias (`sonnet`, `opus`, `haiku`) or full model ID |
+| `--fallback-model <NAME>` | | Auto-fallback model when default is overloaded (print mode only) |
+| `--betas <LIST>` | | Beta headers to include in API requests (API key users only) |
+
+#### Output & Format
+
+| Flag | Short | Description |
+|------|-------|-------------|
+| `--print` | `-p` | Print response and exit without interactive mode (headless/SDK mode) |
+| `--output-format <FORMAT>` | | Output format: `text`, `json`, `stream-json` |
+| `--input-format <FORMAT>` | | Input format: `text`, `stream-json` |
+| `--json-schema <SCHEMA>` | | Get validated JSON matching schema (print mode only) |
+| `--include-partial-messages` | | Include partial streaming events (requires `--print` and `stream-json`) |
+| `--verbose` | | Enable verbose logging with full turn-by-turn output |
+
+#### Permissions & Security
+
+| Flag | Short | Description |
+|------|-------|-------------|
+| `--dangerously-skip-permissions` | | Skip ALL permission prompts — use with extreme caution |
+| `--allow-dangerously-skip-permissions` | | Enable permission bypassing as an option without activating it |
+| `--permission-mode <MODE>` | | Begin in specified mode: `default`, `plan`, `acceptEdits`, `bypassPermissions` |
+| `--allowedTools <TOOLS>` | | Tools that execute without prompting (permission rule syntax) |
+| `--disallowedTools <TOOLS>` | | Tools removed from model context entirely |
+| `--tools <TOOLS>` | | Restrict which built-in tools Claude can use (use `""` to disable all) |
+| `--permission-prompt-tool <TOOL>` | | MCP tool to handle permission prompts in non-interactive mode |
+
+#### System Prompt
+
+| Flag | Short | Description |
+|------|-------|-------------|
+| `--system-prompt <TEXT>` | | Replace entire system prompt with custom text |
+| `--system-prompt-file <PATH>` | | Load system prompt from file, replacing default (print mode only) |
+| `--append-system-prompt <TEXT>` | | Append custom text to default system prompt |
+| `--append-system-prompt-file <PATH>` | | Append file contents to default prompt (print mode only) |
+
+#### Agent & Subagent
+
+| Flag | Short | Description |
+|------|-------|-------------|
+| `--agent <NAME>` | | Specify an agent for the current session |
+| `--agents <JSON>` | | Define custom subagents dynamically via JSON |
+| `--teammate-mode <MODE>` | | Set agent team display: `auto`, `in-process`, `tmux` |
+
+#### MCP & Plugins
+
+| Flag | Short | Description |
+|------|-------|-------------|
+| `--mcp-config <PATH\|JSON>` | | Load MCP servers from JSON file or inline JSON string |
+| `--strict-mcp-config` | | Only use MCP servers from `--mcp-config`, ignore all others |
+| `--plugin-dir <PATH>` | | Load plugins from directory for this session only (repeatable) |
+
+#### Directory & Workspace
+
+| Flag | Short | Description |
+|------|-------|-------------|
+| `--add-dir <PATH>` | | Add additional working directories for Claude to access |
+| `--worktree` | `-w` | Start Claude in an isolated git worktree (branched from HEAD) |
+
+#### Budget & Limits
+
+| Flag | Short | Description |
+|------|-------|-------------|
+| `--max-budget-usd <AMOUNT>` | | Maximum dollar amount for API calls before stopping (print mode only) |
+| `--max-turns <NUMBER>` | | Limit number of agentic turns (print mode only) |
+
+#### Integration
+
+| Flag | Short | Description |
+|------|-------|-------------|
+| `--chrome` | | Enable Chrome browser integration for web automation |
+| `--no-chrome` | | Disable Chrome browser integration for this session |
+| `--ide` | | Automatically connect to IDE on startup if exactly one valid IDE is available |
+
+#### Initialization & Maintenance
+
+| Flag | Short | Description |
+|------|-------|-------------|
+| `--init` | | Run initialization hooks and start interactive mode |
+| `--init-only` | | Run initialization hooks and exit without starting a session |
+| `--maintenance` | | Run maintenance hooks and exit |
+
+#### Debug & Diagnostics
+
+| Flag | Short | Description |
+|------|-------|-------------|
+| `--debug <CATEGORIES>` | | Enable debug mode with optional category filtering (e.g., `"api,hooks"`) |
+
+#### Settings Override
+
+| Flag | Short | Description |
+|------|-------|-------------|
+| `--settings <PATH\|JSON>` | | Path to settings JSON file or inline JSON string to load |
+| `--setting-sources <LIST>` | | Comma-separated sources to load: `user`, `project`, `local` |
+| `--disable-slash-commands` | | Disable all skills and slash commands for this session |
+
+#### Version & Help
+
+| Flag | Short | Description |
+|------|-------|-------------|
+| `--version` | `-v` | Output the current version number |
+| `--help` | `-h` | Show help information |
+
+### Subcommands
+
+Top-level commands run as `claude <subcommand>`:
+
+| Subcommand | Description |
+|------------|-------------|
+| `claude "query"` | Start REPL with an initial prompt |
+| `claude agents` | List configured agents |
+| `claude auth login / logout / status` | Manage Claude Code authentication |
+| `claude doctor` | Run diagnostics from the command line |
+| `claude install` | Install or switch Claude Code native builds |
+| `claude mcp add / remove / list / get / enable` | Configure MCP servers |
+| `claude plugin` | Manage Claude Code plugins |
+| `claude remote-control` | Manage remote control sessions |
+| `claude setup-token` | Create a long-lived token for subscription usage |
+| `claude update` / `claude upgrade` | Update to the latest version |
+
+### Startup Environment Variables
+
+Set these in your shell before launching Claude Code (these cannot be configured via `settings.json`):
+
+| Variable | Description |
+|----------|-------------|
+| `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1` | Enable experimental agent teams |
+| `CLAUDE_CODE_TMPDIR` | Override temp directory for internal files |
+| `CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD=1` | Enable additional directory CLAUDE.md loading |
+| `DISABLE_AUTOUPDATER=1` | Disable automatic updates |
+| `CLAUDE_CODE_EFFORT_LEVEL` | Control thinking depth for extended thinking models |
+| `USE_BUILTIN_RIPGREP=0` | Use system ripgrep instead of built-in (useful on Alpine Linux) |
+| `CLAUDE_CODE_SIMPLE` | Enable simple mode (Bash + Edit tools only, no agents/hooks/MCP) |
+| `CLAUDE_BASH_NO_LOGIN=1` | Skip login shell invocation for BashTool |
+
+For variables configurable via the `"env"` key in `settings.json` (including `MAX_THINKING_TOKENS`, `CLAUDE_CODE_SHELL`, `CLAUDE_CODE_ENABLE_TASKS`, `ANTHROPIC_API_KEY`, `ANTHROPIC_BASE_URL`, and more), see section 10.3 Configuration Reference.
 
 **Common Combinations:**
 
@@ -21884,17 +22147,23 @@ claude --permission-mode plan
 
 # Multi-directory project
 claude --add-dir ../shared-lib ../utils ../config
+
+# Limit agentic turns in automation
+claude -p "refactor this module" --max-turns 10
+
+# Resume specific session non-interactively
+claude -r abc123 -p "summarize progress"
 ```
 
 **Safety Guidelines:**
 
 | Flag | Risk Level | Use When |
 |------|-----------|----------|
-| `--dangerously-skip-permissions` | 🔴 High | Only in CI/CD, never on production |
-| `--allowedTools` | 🟢 Safe | Restricting tool access |
-| `--disallowedTools` | 🟢 Safe | Blocking specific tools |
-| `--permission-mode plan` | 🟢 Safe | Read-only exploration |
-| `--debug` | 🟡 Medium | Troubleshooting (verbose logs) |
+| `--dangerously-skip-permissions` | High | Only in CI/CD, never on production |
+| `--allowedTools` | Safe | Restricting tool access |
+| `--disallowedTools` | Safe | Blocking specific tools |
+| `--permission-mode plan` | Safe | Read-only exploration |
+| `--debug` | Medium | Troubleshooting (verbose logs) |
 
 ## 10.4 Troubleshooting
 
@@ -21908,7 +22177,7 @@ Use this symptom-based guide for rapid issue identification and resolution:
 |---------|--------------|-----------|------------|
 | "Context too long" error | Session accumulated too much context | `/compact` first, then `/clear` if needed | Compact regularly at 70% |
 | Slow/delayed responses | High context usage (>75%) | Check `/status`, run `/compact` | Monitor context with `/status` |
-| "Rate limit exceeded" | API throttling from frequent requests | Wait 2 minutes, use `--model haiku` for simple tasks, or use [cc-copilot-bridge](https://github.com/FlorianBruniaux/cc-copilot-bridge) for flat-rate access | Batch operations, use `/compact`, consider Copilot Pro+ |
+| "Rate limit exceeded" | API throttling from frequent requests | Wait 2 minutes, use `--model haiku` for simple tasks, or use [cc-copilot-bridge](https://github.com/FlorianBruniaux/cc-copilot-bridge) for flat-rate access | Batch operations, use `/compact`, consider Copilot Pro |
 | Claude forgets instructions | Context overflow, CLAUDE.md lost | Create checkpoint, `/clear`, reload CLAUDE.md | Keep CLAUDE.md concise (<500 lines) |
 | MCP server not connecting | Server crashed or config error | `claude mcp list`, check paths, restart server | Test servers after config changes |
 | Permission prompts every time | Tool not in `allowedTools` | Add pattern to `settings.json` allowedTools | Use wildcards: `Bash(git *)` |
@@ -22674,11 +22943,11 @@ The goal isn't replacement—it's **chaining the right tool for each step**.
 | **[NotebookLM](https://notebooklm.google.com)** | Doc synthesis + audio + **MCP integration** | Full features | Free |
 | **[v0.dev](https://v0.dev)** | UI prototyping (Shadcn) | Limited | $20/month |
 | **[Cursor](https://cursor.sh)** | IDE with AI autocomplete | Limited | $20/month |
-| **[cc-copilot-bridge](https://github.com/FlorianBruniaux/cc-copilot-bridge)** | Multi-provider switching | Full | Copilot Pro+ $10/month |
+| **[cc-copilot-bridge](https://github.com/FlorianBruniaux/cc-copilot-bridge)** | Multi-provider switching | Full | Copilot Pro $10/month |
 
 ### Multi-Provider Setup: cc-copilot-bridge
 
-For heavy Claude Code usage, **cc-copilot-bridge** routes requests through GitHub Copilot Pro+ instead of Anthropic's per-token billing.
+For heavy Claude Code usage, **cc-copilot-bridge** routes requests through GitHub Copilot Pro ($10/month) instead of Anthropic's per-token billing.
 
 **What it solves:**
 - Rate limits during intensive development sessions
@@ -22692,19 +22961,19 @@ git clone https://github.com/FlorianBruniaux/cc-copilot-bridge.git
 cd cc-copilot-bridge && ./install.sh
 
 # Use (3-character aliases)
-ccc   # Copilot mode (flat $10/month via Copilot Pro+)
+ccc   # Copilot mode (flat $10/month via Copilot Pro)
 ccd   # Direct mode (Anthropic per-token)
 cco   # Offline mode (Ollama, 100% local)
 ```
 
 **Cost Comparison:**
 
-| Scenario | Anthropic Direct | With Copilot Pro+ | Savings |
+| Scenario | Anthropic Direct | With Copilot Pro | Savings |
 |----------|------------------|-------------------|---------|
 | Heavy daily usage | ~$300/month | $10/month | ~97% |
 | 100M tokens/month | $1,500 | $10 | 99.3% |
 
-> **Note**: Requires GitHub Copilot Pro+ subscription ($10/month) which provides access to Claude models through VS Code's API.
+> **Note**: Requires GitHub Copilot Pro subscription ($10/month) which provides access to Claude models through VS Code's API.
 
 See: [cc-copilot-bridge Quick Start](https://github.com/FlorianBruniaux/cc-copilot-bridge#-quick-start)
 

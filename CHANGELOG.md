@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Changed
+
+- **update(guide/section-1.6)**: rewrite "Migrating from Other AI Coding Tools" with March 2026 fact-checked data (closes #12). GitHub Copilot: agent mode GA, MCP GA, full codebase context, multi-model selection, updated pricing tiers (Free/$10/$39 Pro+). Cursor: agent mode GA, Background Agents, MCP Apps v2.6. Windsurf: pricing raised to $20 (Cognition AI acquisition), Cascade still core. Zed: Zeta2 autocomplete, subagents, up to 1M token context, MCP with OAuth. Removed all factually false claims ("suggestions only", "current file", "weak debugging") and replaced with honest differentiators (terminal-native, persistent context system, headless/CI mode, agent orchestration). Added pricing comparison table. Fixed cc-copilot-bridge tier naming (Pro+ -> Pro, $10/mo).
+
 ### Added
 
 - **`/investigate` command** (`examples/commands/investigate.md`): root-cause debugging command. Enforces the Iron Law (no fixes before root cause). 5-phase workflow: collect symptoms, read code, check recent changes, reproduce, pattern analysis. Includes known pattern table (race conditions, null propagation, state corruption, integration failure, config drift, stale cache), 3-strike escalation rule, blast radius gate (>5 files touched → confirm), and structured DEBUG REPORT output. Inspired by [gstack](https://github.com/garrytan/gstack) `/investigate`.
