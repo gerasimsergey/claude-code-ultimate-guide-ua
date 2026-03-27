@@ -10,13 +10,13 @@ tags: [reference, release]
 > **Full details**: [github.com/anthropics/claude-code/CHANGELOG.md](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md)
 > **Machine-readable**: [claude-code-releases.yaml](../machine-readable/claude-code-releases.yaml)
 
-**Latest**: v2.1.84 | **Updated**: 2026-03-26
+**Latest**: v2.1.85 | **Updated**: 2026-03-27
 
 ---
 
 ## Quick Jump
 
-- [2.1.x Series (January-March 2026)](#21x-series-january-march-2026) — Worktree isolation, background agents, ConfigChange hook, Fast mode Opus 4.6, 1M context, claude.ai MCP connectors, remote-control, auto-memory, /copy command, HTTP hooks, worktree config sharing, ultrathink re-introduced, InstructionsLoaded hook, 4 security fixes, Agent model override restored, 12x SDK token cost reduction, /context actionable suggestions, modelOverrides setting, 1M context Opus 4.6 default for Max/Team/Enterprise, MCP elicitation, PostCompact hook, /effort command, Opus 4.6 64k/128k output tokens, allowRead sandbox setting, /branch command, StopFailure hook, streaming line-by-line, --console auth flag, SessionEnd fix, enterprise retry fix, rate_limits statusline field, effort frontmatter for skills, --channels MCP research preview, --bare flag, worktree session resume fix, MCP query collapsing, managed-settings.d/ drop-in, CwdChanged/FileChanged hooks, transcript search, credential scrubbing, PowerShell tool Windows preview
+- [2.1.x Series (January-March 2026)](#21x-series-january-march-2026) — Worktree isolation, background agents, ConfigChange hook, Fast mode Opus 4.6, 1M context, claude.ai MCP connectors, remote-control, auto-memory, /copy command, HTTP hooks, worktree config sharing, ultrathink re-introduced, InstructionsLoaded hook, 4 security fixes, Agent model override restored, 12x SDK token cost reduction, /context actionable suggestions, modelOverrides setting, 1M context Opus 4.6 default for Max/Team/Enterprise, MCP elicitation, PostCompact hook, /effort command, Opus 4.6 64k/128k output tokens, allowRead sandbox setting, /branch command, StopFailure hook, streaming line-by-line, --console auth flag, SessionEnd fix, enterprise retry fix, rate_limits statusline field, effort frontmatter for skills, --channels MCP research preview, --bare flag, worktree session resume fix, MCP query collapsing, managed-settings.d/ drop-in, CwdChanged/FileChanged hooks, transcript search, credential scrubbing, PowerShell tool Windows preview, conditional hooks if field, MCP headersHelper multi-server env vars, headless AskUserQuestion hooks
 - [2.0.x Series (Nov 2025 - Jan 2026)](#20x-series-november-2025---january-2026) — Opus 4.5, Claude in Chrome, Background agents
 - [Breaking Changes Summary](#breaking-changes-summary)
 - [Milestone Features](#milestone-features)
@@ -24,6 +24,34 @@ tags: [reference, release]
 ---
 
 ## 2.1.x Series (January-March 2026)
+
+### v2.1.85 (2026-03-27)
+
+- **New**: Conditional `if` field for hooks — filter when hooks run using permission rule syntax (e.g., `Bash(git *)`) to reduce unnecessary process spawning overhead
+- **New**: `CLAUDE_CODE_MCP_SERVER_NAME` and `CLAUDE_CODE_MCP_SERVER_URL` env vars for MCP `headersHelper` scripts, allowing one helper script to serve multiple MCP servers
+- **New**: PreToolUse hooks can now satisfy `AskUserQuestion` by returning `updatedInput` alongside `permissionDecision: "allow"` — enables headless integrations to collect answers via their own UI
+- **New**: Timestamp markers in transcripts when scheduled tasks (`/loop`, `CronCreate`) fire
+- **New**: Deep link queries (`claude-cli://open?q=…`) now support up to 5,000 characters with a "scroll to review" warning for long pre-filled prompts
+- **New**: MCP OAuth now follows RFC 9728 Protected Resource Metadata discovery to find the authorization server
+- **New**: Plugins blocked by organization policy (`managed-settings.json`) are now hidden from marketplace views and cannot be installed/enabled
+- **New**: `tool_parameters` in OpenTelemetry `tool_result` events are now gated behind `OTEL_LOG_TOOL_DETAILS=1`
+- **Improved**: Scroll performance with large transcripts — WASM yoga-layout replaced with pure TypeScript implementation
+- **Improved**: `@`-mention file autocomplete performance on large repositories
+- **Improved**: PowerShell dangerous command detection
+- **Fixed**: `/compact` failing with "context exceeded" when the conversation itself was too large for the compact request to fit
+- **Fixed**: `deniedMcpServers` setting not blocking claude.ai MCP servers
+- **Fixed**: Terminal left in enhanced keyboard mode after exit in Ghostty, Kitty, WezTerm — Ctrl+C and Ctrl+D now work correctly after quitting
+- **Fixed**: `--worktree` exiting with an error in non-git repositories before the `WorktreeCreate` hook could run
+- **Fixed**: MCP step-up authorization failing when a refresh token exists (servers requesting elevated scopes via `403 insufficient_scope`)
+- **Fixed**: Prompts getting stuck in queue after running certain slash commands (up-arrow unable to retrieve them)
+- **Fixed**: Raw key sequences appearing in prompt when running over SSH or in VS Code integrated terminal
+- **Fixed**: `shift+enter` and `meta+enter` being intercepted by typeahead suggestions instead of inserting newlines
+- **Fixed**: Remote Control session status stuck on "Requires Action" after a permission is resolved
+- **Fixed**: Memory leak in remote sessions when a streaming response is interrupted
+- **Fixed**: Python Agent SDK: `type:'sdk'` MCP servers passed via `--mcp-config` no longer dropped during startup
+- **Fixed**: Crash when `OTEL_LOGS_EXPORTER`, `OTEL_METRICS_EXPORTER`, or `OTEL_TRACES_EXPORTER` is set to `none`
+- **Fixed**: Diff syntax highlighting not working in non-native builds
+- **Fixed**: Stale content bleeding through when scrolling up during streaming
 
 ### v2.1.84 (2026-03-26)
 

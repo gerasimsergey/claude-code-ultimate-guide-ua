@@ -6,6 +6,22 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [3.37.8] - 2026-03-27
+
+### Changed
+- `guide/ultimate-guide.md`: expanded Auto Dream section with full technical depth — server-side feature flag (`tengu_onyx_plover`), exact system prompt quote, Sleep-time Compute academic foundation (Berkeley + Letta), phase 2 grep-not-read strategy, configuration JSON, performance benchmark (913 sessions / 9 min), before/after MEMORY.md line counts, `/dream` bug status (issues #38461/#38426, PR #39299), 3 quality gaps (identity/accuracy/transparency) from issue #38493 with concrete examples, community implementations (dream-skill, ai-dream), guidance on when Auto Dream is redundant vs. useful.
+
+## [3.37.7] - 2026-03-27
+
+### Documentation
+
+- **Claude Code Releases**: Updated tracking to v2.1.85
+  - Conditional `if` field for hooks (filter by permission rule syntax)
+  - `CLAUDE_CODE_MCP_SERVER_NAME`/`_URL` env vars for headersHelper multi-server support
+  - PreToolUse hooks can now satisfy AskUserQuestion headlessly
+  - Fixed `/compact` context-exceeded on very large conversations
+  - Improved scroll performance (WASM yoga-layout → TypeScript)
+
 ## [3.37.6] - 2026-03-26
 
 ### Added

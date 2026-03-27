@@ -3,8 +3,8 @@
 # Purpose: Track Claude Code product releases for documentation sync
 # Maintained: Manual updates when new releases are announced
 
-latest: "2.1.84"
-updated: "2026-03-26"
+latest: "2.1.85"
+updated: "2026-03-27"
 
 # ════════════════════════════════════════════════════════════════
 # RELEASES (newest first, condensed highlights only)
@@ -14,6 +14,15 @@ releases:
   # ─────────────────────────────────────────────────────────────
   # 2.1.x Series (January-March 2026)
   # ─────────────────────────────────────────────────────────────
+
+  - version: "2.1.85"
+    date: "2026-03-27"
+    highlights:
+      - "Conditional `if` field for hooks — filter when hooks run using permission rule syntax (e.g. `Bash(git *)`) to reduce process spawning overhead"
+      - "CLAUDE_CODE_MCP_SERVER_NAME and CLAUDE_CODE_MCP_SERVER_URL env vars for headersHelper scripts — one helper can serve multiple MCP servers"
+      - "PreToolUse hooks can now satisfy AskUserQuestion by returning updatedInput + permissionDecision: allow (headless integrations)"
+      - "Fixed /compact failing with 'context exceeded' on very large conversations; fixed deniedMcpServers not blocking claude.ai MCP servers"
+      - "Improved scroll performance replacing WASM yoga-layout with pure TypeScript; fixed terminal left in enhanced keyboard mode after exit"
 
   - version: "2.1.84"
     date: "2026-03-26"

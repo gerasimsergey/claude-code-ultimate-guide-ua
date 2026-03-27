@@ -16,7 +16,7 @@ tags: [guide, reference, workflows, agents, hooks, mcp, security]
 
 **Last updated**: January 2026
 
-**Version**: 3.37.6
+**Version**: 3.37.7
 
 ---
 
@@ -4967,30 +4967,61 @@ Claude Code automatically saves useful context across sessions without manual CL
 
 ### Auto Dream: Memory Consolidation (Community-Discovered)
 
-> **Community-discovered feature, not in official Anthropic release notes.** Sourced from the system prompt at [Piebald-AI/claude-code-system-prompts](https://github.com/Piebald-AI/claude-code-system-prompts/blob/main/system-prompts/agent-prompt-dream-memory-consolidation.md). Some users report `/dream` returning "unknown skill" — access via `/memory` appears more reliable. Behavior may vary as the feature rolls out.
+> **Community-discovered feature, not in official Anthropic release notes.** Sourced from reverse-engineering by [Piebald-AI/claude-code-system-prompts](https://github.com/Piebald-AI/claude-code-system-prompts/blob/main/system-prompts/agent-prompt-dream-memory-consolidation.md). Controlled by a server-side feature flag (`tengu_onyx_plover`) — `autoDreamEnabled: true` in `settings.json` exists but cannot override the server default. Rolling out gradually as of v2.1.83+. Behavior may vary until full release.
 
-After 20+ sessions, the auto-memory file can accumulate noise: stale context, contradictory facts, and outdated relative references ("yesterday's refactor"). Auto Dream runs as a background sub-agent to consolidate and prune the memory system — functioning like REM sleep for the agent's stored context.
+After 20+ sessions without curation, auto-memory degrades: stale context, contradictory facts, relative dates that lose meaning ("yesterday's refactor" is meaningless two weeks later). Auto Dream runs as a background sub-agent between sessions to consolidate and prune — the system prompt literally says: *"You are performing a dream — a reflective pass over your memory files."*
 
-**Built on top of Auto-Memory (v2.1.59+)**. Concept pioneered by Letta/MemGPT as "sleep-time compute."
+**Built on top of Auto-Memory (v2.1.59+).** Theoretical foundation: ["Sleep-time Compute: Beyond Inference Scaling at Test-time"](https://arxiv.org/html/2504.13171v1) (UC Berkeley + Letta, April 2025), which showed that pre-computing during idle periods reduces test-time compute by ~5x. The biological parallel is deliberate — REM sleep consolidates short-term memory into long-term storage by pruning weak connections and strengthening important ones.
 
 **Trigger conditions** (both must be met):
-- At least 24 hours since last consolidation
-- At least 5 sessions completed since last consolidation
 
-A lock file prevents multiple instances from overlapping. The agent operates read-only on project code, with write access limited to memory files.
+| Condition | Default |
+|-----------|---------|
+| Time since last consolidation | ≥ 24 hours |
+| Sessions since last consolidation | ≥ 5 |
+
+Configuration extracted from the binary: `{ "minHours": 24, "minSessions": 5, "enabled": false }`. The `enabled` field is server-controlled. A lock file prevents concurrent runs on the same project.
 
 **The 4 phases**:
 
 | Phase | Name | What happens |
 |-------|------|--------------|
-| 1 | **Orient** | Inspects the existing memory directory and index |
-| 2 | **Gather Signal** | Scans session JSONL transcripts, identifies memories that have drifted from actual code reality |
-| 3 | **Consolidate** | Merges entries into existing topic files, converts relative dates ("yesterday") to absolute, removes contradictory facts at the source |
-| 4 | **Prune & Index** | Keeps the index concise, removes stale pointers, resolves conflicts between files |
+| 1 | **Orient** | Lists the memory directory, reads the index, skims existing topic files to map current state |
+| 2 | **Gather Signal** | Targeted grep of session JSONL transcripts — not exhaustive reads. The prompt instructs: *"Look only for things you already suspect matter."* Prioritizes daily logs, drifted memories (facts contradicting current code), then transcripts |
+| 3 | **Consolidate** | Merges new signal into existing topic files (never creates near-duplicates), converts relative dates to absolute, removes contradicted facts at source, deduplicates overlapping entries |
+| 4 | **Prune & Index** | Rebuilds MEMORY.md under the 200-line cap, removes stale pointers, enforces index entry format (`- [Title](file.md) — one-line hook`, ~150 chars max), returns a brief summary of changes |
 
-**How to access**: Use the `/memory` command in Claude Code. The dedicated `/dream` command exists in the system prompt but is not consistently available across all installations.
+**Observed performance**: One documented run consolidated 913 sessions in ~9 minutes. Typical result: MEMORY.md goes from 280+ lines to ~140 lines.
 
-**Practical implication**: If your auto-memory file feels bloated or you notice Claude referencing outdated context, Auto Dream handles cleanup automatically — you do not need to manually edit the `MEMORY.md` file. Most relevant for long-running projects with frequent sessions.
+**Safety constraints**: Read-only on project source code. Write access limited to memory files only.
+
+**How to access**:
+
+```
+/memory          → Shows AutoDream status and toggle
+```
+
+The `/dream` command is referenced in the UI but returns "Unknown skill: dream" on most installations (issues [#38461](https://github.com/anthropics/claude-code/issues/38461), [#38426](https://github.com/anthropics/claude-code/issues/38426) — fix tracked in PR #39299). Manual trigger via natural language works instead:
+
+```
+"dream"
+"auto dream"
+"consolidate my memory files"
+```
+
+**Known quality gaps** (issue [#38493](https://github.com/anthropics/claude-code/issues/38493), opened March 2026):
+
+| Gap | Problem | Concrete example |
+|-----|---------|-----------------|
+| **Identity** | Names memory files from session content, not project path | Rename `my-old-project/` → orphaned files undetected |
+| **Accuracy** | Writes unverified facts without reading source files | "18 of 21 items resolved" written without checking the file |
+| **Transparency** | No audit trail — impossible to see what changed without manual diffing | Must compare folders before/after to understand a run |
+
+Proposed fix: a `.dream-log.md` per run listing files created, modified, removed, and conflicts resolved.
+
+**When Auto Dream matters**: Projects where memory is written but never manually curated — active development teams, long-running projects with 50+ sessions, or any context where MEMORY.md exceeds 150 lines with no cleanup. If you actively manage your memory files (regular pruning, explicit saves), Auto Dream is largely redundant.
+
+**Community implementations**: [dream-skill](https://github.com/grandamenium/dream-skill) (open-source replication with 4-phase consolidation) and [ai-dream](https://github.com/VoidLight00/ai-dream) (alternative implementation documenting `autoDreamEnabled`).
 
 ### Single Source of Truth Pattern
 
@@ -5225,7 +5256,7 @@ The `.claude/` folder is your project's Claude Code directory for memory, settin
 | Personal preferences | `CLAUDE.md` | ❌ Gitignore |
 | Personal permissions | `settings.local.json` | ❌ Gitignore |
 
-### 3.37.6 Version Control & Backup
+### 3.37.7 Version Control & Backup
 
 **Problem**: Without version control, losing your Claude Code configuration means hours of manual reconfiguration across agents, skills, hooks, and MCP servers.
 
@@ -24030,4 +24061,4 @@ We'll evaluate and add it to this section if it meets quality criteria.
 
 **Contributions**: Issues and PRs welcome.
 
-**Last updated**: January 2026 | **Version**: 3.37.6
+**Last updated**: January 2026 | **Version**: 3.37.7
