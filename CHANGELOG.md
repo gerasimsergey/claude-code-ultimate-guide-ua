@@ -6,6 +6,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [3.38.1] - 2026-03-30
+
+### Security
+
+- `examples/commands/resources/threat-db.yaml`: updated to v2.11.0 — 3 new CVEs, 1 new attack technique (T021 IDEsaster), 1 new scanning tool (Ferrok)
+  - **CVE-2026-33010** (critical): mcp-memory-service CORS misconfiguration allowing cross-origin memory theft; fix: upgrade to 10.25.1
+  - **CVE-2026-33946** (medium): MCP Ruby SDK session hijacking via insufficient SSE session binding; fix: upgrade to 0.9.2
+  - **CVE-2026-27597** (critical): agentfront enclave JavaScript sandbox escape (CWE-94); fix: upgrade to 2.11.1
+  - **T021 IDEsaster**: 30+ chained vulnerabilities across AI coding IDEs (Cursor, Windsurf, GitHub Copilot, Zed.dev) enabling data theft and RCE — 24 CVEs assigned
+  - **Ferrok**: new MCP security scanner mapping to OWASP MCP Top 10 (2026) framework
+  - `minimum_safe_versions`: added mcp-memory-service (10.25.1), mcp-ruby-sdk (0.9.2), agentfront-enclave (2.11.1)
+
 ### Documentation
 
 - **Claude Code Releases**: Updated tracking to v2.1.87

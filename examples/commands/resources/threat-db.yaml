@@ -2,8 +2,8 @@
 # For use with /security-check and /security-audit commands
 # Manually maintained — update after new security advisories
 
-version: "2.10.0"
-updated: "2026-03-27"
+version: "2.11.0"
+updated: "2026-03-30"
 sources:
   - name: "Snyk ToxicSkills"
     url: "https://snyk.io/blog/toxicskills-malicious-ai-agent-skills-clawhub/"
@@ -218,6 +218,21 @@ sources:
   - name: "CrowdStrike - Agentic Tool Chain Attacks"
     url: "https://www.crowdstrike.com/en-us/blog/how-agentic-tool-chain-attacks-threaten-ai-agent-security/"
     date: "2026-03-25"
+  - name: "SentinelOne - CVE-2026-33010 mcp-memory-service CORS"
+    url: "https://www.sentinelone.com/vulnerability-database/cve-2026-33010/"
+    date: "2026-03-27"
+  - name: "integsec.com - CVE-2026-33010 Cross-Origin Memory Theft"
+    url: "https://integsec.com/blog/cve-2026-33010-mcp-memory-service-cross-origin-memory-theft-what-it-means-for-your-business-and-how-to-respond"
+    date: "2026-03-27"
+  - name: "Tenable - CVE-2026-33946 MCP Ruby SDK Session Hijacking"
+    url: "https://www.tenable.com/cve/CVE-2026-33946"
+    date: "2026-03-27"
+  - name: "radar.offseq.com - CVE-2026-27597 agentfront enclave Sandbox Escape"
+    url: "https://radar.offseq.com/threat/cve-2026-27597-cwe-94-improper-control-of-generati-c298fcde"
+    date: "2026-03-28"
+  - name: "The Hacker News - IDEsaster: 30+ Flaws in AI Coding Tools"
+    url: "https://radar.offseq.com/threat/researchers-uncover-30-flaws-in-ai-coding-tools-en-5c971663"
+    date: "2026-03-29"
 
 # ═══════════════════════════════════════════════════════════════
 # MALICIOUS AUTHORS (confirmed by security researchers)
@@ -1091,6 +1106,35 @@ cve_database:
     cwe: "CWE-77"
     mitigation: "Update adb-mcp to patched version (commit 041729c+); restrict network access to trusted sources only; implement WAF with command injection rules; audit logs for exploitation attempts"
 
+  # --- mcp-memory-service (CORS misconfiguration) ---
+  - id: "CVE-2026-33010"
+    component: "mcp-memory-service (multi-agent memory backend, Python)"
+    severity: "critical"
+    description: "Critical CORS misconfiguration in mcp-memory-service prior to 10.25.1 — when HTTP server enabled (MCP_HTTP_ENABLED=true), overly permissive CORS settings (allow_origins=['*'], allow_credentials=True) allow any website to read API responses cross-origin, enabling cross-origin memory theft and unauthorized access to agent memory stores"
+    source: "SentinelOne / integsec.com (2026-03-27)"
+    fixed_in: "10.25.1"
+    mitigation: "Upgrade mcp-memory-service to >= 10.25.1; set MCP_HTTP_ENABLED=false if HTTP not required; restrict CORS origins to trusted domains; never expose memory service endpoints to public networks"
+    notes: "Particularly impactful in multi-agent systems where shared memory stores contain sensitive context from multiple agents or users"
+
+  # --- MCP Ruby SDK (session hijacking) ---
+  - id: "CVE-2026-33946"
+    component: "MCP Ruby SDK (mcp gem, streamable_http_transport.rb)"
+    severity: "medium"
+    description: "Session hijacking vulnerability in MCP Ruby SDK prior to 0.9.2 — streamable_http_transport.rb lacks sufficient session binding; attackers obtaining a valid session ID can intercept all real-time data from Server-Sent Events (SSE) streams, exfiltrating tool responses and agent outputs"
+    source: "Tenable CVE / GitLab Security Advisories (2026-03-27)"
+    fixed_in: "0.9.2"
+    mitigation: "Update MCP Ruby SDK (mcp gem) to >= 0.9.2; bind SSE sessions to client IP and additional entropy; use short-lived session tokens; prefer stdio transport over HTTP when possible"
+
+  # --- agentfront enclave (sandbox escape) ---
+  - id: "CVE-2026-27597"
+    component: "agentfront enclave (JavaScript sandbox for AI agent code execution)"
+    severity: "critical"
+    description: "Sandbox escape in agentfront enclave prior to version 2.11.1 — improper control of code generation allows escape from the secure JavaScript sandbox designed for safe AI agent code execution; enables arbitrary code execution outside the sandboxed environment"
+    source: "radar.offseq.com (2026-03-28)"
+    fixed_in: "2.11.1"
+    cwe: "CWE-94"
+    mitigation: "Update agentfront enclave to >= 2.11.1; apply defense-in-depth by adding OS-level sandboxing (Docker, gVisor) around the sandbox process; do not rely solely on JS sandbox for isolation of untrusted code"
+
   # --- Bun runtime (npm lifecycle bypass) ---
   - id: "CVE-2026-24910"
     component: "Bun runtime (bun.sh)"
@@ -1133,6 +1177,9 @@ minimum_safe_versions:
   "bun": "1.3.5"
   "mcp-atlassian": "0.17.0"
   "aws-api-mcp-server": "1.4.0"
+  "mcp-memory-service": "10.25.1"
+  "mcp-ruby-sdk": "0.9.2"
+  "agentfront-enclave": "2.11.1"
 
 # ═══════════════════════════════════════════════════════════════
 # IOCs (Indicators of Compromise)
@@ -1746,6 +1793,19 @@ attack_techniques:
     source: "CrowdStrike (2026-03-25)"
     mitigation: "Treat all external content (READMEs, package descriptions, issue comments) as untrusted input; implement tool governance with allowlists of approved MCP servers; use behavioral monitoring to detect unexpected tool call sequences; require human-in-the-loop for high-impact actions triggered by external content"
 
+  - id: "T021"
+    name: "IDEsaster: Chained AI IDE Exploitation for Data Theft and RCE"
+    description: "30+ vulnerabilities across popular AI coding IDEs (Cursor, Windsurf, GitHub Copilot, Zed.dev) enabling a three-step attack chain: (1) bypass LLM guardrails to control the AI context, (2) leverage auto-approved tool calls to perform actions without user interaction, (3) trigger legitimate IDE features to break security boundaries. Combines prompt injection with auto-approval mechanisms to achieve data theft and remote code execution without user interaction."
+    examples:
+      - "Reading sensitive files (SSH keys, .env, credentials) and leaking them via remote JSON schemas fetched during legitimate IDE tasks"
+      - "Editing IDE settings files to execute malicious code on next IDE launch"
+      - "Overriding workspace configurations for persistent code execution"
+      - "Poisoned repository README files and code review comments triggering malicious npm installs, .bashrc modification, and SSH key exfiltration"
+    affected_platforms: ["Cursor", "Windsurf", "GitHub Copilot", "Zed.dev", "and others"]
+    source: "Ari Marzouk / The Hacker News / radar.offseq.com (2025-12 research, 2026-03-29 publication)"
+    cve_count: 24
+    mitigation: "Disable auto-approve for file writes and tool calls in AI IDE settings; review IDE extension permissions; treat IDE workspace configuration files as security boundaries; do not auto-approve actions triggered by external repository content; keep AI IDE tools and extensions patched"
+
 # ═══════════════════════════════════════════════════════════════
 # SCANNING TOOLS
 # ═══════════════════════════════════════════════════════════════
@@ -1768,6 +1828,21 @@ scanning_tools:
       - "Requires network access to Snyk vulnerability DB"
       - "Cannot detect runtime-only payloads fetched from benign-looking URLs"
     notes: "Complement with local grep patterns from this threat-db"
+
+  - name: "Ferrok"
+    vendor: "rfounds"
+    type: "mcp-server"
+    command: "npx ferrok-scan"
+    url: "https://lobehub.com/mcp/rfounds-ferrok-scan"
+    capabilities:
+      - "Scans MCP server configurations for security misconfigurations"
+      - "Maps findings to OWASP MCP Top 10 (2026) framework"
+      - "Detects tool poisoning and malicious configurations"
+      - "Provides structured remediation guidance tied to OWASP categories"
+    limitations:
+      - "Newer tool — smaller detection database than mcp-scan"
+      - "MCP server format — requires compatible agent to invoke"
+    notes: "Available 2026-03-28; complements mcp-scan with OWASP MCP Top 10 alignment"
 
   - name: "skills-ref validate"
     vendor: "agentskills.io"
