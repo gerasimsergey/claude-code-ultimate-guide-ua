@@ -6,7 +6,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Fixed
+
+- **check-cache-bugs command**: Added missing YAML frontmatter (`name` + `description` fields) — command was not recognized by Claude Code slash command system (reported by genesiscz in CC#40524)
+
 ### Documentation
+
+- **Source analysis corrections (2026-03-31)**: Applied 4 targeted corrections to the guide based on source-level analysis, each verifiable by observable behavior
+  - **Knowledge cutoffs**: Added model knowledge cutoff table (Sonnet 4.6 = Aug 2025, Opus 4.6 = May 2025, Haiku 4.5 = Feb 2025) to the Model Aliases section
+  - **Auto-compact precision**: Replaced the inconsistent "~80%" description with the accurate mechanism (triggers when remaining context drops below a fixed buffer, ~6-7% of window); reconciled conflicting "75% vs 80%" mentions in the guide
+  - **Micro-compaction**: Added description of the lightweight pre-compaction pass that selectively compresses older tool results before full auto-compact runs
+  - **Streaming tool execution**: Added note explaining that concurrency-safe tools (Read, Grep, Glob) can start executing while the model is still generating, and run in parallel (up to 10 concurrent)
+  - **Internal reference**: Created `claudedocs/source-code-analysis-2026-03-31.md` (gitignored) with full findings from 6-agent source analysis covering 512K lines — serves as future documentation reference when features ship officially
 
 - **CC release v2.1.88**: Updated Claude Code releases tracking to v2.1.88
   - PermissionDenied hook for auto mode classifier denials (return `{retry: true}` to retry)

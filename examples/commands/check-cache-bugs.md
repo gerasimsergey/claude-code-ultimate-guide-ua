@@ -1,3 +1,8 @@
+---
+name: check-cache-bugs
+description: Audit Claude Code setup for cache bugs (CC#40524) — sentinel, --resume/--continue, attribution header
+---
+
 # Check Cache Bugs (CC#40524)
 
 Audit your Claude Code setup for three cache bugs discovered in March 2026 that can silently inflate API costs by 10-20x.
