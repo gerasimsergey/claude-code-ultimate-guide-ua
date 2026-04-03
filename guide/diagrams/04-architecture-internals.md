@@ -12,26 +12,30 @@ What happens under the hood when Claude Code runs.
 
 ### The Master Loop
 
-Claude Code's core execution is a single loop: parse → build prompt → call API → execute tools → loop until done. The agentic behavior emerges from this simple cycle.
+Claude Code's core execution is two nested loops: an **inner agent loop** that keeps calling the API as long as tool calls are returned, and an **outer conversation loop** that starts a new turn when the user responds.
 
 ```mermaid
 flowchart TD
     A([User Input]) --> B(Build System Prompt<br/>+ context + tools)
-    B --> C{{Claude API Call}}
-    C --> D{Response<br/>contains tool calls?}
-    D -->|Yes| E(Parse tool calls)
-    E --> F(Execute each tool<br/>Glob, Grep, Bash...)
-    F --> G(Append tool results<br/>to conversation)
-    G --> C
+    B --> C
+
+    subgraph AGENT_LOOP["Agent Loop — repeats until no tool calls"]
+        C{{Claude API Call}} --> D{Response<br/>contains tool calls?}
+        D -->|Yes| E(Execute tools in parallel<br/>Glob, Grep, Bash...)
+        E --> F(Append tool results<br/>to conversation)
+        F --> C
+    end
+
     D -->|No| H(Extract text response)
     H --> I([Display to User])
     I --> J{User sends<br/>next message?}
-    J -->|Yes| A
+    J -->|Yes| B
     J -->|No| K([Session ends])
 
     style A fill:#F5E6D3,color:#333
     style C fill:#E87E2F,color:#fff
     style D fill:#E87E2F,color:#fff
+    style E fill:#6DB3F2,color:#fff
     style F fill:#6DB3F2,color:#fff
     style I fill:#7BC47F,color:#333
     style J fill:#E87E2F,color:#fff
@@ -41,9 +45,8 @@ flowchart TD
     click B href "https://github.com/FlorianBruniaux/claude-code-ultimate-guide/blob/main/guide/core/architecture.md#1-the-master-loop" "Build System Prompt"
     click C href "https://github.com/FlorianBruniaux/claude-code-ultimate-guide/blob/main/guide/core/architecture.md#1-the-master-loop" "Claude API Call"
     click D href "https://github.com/FlorianBruniaux/claude-code-ultimate-guide/blob/main/guide/core/architecture.md#1-the-master-loop" "Response contains tool calls?"
-    click E href "https://github.com/FlorianBruniaux/claude-code-ultimate-guide/blob/main/guide/core/architecture.md#2-the-tool-arsenal" "Parse tool calls"
-    click F href "https://github.com/FlorianBruniaux/claude-code-ultimate-guide/blob/main/guide/core/architecture.md#2-the-tool-arsenal" "Execute each tool"
-    click G href "https://github.com/FlorianBruniaux/claude-code-ultimate-guide/blob/main/guide/core/architecture.md#1-the-master-loop" "Append tool results"
+    click E href "https://github.com/FlorianBruniaux/claude-code-ultimate-guide/blob/main/guide/core/architecture.md#2-the-tool-arsenal" "Execute tools in parallel"
+    click F href "https://github.com/FlorianBruniaux/claude-code-ultimate-guide/blob/main/guide/core/architecture.md#1-the-master-loop" "Append tool results"
     click H href "https://github.com/FlorianBruniaux/claude-code-ultimate-guide/blob/main/guide/core/architecture.md#1-the-master-loop" "Extract text response"
     click I href "https://github.com/FlorianBruniaux/claude-code-ultimate-guide/blob/main/guide/ultimate-guide.md#12-first-workflow" "Display to User"
     click J href "https://github.com/FlorianBruniaux/claude-code-ultimate-guide/blob/main/guide/core/architecture.md#1-the-master-loop" "User sends next message?"
@@ -58,19 +61,25 @@ User Input
      │
 Build prompt (system + context + tools)
      │
- Claude API ◄────────────────────────┐
-     │                               │
-Tool calls?                          │
- ├─ Yes → Execute tools → Append results ──┘
- └─ No  → Display response
+ ┌── Agent Loop ──────────────────────┐
+ │ Claude API ◄────────────────────┐  │
+ │      │                          │  │
+ │ Tool calls?                     │  │
+ │  ├─ Yes → Execute tools ────────┘  │
+ │  └─ No  → exit loop               │
+ └────────────────────────────────────┘
                │
-         User next msg? ──► Yes → loop
+         Display response
+               │
+         User next msg? ──► Yes → rebuild prompt → loop
                └─ No → Session ends
 ```
 
 </details>
 
 > **Source**: [Architecture: Master Loop](../core/architecture.md#master-loop) — Line ~72
+>
+> *Source-confirmed (2026-03-31): Inner loop is `queryLoop()` async generator. Tools execute via `StreamingToolExecutor` (up to 10 concurrent). Loop exits via one of 10 terminal reasons (`completed`, `max_turns`, `aborted_tools`, etc.).*
 
 ---
 
@@ -181,7 +190,7 @@ CONTROL:  EnterPlanMode/ExitPlanMode, EnterWorktree/ExitWorktree, AskUserQuestio
 
 ### System Prompt Assembly
 
-Before every API call, Claude Code assembles a system prompt from multiple sources in a specific order. This explains why your CLAUDE.md instructions actually work and where they appear.
+Before every API call, Claude Code assembles a system prompt from multiple sources in a specific order. The prompt is split into two cache zones separated by a boundary marker.
 
 ```mermaid
 sequenceDiagram
@@ -191,15 +200,19 @@ sequenceDiagram
     participant T as Tool Registry
     participant A as Claude API
 
-    CC->>CC: 1. Load base instructions
+    Note over CC: STATIC zone (cached globally — shared across all users)
+    CC->>CC: 1. Load base instructions + safety rules
     CC->>G: 2. Read ~/.claude/CLAUDE.md
     G->>CC: Global preferences, rules
     CC->>P: 3. Read project CLAUDE.md(s)
     P->>CC: Project conventions, context
     CC->>T: 4. Get available tools list
     T->>CC: Tool schemas (Glob, Grep, Bash...)
+    Note over CC: ── BOUNDARY MARKER ──────────────────────────
+    Note over CC: DYNAMIC zone (cached per-session, not cross-org)
     CC->>CC: 5. Add working directory + git info
-    CC->>CC: 6. Add MCP server capabilities
+    CC->>CC: 6. Add MCP server capabilities (uncached — recomputed every turn)
+    CC->>CC: 7. Add memory (MEMORY.md), session guidance, language
     CC->>A: System prompt (assembled)<br/>+ User message
     Note over A: One large call with<br/>all context embedded
 ```
@@ -208,13 +221,16 @@ sequenceDiagram
 <summary>ASCII version</summary>
 
 ```
-System prompt assembly order:
+STATIC zone (globally cacheable, cross-org):
 1. Base instructions (hardcoded)
 2. ~/.claude/CLAUDE.md
 3. /project/CLAUDE.md + subdirs
 4. Tool definitions list
+────── BOUNDARY MARKER ──────────
+DYNAMIC zone (per-session cache):
 5. Working directory + git status
-6. MCP server capabilities
+6. MCP server capabilities (always recomputed)
+7. Memory, session guidance, language
 ──────────────────────────────────
 → All combined → Claude API call
 ```
@@ -222,6 +238,8 @@ System prompt assembly order:
 </details>
 
 > **Source**: [Architecture: System Prompt](../core/architecture.md#system-prompt) — Line ~354
+>
+> *Source-confirmed (2026-03-31): Two-zone architecture via `SYSTEM_PROMPT_DYNAMIC_BOUNDARY` marker. Static zone has `cacheScope: 'global'` (shared across all users). MCP instructions explicitly uncached — comment in source: "servers connect/disconnect between turns".*
 
 ---
 
