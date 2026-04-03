@@ -1,6 +1,7 @@
 ---
 name: learn-teach
 description: "Step-by-step explanation of a concept with progressive depth"
+argument-hint: "<concept>"
 ---
 
 # Teach Me

@@ -1,6 +1,7 @@
 ---
 name: catchup
 description: "Restore context after /clear by summarizing recent work and project state"
+argument-hint: "[branch] [--since <date>]"
 ---
 
 # Context Catchup

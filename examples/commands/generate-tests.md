@@ -1,6 +1,7 @@
 ---
 name: generate-tests
 description: "Generate comprehensive tests for specified code"
+argument-hint: "<file_or_module> [--framework jest|vitest|pytest]"
 ---
 
 # Generate Tests

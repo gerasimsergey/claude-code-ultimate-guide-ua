@@ -1,6 +1,7 @@
 ---
 name: optimize
 description: "Analyze and suggest performance improvements for code, queries, or systems"
+argument-hint: "<file_or_module> [--focus speed|memory|bundle]"
 ---
 
 # Performance Optimizer

@@ -1,6 +1,7 @@
 ---
 name: refactor
 description: "Analyze code for SOLID violations and suggest targeted improvements"
+argument-hint: "<file_or_module> [--pattern <name>]"
 ---
 
 # SOLID Refactoring Assistant

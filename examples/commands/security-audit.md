@@ -1,6 +1,7 @@
 ---
 name: security-audit
 description: "Comprehensive security audit with scored posture assessment"
+argument-hint: "[path] [--owasp] [--verbose]"
 ---
 
 # Security Audit

@@ -1,6 +1,7 @@
 ---
 name: investigate
 description: "Systematic root-cause debugging — find the cause before writing any fix"
+argument-hint: "<issue_description>"
 ---
 
 # Investigate — Root-Cause Debugging

@@ -1,6 +1,7 @@
 ---
 name: ship
 description: "Comprehensive pre-deployment verification to ensure release readiness"
+argument-hint: "[--no-push] [--changelog-only] [--dry-run]"
 ---
 
 # Ship Command - Pre-Deploy Checklist

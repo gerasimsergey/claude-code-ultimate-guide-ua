@@ -1,6 +1,7 @@
 ---
 name: security
 description: "Rapid security assessment focused on OWASP Top 10 vulnerabilities"
+argument-hint: "[path] [--depth quick|full]"
 ---
 
 # Security Quick Audit

@@ -1,6 +1,7 @@
 ---
 name: explain
 description: "Explain code, concepts, or system behavior with adjustable depth levels"
+argument-hint: "<file_or_concept>"
 ---
 
 # Code Explainer

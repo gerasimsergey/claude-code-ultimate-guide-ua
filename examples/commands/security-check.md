@@ -1,6 +1,7 @@
 ---
 name: security-check
 description: "Quick configuration security check against known threats database"
+argument-hint: "[path]"
 ---
 
 # Security Check

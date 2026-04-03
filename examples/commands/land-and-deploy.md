@@ -1,6 +1,7 @@
 ---
 name: land-and-deploy
 description: "Merge PR, wait for CI, verify deploy, run canary — the complete landing pipeline"
+argument-hint: "[--skip-checks] [--env staging|production]"
 ---
 
 # Land and Deploy

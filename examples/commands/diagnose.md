@@ -1,6 +1,7 @@
 ---
 name: diagnose
 description: "Interactive troubleshooting assistant for Claude Code issues"
+argument-hint: "<error_or_symptom>"
 ---
 
 # Claude Code Diagnostic Assistant

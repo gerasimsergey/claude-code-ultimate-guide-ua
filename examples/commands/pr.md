@@ -1,6 +1,7 @@
 ---
 name: pr
 description: "Analyze changes, detect scope issues, and create a well-structured PR"
+argument-hint: "[--base <branch>] [--draft]"
 ---
 
 # Create Pull Request

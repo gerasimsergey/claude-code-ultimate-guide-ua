@@ -12,7 +12,7 @@ tags: [cheatsheet, reference]
 
 **Written with**: Claude (Anthropic)
 
-**Version**: 3.38.2 | **Last Updated**: March 2026
+**Version**: 3.38.3 | **Last Updated**: March 2026
 
 ---
 
@@ -345,6 +345,10 @@ tools: Read, Write, Edit, Bash
 
 ### Command (`.claude/commands/my-command.md`)
 ```markdown
+---
+description: Brief description
+argument-hint: "<required_arg> [--flag]"
+---
 # Command Name
 Instructions for what to do...
 $ARGUMENTS[0] $ARGUMENTS[1] (or $0 $1) - user args
@@ -643,4 +647,4 @@ Speed: `rg` (~20ms) → Serena (~100ms) → ast-grep (~200ms) → grepai (~500ms
 
 **Author**: Florian BRUNIAUX | [@Méthode Aristote](https://methode-aristote.fr) | Written with Claude
 
-*Last updated: March 2026 | Version 3.38.2*
+*Last updated: March 2026 | Version 3.38.3*

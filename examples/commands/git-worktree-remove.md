@@ -1,6 +1,7 @@
 ---
 name: git-worktree-remove
 description: "Safely remove a git worktree with branch cleanup and safety checks"
+argument-hint: "<worktree_name>"
 ---
 
 # Git Worktree Remove

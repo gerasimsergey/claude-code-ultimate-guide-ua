@@ -1,6 +1,7 @@
 ---
 name: git-worktree
 description: "Create isolated git worktrees for feature development without switching branches"
+argument-hint: "<branch_name> [--from <base>]"
 ---
 
 # Git Worktree Setup

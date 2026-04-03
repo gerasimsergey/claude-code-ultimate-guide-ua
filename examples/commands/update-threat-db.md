@@ -1,6 +1,7 @@
 ---
 name: update-threat-db
 description: "Research and update the AI agent security threat intelligence database"
+argument-hint: "[--source <url>]"
 ---
 
 # Update Threat Database

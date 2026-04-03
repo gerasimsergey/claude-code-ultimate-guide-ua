@@ -1,6 +1,7 @@
 ---
 name: audit-codebase
 description: "Codebase health audit scoring 7 categories with progression plan"
+argument-hint: "[path] [--focus security|performance|quality]"
 ---
 
 # Codebase Health Audit

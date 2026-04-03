@@ -1,6 +1,7 @@
 ---
 name: sonarqube
 description: "Analyze SonarCloud quality issues for a specific PR"
+argument-hint: "[project_key]"
 ---
 
 # SonarQube Analysis

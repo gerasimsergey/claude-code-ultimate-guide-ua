@@ -1,6 +1,7 @@
 ---
 name: review-pr
 description: "Perform a comprehensive code review of a pull request"
+argument-hint: "[PR_number|URL]"
 ---
 
 # Review Pull Request

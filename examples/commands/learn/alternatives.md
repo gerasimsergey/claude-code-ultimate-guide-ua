@@ -1,6 +1,7 @@
 ---
 name: learn-alternatives
 description: "Compare different approaches to solve the same problem"
+argument-hint: "[topic]"
 ---
 
 # Show Alternatives

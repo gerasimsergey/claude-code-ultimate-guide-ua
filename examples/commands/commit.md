@@ -1,6 +1,7 @@
 ---
 name: commit
 description: "Generate a conventional commit message for staged changes"
+argument-hint: "[--amend] [message]"
 ---
 
 # Conventional Commit

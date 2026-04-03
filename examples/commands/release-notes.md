@@ -1,6 +1,7 @@
 ---
 name: release-notes
 description: "Generate release notes in multiple formats from git commits"
+argument-hint: "[--from <tag>] [--format md|slack]"
 ---
 
 # Release Notes Generator

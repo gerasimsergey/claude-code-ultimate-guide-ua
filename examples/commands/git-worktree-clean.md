@@ -1,6 +1,7 @@
 ---
 name: git-worktree-clean
 description: "Clean up stale git worktrees with merged branch detection and disk usage report"
+argument-hint: "[--dry-run]"
 ---
 
 # Git Worktree Clean

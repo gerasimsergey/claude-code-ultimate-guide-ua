@@ -16,7 +16,7 @@ tags: [guide, reference, workflows, agents, hooks, mcp, security]
 
 **Last updated**: January 2026
 
-**Version**: 3.38.2
+**Version**: 3.38.3
 
 ---
 
@@ -5339,7 +5339,7 @@ The `.claude/` folder is your project's Claude Code directory for memory, settin
 | Personal preferences | `CLAUDE.md` | ❌ Gitignore |
 | Personal permissions | `settings.local.json` | ❌ Gitignore |
 
-### 3.38.2 Version Control & Backup
+### 3.38.3 Version Control & Backup
 
 **Problem**: Without version control, losing your Claude Code configuration means hours of manual reconfiguration across agents, skills, hooks, and MCP servers.
 
@@ -7333,6 +7333,7 @@ allowed-tools: Read Grep Bash
 | `compatibility` | [agentskills.io](https://agentskills.io) | Environment requirements (max 500 chars) |
 | `metadata` | [agentskills.io](https://agentskills.io) | Arbitrary key-value pairs (author, version, etc.) |
 | `effort` | **CC only** (v2.1.80+) | `low\|medium\|high` — overrides the session effort level when this skill is invoked. Set `low` for mechanical tasks (commit, format, scaffold), `high` for analysis or architectural reasoning. |
+| `argument-hint` | **CC only** | Placeholder shown in the slash command menu when the skill accepts `$ARGUMENTS`. Format: `"[--flag] [positional_arg]"`. Example: `"[--verbose] [--max N] <branch>"`. |
 | `disable-model-invocation` | **CC only** | `true` to make skill manual-only (workflow with side effects) |
 
 **`effort` per skill** (v2.1.80+) — override the session effort level for a specific skill invocation. Independent of `effortLevel` in settings.json: the skill's value takes precedence only while that skill runs, then reverts.
@@ -8988,9 +8989,25 @@ Usage:
 > $0 $1
 > ```
 
+**Pair `$ARGUMENTS` with `argument-hint`** so users see available options in the command picker. The hint appears as placeholder text when typing the command:
+
+```yaml
+---
+description: Deploy to a target environment
+argument-hint: "<env> [--skip-tests] [--dry-run]"
+---
+Deploy to $ARGUMENTS[0] environment.
+```
+
+When the user types `/deploy`, the menu shows: `/deploy <env> [--skip-tests] [--dry-run]`
+
 ## 6.3 Command Template
 
 ```markdown
+---
+description: Brief description of what this command does
+argument-hint: "[--flag] <required_arg> [optional_arg]"
+---
 # Command Name
 
 ## Purpose
@@ -23425,6 +23442,7 @@ Use this agent when:
 name: skill-name
 description: Expert guidance for [domain]
 allowed-tools: Read Grep Bash
+argument-hint: "[--option] <required_arg>"   # if the skill accepts $ARGUMENTS
 ---
 
 # Skill Name
@@ -23448,6 +23466,10 @@ allowed-tools: Read Grep Bash
 ## A.3 Command Template
 
 ```markdown
+---
+description: Brief description of what this command does
+argument-hint: "<first_arg> [second_arg] [--flag]"
+---
 # Command Name
 
 ## Purpose
@@ -24731,4 +24753,4 @@ We'll evaluate and add it to this section if it meets quality criteria.
 
 **Contributions**: Issues and PRs welcome.
 
-**Last updated**: January 2026 | **Version**: 3.38.2
+**Last updated**: January 2026 | **Version**: 3.38.3

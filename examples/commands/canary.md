@@ -1,6 +1,7 @@
 ---
 name: canary
 description: "Post-deploy monitoring — watch production after a deploy and alert on regressions"
+argument-hint: "[--baseline]"
 ---
 
 # Canary — Post-Deploy Monitoring

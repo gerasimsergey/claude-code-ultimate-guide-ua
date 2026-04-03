@@ -1,6 +1,7 @@
 ---
 name: learn-quiz
 description: "Test understanding of recently written or accepted code"
+argument-hint: "[topic] [--hard]"
 ---
 
 # Quiz Me

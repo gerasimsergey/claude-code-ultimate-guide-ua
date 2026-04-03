@@ -10,13 +10,13 @@
 
 - Title: Claude Code Ultimate Guide
 - Author: Florian Bruniaux (Founding Engineer @ Méthode Aristote)
-- Version: 3.38.2
+- Version: 3.38.3
 - Last Updated: March 30, 2026
 - License: CC BY-SA 4.0
 - Repository: https://github.com/FlorianBruniaux/claude-code-ultimate-guide
 - Landing: https://cc.bruniaux.com
-- Lines of Documentation: 24,600+
-- Production Templates: 228
+- Lines of Documentation: 24,700+
+- Production Templates: 232
 - Quiz Questions: 271
 - Whitepapers: 9 titles (FR + EN)
 
@@ -314,7 +314,7 @@ Deep analysis     → Use Opus (thinking on by default)
 
 ---
 
-## Template Library (228 templates)
+## Template Library (232 templates)
 
 ### Agents (16 files + sub-projects)
 - `adr-writer.md` — Architecture Decision Records
