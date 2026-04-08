@@ -16,7 +16,7 @@ tags: [guide, reference, workflows, agents, hooks, mcp, security]
 
 **Last updated**: January 2026
 
-**Version**: 3.38.7
+**Version**: 3.38.8
 
 ---
 
@@ -147,7 +147,7 @@ If you only have time for 5 sections:
 - [2. Core Concepts](#2-core-concepts) `🟡 Intermediate` `⏱ 60 min`
   - [2.1 The Interaction Loop](#21-the-interaction-loop)
   - [2.2 Context Management](#22-context-management)
-  - [2.3 Plan Mode](#23-plan-mode)
+  - [2.3 Plan Mode](#23-plan-mode) (incl. [Ultraplan](#ultraplan), [OpusPlan](#opusplan-mode))
   - [2.4 Rewind](#24-rewind)
   - [2.5 Model Selection & Thinking Guide](#25-model-selection--thinking-guide)
   - [2.6 Mental Model](#26-mental-model)
@@ -3000,6 +3000,107 @@ User: Implement the plan from round 3.
 >
 > *Source: Swanson et al., "The AI Fluency Index", Anthropic (2026-02-23) — [anthropic.com/research/AI-fluency-index](https://www.anthropic.com/research/AI-fluency-index)*
 
+### Ultraplan
+
+**Status**: Research preview — requires Claude Code v2.1.91+ and a Claude Code on the web account.
+
+**Concept**: Offload planning to Anthropic's cloud while your terminal stays free. Claude drafts the plan remotely using multiple Opus 4.6 agents in parallel; you review it in your browser with inline comments, then choose whether to execute in the cloud or teleport the plan back to your terminal.
+
+This solves the core friction of local Plan Mode: on complex tasks, the terminal blocks for minutes while planning runs. Ultraplan runs asynchronously — you keep working, check back when ready.
+
+**How It Works**
+
+1. CLI launches a cloud session → terminal shows a live status indicator
+2. Multiple Opus 4.6 agents explore the codebase in parallel (planning windows up to 30 minutes)
+3. Browser opens the plan with outline sidebar, inline commenting, and emoji reactions
+4. You iterate on the plan — comment on specific sections, request revisions
+5. Choose where to execute: cloud (opens a PR) or terminal (teleports the plan back)
+
+**Activation (3 methods)**
+
+```bash
+# 1. Dedicated command
+/ultraplan migrate the auth service from sessions to JWTs
+
+# 2. Keyword anywhere in a prompt
+Plan with ultraplan a full refactor of the payments module
+
+# 3. From a local plan approval dialog
+# → choose "No, refine with Ultraplan on Claude Code on the web"
+```
+
+The command and keyword paths show a confirmation dialog first. The local plan path skips it.
+
+**Terminal Status Indicators**
+
+| Status | Meaning |
+|--------|---------|
+| `◇ ultraplan` | Claude is researching and drafting |
+| `◇ ultraplan needs your input` | Clarification needed — open the browser link |
+| `◆ ultraplan ready` | Plan is ready to review |
+
+Run `/tasks` to see the session link, agent activity, and a **Stop ultraplan** action.
+
+**Browser Review Interface**
+
+- **Outline sidebar**: navigate between sections without scrolling
+- **Inline comments**: highlight any passage, leave targeted feedback
+- **Emoji reactions**: signal approval or concern on a section without writing a comment
+- **Revision cycles**: ask Claude to address your comments; it presents an updated draft — iterate as many times as needed
+
+**Execution: Two Choices**
+
+Once the plan looks right, choose in the browser:
+
+| Option | What happens |
+|--------|-------------|
+| **Approve and start coding** | Cloud session implements the plan, creates a PR; terminal clears |
+| **Approve and teleport back** | Plan sent to your terminal with 3 sub-options |
+
+Teleport sub-options:
+- **Implement here** — inject plan into current conversation, proceed immediately
+- **Start new session** — fresh session with plan as context (prints `claude --resume` to return to current session)
+- **Cancel** — saves plan to a file, prints the path
+
+**Requirements and Constraints**
+
+| Requirement | Detail |
+|-------------|--------|
+| Claude Code version | v2.1.91+ |
+| Account | Pro, Max, Team, or Enterprise (not free tier) |
+| Repository | GitHub only (no GitLab, Bitbucket) |
+| Providers | Anthropic API only — not available on Bedrock, Vertex, Foundry |
+| Conflict | Incompatible with Remote Control (both use claude.ai/code) |
+
+**Ultraplan vs. OpusPlan vs. Plan Mode**
+
+| Feature | Plan Mode | OpusPlan | Ultraplan |
+|---------|-----------|----------|-----------|
+| Execution | Local | Local | Cloud |
+| Terminal blocked? | Yes | Yes | No |
+| Models | Active model | Opus (plan) + Sonnet (act) | Opus 4.6 (multi-agent) |
+| Review surface | Terminal scrollback | Terminal scrollback | Browser with inline comments |
+| Requires GitHub | No | No | Yes |
+| Token accounting | Counts locally | Counts locally | Cloud planning free from local quota |
+
+**When to Use Ultraplan**
+
+Best fit:
+- Complex architectural changes touching many files (service migrations, large refactors)
+- Tasks where you want to keep working while planning runs
+- Situations where stakeholders need to review the plan before implementation
+
+Skip it for:
+- Simple, focused changes where local Plan Mode takes under a minute
+- Environments without internet or not on GitHub
+- Sessions using Remote Control
+
+**Token Note**: Early tests show cloud planning consuming ~37% fewer tokens than equivalent local plans (82K vs 131K for a ~55 min migration task). Cloud planning tokens don't count against your local quota; only implementation tokens do.
+
+> **See also**: [§9.16 Session Teleportation](#916-session-teleportation) for the broader web ↔ terminal workflow. Ultraplan uses the same cloud infrastructure with planning-specific review capabilities.
+
+---
+
 ### Mechanic Stacking
 
 **Concept**: Layer multiple Claude Code mechanisms for maximum intelligence on critical decisions.
@@ -5340,7 +5441,7 @@ The `.claude/` folder is your project's Claude Code directory for memory, settin
 | Personal preferences | `CLAUDE.md` | ❌ Gitignore |
 | Personal permissions | `settings.local.json` | ❌ Gitignore |
 
-### 3.38.7 Version Control & Backup
+### 3.38.8 Version Control & Backup
 
 **Problem**: Without version control, losing your Claude Code configuration means hours of manual reconfiguration across agents, skills, hooks, and MCP servers.
 
@@ -18267,6 +18368,8 @@ Add the logout button only. Don't add session management or remember-me features
 
 Session teleportation allows migrating coding sessions between cloud (claude.ai/code) and local (CLI) environments. This enables workflows where you start work on mobile/web and continue locally with full filesystem access.
 
+> **Related**: [Ultraplan](#ultraplan) uses the same web ↔ terminal handoff specifically for the planning phase — plan in the cloud with browser-based review, then teleport the approved plan back to your terminal for execution. If your primary goal is collaborative plan review before implementation, see Ultraplan first.
+
 ### Evolution Timeline
 
 | Version | Feature |
@@ -24755,4 +24858,4 @@ We'll evaluate and add it to this section if it meets quality criteria.
 
 **Contributions**: Issues and PRs welcome.
 
-**Last updated**: January 2026 | **Version**: 3.38.7
+**Last updated**: January 2026 | **Version**: 3.38.8

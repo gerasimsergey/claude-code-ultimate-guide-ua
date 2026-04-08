@@ -12,7 +12,7 @@ tags: [cheatsheet, reference]
 
 **Written with**: Claude (Anthropic)
 
-**Version**: 3.38.7 | **Last Updated**: March 2026
+**Version**: 3.38.8 | **Last Updated**: March 2026
 
 ---
 
@@ -27,6 +27,7 @@ tags: [cheatsheet, reference]
 | `/status` | Session state + context usage |
 | `/context` | Detailed token breakdown |
 | `/plan` | Enter Plan Mode (no changes) |
+| `/ultraplan` | Cloud Plan Mode — draft in cloud, review in browser (v2.1.91+) |
 | `/execute` | Exit Plan Mode (apply changes) |
 | `/model` | Switch model (sonnet/opus/opusplan) |
 | `/insights` | Usage analytics + optimization report |
@@ -233,6 +234,7 @@ Model: Sonnet | Ctx: 89.5k | Cost: $2.11 | Ctx(u): 56.0%
 |---------|------------|-------|
 | **Plan Mode** | `Shift+Tab × 2` or `/plan` | Explore without modifying |
 | **OpusPlan** | `/model opusplan` | Opus for planning, Sonnet for execution |
+| **Ultraplan** | `/ultraplan <prompt>` | Cloud planning, browser review, terminal stays free (v2.1.91+, GitHub required) |
 
 > **Opus 4.6** (v2.1.68+): Default effort = **medium** for Max/Team. Use `ultrathink` to force high effort for the next turn. "think hard" remains cosmetic.
 
@@ -250,6 +252,8 @@ Model: Sonnet | Ctx: 89.5k | Cost: $2.11 | Ctx(u): 56.0%
 **Per-skill effort** — add `effort: low` to mechanical skills (commit, sync, scaffold) and `effort: high` to analytical ones (security-audit, architecture-review). Overrides session setting automatically.
 
 **OpusPlan workflow**: `/model opusplan` → `Shift+Tab × 2` (plan with Opus) → `Shift+Tab` (execute with Sonnet)
+
+**Ultraplan workflow**: `/ultraplan <task>` → terminal free while cloud drafts → review inline in browser → approve → execute on web (PR) or teleport back to terminal
 
 **Required for**: features >3 files, architecture, complex debugging
 
@@ -647,4 +651,4 @@ Speed: `rg` (~20ms) → Serena (~100ms) → ast-grep (~200ms) → grepai (~500ms
 
 **Author**: Florian BRUNIAUX | [@Méthode Aristote](https://methode-aristote.fr) | Written with Claude
 
-*Last updated: March 2026 | Version 3.38.7*
+*Last updated: March 2026 | Version 3.38.8*

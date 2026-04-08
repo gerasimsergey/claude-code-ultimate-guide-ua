@@ -4,9 +4,11 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
-## [Unreleased]
+## [3.38.8] - 2026-04-08
 
 ### Added
+
+- **Ultraplan documentation** (`guide/ultimate-guide.md`, `guide/cheatsheet.md`, `machine-readable/reference.yaml`): Full coverage of the Ultraplan feature (research preview, v2.1.91+). New `### Ultraplan` subsection in Section 2.3 Plan Mode covering: concept (async cloud planning via multi-agent Opus 4.6), 3 activation methods (`/ultraplan`, keyword, local plan handoff), terminal status indicators, browser review interface (inline comments, emoji reactions, outline sidebar), dual execution paths (cloud → PR, teleport → terminal), requirements (GitHub only, not Bedrock/Vertex/Foundry, incompatible with Remote Control), and comparison table vs Plan Mode vs OpusPlan. Also added cross-reference in Section 9.16 Session Teleportation, and `/ultraplan` command in the cheatsheet quick commands table and Plan Mode section.
 
 - **`git-ai-archaeology` skill** (`examples/skills/git-ai-archaeology/`): New skill that analyzes AI config evolution in any git repository. Reconstructs the chronology of AI adoption by reading git history — first commits per `.claude/` path, monthly commit distribution with ASCII charts, major PRs by category (MCP integrations, skills/hooks/agents, code review automation), optional CHANGELOG AI mentions, and maturity phases synthesis. Read-only, produces a single markdown report. Ported from `boldguy` repo.
 
