@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Added
+
+- **`git-ai-archaeology` skill** (`examples/skills/git-ai-archaeology/`): New skill that analyzes AI config evolution in any git repository. Reconstructs the chronology of AI adoption by reading git history — first commits per `.claude/` path, monthly commit distribution with ASCII charts, major PRs by category (MCP integrations, skills/hooks/agents, code review automation), optional CHANGELOG AI mentions, and maturity phases synthesis. Read-only, produces a single markdown report. Ported from `boldguy` repo.
+
 ## [3.38.6] - 2026-04-06
 
 ### Documentation
