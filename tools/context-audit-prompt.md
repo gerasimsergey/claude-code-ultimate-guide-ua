@@ -537,7 +537,8 @@ Quick Wins (< 30 min each):
 - [Audit Your Claude Code Setup](./audit-prompt.md) - Full configuration audit (agents, hooks, MCP, CI)
 - [Cheatsheet](../guide/cheatsheet.md) - Quick daily reference
 - [Claude Code Official Docs](https://docs.anthropic.com/en/docs/claude-code) - Anthropic documentation
+- [context-evaluator.ai](https://context-evaluator.ai) - Zero-install LLM-native audit for CLAUDE.md and AGENTS.md: 17 AI evaluators, automated `.patch` remediation. Complements this prompt with deeper rule-by-rule analysis and a different evaluation angle (LLM-as-judge vs bash heuristics).
 
 ---
 
-*Last updated: March 2026 | Version 1.0*
+*Last updated: April 2026 | Version 1.1*

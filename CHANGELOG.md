@@ -6,6 +6,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+- **audit-prompt.md v5.1**: context-evaluator.ai referenced in "Deepen Your Audit" block and Section 8 table as a zero-install LLM-native alternative for Dimension 1 (Memory and Context)
+- **context-audit-prompt.md v1.1**: context-evaluator.ai added to Section 9 Related Resources
+
 ## [3.39.1] - 2026-04-16 (2)
 
 ### Documentation

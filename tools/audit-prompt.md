@@ -522,6 +522,11 @@ curl -sL https://raw.githubusercontent.com/FlorianBruniaux/claude-code-ultimate-
 mkdir -p ~/.claude/commands
 curl -sL https://raw.githubusercontent.com/FlorianBruniaux/claude-code-ultimate-guide/main/examples/commands/security-check.md \
   > ~/.claude/commands/security-check.md
+
+# Alternative for Dimension 1 — context-evaluator.ai
+# Zero-install LLM-native audit: 17 AI evaluators for CLAUDE.md/AGENTS.md,
+# automated .patch remediation. Complements /token-audit with deeper rule analysis.
+# Visit: https://context-evaluator.ai
 ```
 
 ---
@@ -679,6 +684,7 @@ Top 3 Critical Gaps:
 | `/security-audit` | Security Posture (full, 2-5 min, scored /100) | Same pattern |
 | [`tools/context-audit-prompt.md`](context-audit-prompt.md) | Deep-dive on context engineering | Self-contained prompt, no install needed |
 | [`tools/onboarding-prompt.md`](onboarding-prompt.md) | Setup from scratch | Self-contained prompt, no install needed |
+| [context-evaluator.ai](https://context-evaluator.ai) | Memory & Context (alternative) — LLM-native, 17 evaluators, auto `.patch` | Zero-install web tool |
 
 **Reference docs**:
 - [The Ultimate Claude Code Guide](../guide/ultimate-guide.md) — full reference
@@ -691,4 +697,4 @@ Top 3 Critical Gaps:
 
 ---
 
-*Version 5.0 (guide v3.38.17+) | Refactored from checklist to orchestrator: 8 weighted dimensions, delegated to eval-skills/eval-rules/token-audit/audit-agents-skills/security-check, inline fallback when skills absent*
+*Version 5.1 (guide v3.39.1+) | Refactored from checklist to orchestrator: 8 weighted dimensions, delegated to eval-skills/eval-rules/token-audit/audit-agents-skills/security-check, inline fallback when skills absent. v5.1: context-evaluator.ai added as Dimension 1 alternative.*
