@@ -3,8 +3,8 @@
 # Purpose: Track Claude Code product releases for documentation sync
 # Maintained: Manual updates when new releases are announced
 
-latest: "2.1.111"
-updated: "2026-04-16"
+latest: "2.1.114"
+updated: "2026-04-18"
 
 # ════════════════════════════════════════════════════════════════
 # RELEASES (newest first, condensed highlights only)
@@ -14,6 +14,19 @@ releases:
   # ─────────────────────────────────────────────────────────────
   # 2.1.x Series (January-April 2026)
   # ─────────────────────────────────────────────────────────────
+
+  - version: "2.1.114"
+    date: "2026-04-18"
+    highlights:
+      - "Fixed crash in permission dialog when an agent teams teammate requested tool permission"
+
+  - version: "2.1.113"
+    date: "2026-04-18"
+    highlights:
+      - "⭐ CLI now spawns a native Claude Code binary via per-platform optional dependency instead of bundled JavaScript"
+      - "⭐ sandbox.network.deniedDomains setting — block specific domains even when a wildcard allowedDomains would permit them"
+      - "Security hardening: macOS dangerous /private/{etc,var,tmp,home} paths for rm rules, Bash deny rules match env/sudo/watch/ionice wrappers, Bash(find:*) no longer auto-approves -exec/-delete"
+      - "Keyboard improvements (Ctrl+A/E logical line, Ctrl+Backspace on Windows), /loop Esc cancels wakeups, subagents fail after 10min, MCP concurrent-call fix, dangerouslyDisableSandbox fix, many bug fixes"
 
   - version: "2.1.111"
     date: "2026-04-16"

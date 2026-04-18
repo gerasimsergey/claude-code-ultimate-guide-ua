@@ -8,6 +8,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 - **audit-prompt.md v5.1**: context-evaluator.ai referenced in "Deepen Your Audit" block and Section 8 table as a zero-install LLM-native alternative for Dimension 1 (Memory and Context)
 - **context-audit-prompt.md v1.1**: context-evaluator.ai added to Section 9 Related Resources
+- **threat-db.yaml v2.14.0**: 5 new CVEs/advisories (CVE-2026-33032 MCPwn critical actively exploited, CVE-2026-27944, CVE-2025-56404, CVE-2026-30615, ADVISORY-MCP-STDIO-2026-001), T025 "Comment and Control" attack technique, 2 new scanning tools (Snyk Agent Scan, Straiker MCP Security), 9 new sources
+- **security-hardening.md**: Added CVE-2026-33032 (nginx-ui MCPwn CVSS 9.8 actively exploited) and ADVISORY-MCP-STDIO-2026-001 (OX Security systemic STDIO flaw) to CVE table and alerts
+- **Claude Code Releases**: Updated tracking to v2.1.114 (v2.1.113 + v2.1.114)
+  - v2.1.113: Native Claude Code binary spawning via per-platform optional dependency
+  - v2.1.113: sandbox.network.deniedDomains to block specific domains under wildcard allowedDomains
+  - v2.1.113: Security hardening — macOS dangerous paths for rm, Bash deny rules match exec wrappers, find -exec no longer auto-approved
+  - v2.1.113: Keyboard improvements, /loop Esc cancels wakeups, subagents fail after 10min, many bug fixes
+  - v2.1.114: Fixed crash in permission dialog when agent teams teammate requested tool permission
 
 ## [3.39.1] - 2026-04-16 (2)
 
