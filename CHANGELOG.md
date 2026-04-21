@@ -20,6 +20,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   - Integrates with `/self-assessment` and `/lesson-quiz` skills for interactive learning
   - Time estimate: 8-11 hours for complete path + optional deep dives
 
+- **Template Catalog System (NEW)**: Auto-generated metadata-driven catalog for 181 templates
+  - `examples/CATALOG.md` — Auto-generated index organized by complexity, time, domain (813 lines)
+  - `scripts/generate-template-catalog.py` — Catalog generation tool (validation + filtering + auto-links)
+  - `docs/template-metadata-schema.md` — Complete metadata specification with examples
+  - `.claude/hooks/validate-template-metadata.sh` — Pre-commit validation hook for template metadata
+  - `examples/README.md` — Updated with catalog information and metadata overview
+  - Template counts: 23 agents, 52 commands, 64 skills, 37 hooks, 3 workflows, 2 scripts (181 total)
+  - Metadata fields: name, description, complexity (beginner/intermediate/advanced), time (5min–4+ hrs), domain, prerequisites, status, keywords
+  - Catalog regenerated via: `python3 scripts/generate-template-catalog.py --output examples/CATALOG.md`
+  - Pre-commit hook auto-validates new/modified templates for proper metadata
+  - Enables filtering by: beginner-friendly, time estimate, domain, keywords
+  - Supports future integrations: auto-documentation generation, skill assessments, learning path mapping
+
 - **Claude Code Releases**: Updated tracking to v2.1.116
   - `/resume` up to 67% faster on 40MB+ sessions; handles dead-fork entries more efficiently
   - Thinking spinner shows inline progress ("still thinking", "thinking more", "almost done thinking")

@@ -8,7 +8,32 @@ tags: [template, reference, workflows, architecture]
 
 Annotated templates that teach you **why** patterns work, not just how to configure them. Each template includes comments explaining trade-offs, alternatives, and when to deviate.
 
-> **[Browse Interactive Catalog](./index.html)** — View, copy, and download all templates with syntax highlighting
+> **[📚 Browse Auto-Generated Catalog](./CATALOG.md)** — Indexed by complexity, time, domain (181 templates)  
+> **[🔍 Browse Interactive Catalog](./index.html)** — View, copy, and download templates with syntax highlighting
+
+## New: Auto-Generated Catalog
+
+**[`CATALOG.md`](./CATALOG.md)** is now auto-generated from template metadata, organized by:
+- **Complexity**: Beginner, Intermediate, Advanced
+- **Time**: 5 min to 4+ hours
+- **Domain**: Security, Testing, Deployment, Performance, Architecture, Automation
+- **Keywords**: Searchable tags for discoverability
+
+Every template includes metadata:
+```yaml
+---
+name: template-name
+description: One-line description
+complexity: beginner|intermediate|advanced
+time: 5 min|15 min|30 min|1 hour|2 hours|4+ hours|varies
+domain: security|testing|deployment|etc
+prerequisites: []
+status: stable|experimental|deprecated
+keywords: [tag1, tag2]
+---
+```
+
+**See [`docs/template-metadata-schema.md`](../docs/template-metadata-schema.md)** for complete specification.
 
 ## Structure
 
