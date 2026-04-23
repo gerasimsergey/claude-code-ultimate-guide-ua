@@ -16,14 +16,14 @@ This guide is part of a 4-repo ecosystem separating audiences (devs vs knowledge
         │                  │
         │ source           │ source
         │                  │
-        LANDING SITES (Showcase)
-        ┌──────────────────┬──────────────────┐
-        │                  │                  │
-    ┌───▼───┐          ┌───▼───┐
-    │ Code  │◄────────►│Cowork │
-    │Landing│cross-links│Landing│
-    │ vX.Y  │          │ v1.0  │
-    └───────┘          └───────┘
+        LANDING SITES (Showcase)      DISTRIBUTION
+        ┌──────────────────┬──────────────────┐       ┌──────────────┐
+        │                  │                  │       │              │
+    ┌───▼───┐          ┌───▼───┐          ┌───▼───────▼──┐
+    │ Code  │◄────────►│Cowork │          │   Plugins    │
+    │Landing│cross-links│Landing│          │  Marketplace │
+    │ vX.Y  │          │ v1.0  │          │  (8 plugins) │
+    └───────┘          └───────┘          └──────────────┘
 ```
 
 ## 1. Claude Code Ultimate Guide (this repo)
@@ -60,6 +60,27 @@ This guide is part of a 4-repo ecosystem separating audiences (devs vs knowledge
 | **Content** | Marketing page, badges, FAQ, quiz (334 questions) |
 | **Syncs with** | Main guide (version, templates, guide lines) |
 
+## 3b. Claude Code Plugins (Marketplace)
+
+**For**: Developers who want to install guide templates without manual file copying
+
+| Aspect | Details |
+|--------|---------|
+| **GitHub** | https://github.com/FlorianBruniaux/claude-code-plugins |
+| **Local** | `/Users/florianbruniaux/Sites/perso/claude-code-plugins/` |
+| **Content** | 8 plugins, 181 templates migrated from `examples/` |
+| **Audience** | All Claude Code users |
+
+**Relationship**: Templates are authored and maintained in `examples/` of this repo. The plugins repo is a published copy — **source of truth stays here**.
+
+**Install**:
+```bash
+claude plugin marketplace add FlorianBruniaux/claude-code-plugins
+claude plugin install security-suite   # or any of the 8 plugins
+```
+
+**Plugins**: security-suite, devops-pipeline, release-automation, code-quality, pr-workflow, session-tools, ai-methodology, session-summary
+
 ## 4. Cowork Landing Site
 
 **For**: Visitors discovering the Cowork guide
@@ -75,10 +96,11 @@ This guide is part of a 4-repo ecosystem separating audiences (devs vs knowledge
 | Change | Repos to update |
 |--------|----------------|
 | Version bump (Code Guide) | 1. Code Guide, 2. Code Landing |
-| Templates added/removed | 1. Code Guide, 2. Code Landing |
+| Templates added/removed | 1. Code Guide, 2. Code Landing, 3. Plugins repo |
+| Plugin added/updated | 1. Plugins repo, 2. Code Guide README, 3. Code Landing ecosystem-data |
 | Version bump (Cowork) | 1. Cowork Guide, 2. Cowork Landing |
 | Prompts added/removed | 1. Cowork Guide, 2. Cowork Landing |
-| Cross-links modified | All 4 repos |
+| Cross-links modified | All repos |
 
 **Verification scripts**:
 

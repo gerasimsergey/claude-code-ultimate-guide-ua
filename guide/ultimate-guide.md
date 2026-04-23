@@ -14275,6 +14275,29 @@ The Claude Code plugin ecosystem has grown significantly. Here are verified comm
 
 > **Source**: Stats from [claude-plugins.dev](https://claude-plugins.dev), [Firecrawl analysis](https://www.firecrawl.dev/blog/best-claude-code-plugins) (Jan 2026). Counts evolve rapidly.
 
+### Production-Ready Plugins from This Guide
+
+All 181 templates in this guide's `examples/` directory are available as installable plugins — no file copying, hooks auto-wired on install:
+
+```bash
+claude plugin marketplace add FlorianBruniaux/claude-code-plugins
+```
+
+| Plugin | What's inside |
+|--------|---------------|
+| `security-suite` | OWASP auditing, 4-agent cyber-defense pipeline, 13 protective hooks |
+| `devops-pipeline` | CI/CD (auto-detects Python/Node/Rust), git worktrees, GitHub Actions |
+| `release-automation` | Changelog, release notes (3 formats), social content from `git log` |
+| `code-quality` | SOLID refactoring, TDD, GoF patterns, 6 specialist review agents |
+| `pr-workflow` | CEO + Eng planning gates, PR/issue triage, session handoffs |
+| `session-tools` | ccboard dashboard, voice refinement, 11 session hooks |
+| `ai-methodology` | Scaffolding, 6-stage talk pipeline, landing page generator |
+| `session-summary` | Analytics dashboard at session end (15 configurable sections) |
+
+Install only what you need. Source of truth for all templates stays in `examples/` — the plugins repo is the published distribution layer.
+
+→ **[github.com/FlorianBruniaux/claude-code-plugins](https://github.com/FlorianBruniaux/claude-code-plugins)**
+
 ### Featured Community Plugins
 
 Two community plugins address complementary problems that AI-assisted development creates: **code quality drift** (accumulation of poorly-structured AI-generated code) and **hallucination in generated solutions**.
