@@ -3,8 +3,8 @@
 # Purpose: Track Claude Code product releases for documentation sync
 # Maintained: Manual updates when new releases are announced
 
-latest: "2.1.119"
-updated: "2026-04-24"
+latest: "2.1.123"
+updated: "2026-04-29"
 
 # ════════════════════════════════════════════════════════════════
 # RELEASES (newest first, condensed highlights only)
@@ -14,6 +14,34 @@ releases:
   # ─────────────────────────────────────────────────────────────
   # 2.1.x Series (January-April 2026)
   # ─────────────────────────────────────────────────────────────
+
+  - version: "2.1.123"
+    date: "2026-04-29"
+    highlights:
+      - "Fixed OAuth authentication failing with 401 retry loop when CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS=1 is set"
+
+  - version: "2.1.122"
+    date: "2026-04-28"
+    highlights:
+      - "⭐ ANTHROPIC_BEDROCK_SERVICE_TIER env var to select Bedrock service tier (default/flex/priority) via X-Amzn-Bedrock-Service-Tier header"
+      - "Pasting a PR URL into /resume search finds the session that created it (GitHub/GitLab/Bitbucket); /mcp shows duplicate connector hint"
+      - "Fixes: Vertex AI/Bedrock output_config errors, image resize corrected (2576→2000px max), remote control idle redraw flood in tmux, ToolSearch missing late-connecting MCP tools, !exit/!quit in bash mode crash, malformed hooks entry no longer invalidates settings.json"
+
+  - version: "2.1.121"
+    date: "2026-04-27"
+    highlights:
+      - "⭐ alwaysLoad MCP server config option — all tools from that server skip tool-search deferral and are always available"
+      - "⭐ claude plugin prune removes orphaned auto-installed plugin deps; PostToolUse hooks can replace output for all tools (previously MCP-only)"
+      - "Type-to-filter search in /skills; --dangerously-skip-permissions skips .claude/ dirs; MCP servers auto-retry 3x on startup; VSCode /context native dialog; OpenTelemetry improvements"
+      - "Critical fixes: unbounded memory growth (multi-GB RSS) with many images; /usage memory leak (~2GB); Bash tool unusable when start dir deleted; --resume crash on large/corrupted sessions"
+
+  - version: "2.1.120"
+    date: "2026-04-24"
+    highlights:
+      - "⭐ Windows: Git for Windows (Git Bash) no longer required — PowerShell used as shell tool when absent"
+      - "⭐ claude ultrareview [target] subcommand for non-interactive CI/script use; --json flag for raw output"
+      - "Skills can reference effort level with ${CLAUDE_EFFORT}; AI_AGENT env var for gh traffic attribution; faster startup with many connectors; auto-compact shows 'auto' in auto mode"
+      - "Fixes: Esc during stdio MCP call closing server (regression 2.1.105), /rewind keyboard input after --resume, scrollback duplication, DISABLE_TELEMETRY not suppressing metrics, false-positive rm permission prompts in auto mode"
 
   - version: "2.1.119"
     date: "2026-04-24"
