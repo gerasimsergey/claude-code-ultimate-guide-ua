@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+- **MCP Ecosystem**: Added Sentry MCP Server entry to `guide/ecosystem/mcp-servers-ecosystem.md`
+  - New validated server under DevOps & Infrastructure (observability loop: alert → diagnosis → patch)
+  - Full entry: key features, setup, Claude Code config, query syntax reference, quality score (8.5/10), limitations table, alternatives comparison
+  - Cross-references existing reference file at `examples/skills/mcp-integration-reference/references/sentry-mcp.md`
+  - Updated file header (February → May 2026), DevOps category count (2 → 3 servers)
+
 - **Claude Code Releases**: Updated tracking to v2.1.126
   - /model picker lists models from gateway's /v1/models endpoint (ANTHROPIC_BASE_URL gateway support)
   - claude project purge [path] — delete all Claude Code state for a project

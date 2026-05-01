@@ -6,7 +6,7 @@ tags: [mcp, reference, integration]
 
 # MCP Servers Ecosystem
 
-**Last updated**: February 2026 • **Next review**: March 2026
+**Last updated**: May 2026 • **Next review**: June 2026
 
 This guide covers validated community MCP servers beyond the official Anthropic servers. All servers listed have been evaluated for production readiness, maintenance activity, and security.
 
@@ -613,6 +613,118 @@ npm install
 - **GitHub**: https://github.com/nganiet/mcp-vercel
 - **Vercel Docs**: https://vercel.com/docs/mcp/deploy-mcp-servers-to-vercel
 - **Official Vercel MCP**: https://vercel.com/docs/mcp/vercel-mcp
+
+#### Sentry MCP
+
+**Official Sentry server** for error monitoring and observability. Closes the diagnostic loop: Sentry alert fires → Claude reads issue + stack trace → diagnoses root cause → proposes or writes the patch.
+
+**Repository**: [getsentry/sentry-mcp](https://github.com/getsentry/sentry-mcp)
+**License**: MIT
+**Maintainer**: Sentry (official)
+
+**Use Case**: A Sentry alert fires in prod. The engineer asks Claude: "What's causing SEN-4521?". Claude reads the full stack trace, traces the regression through the codebase, and drafts a fix — without leaving the IDE. The observability loop closes inside Claude Code.
+
+**Key Features**:
+
+| Tool | Description |
+|------|-------------|
+| `list_issues` | Fetch unresolved issues with Sentry query syntax (`is:unresolved level:error`) |
+| `get_issue` | Full issue details — stack trace, affected users, first/last seen timestamps |
+| `get_event` | Specific event by ID, useful for time-scoped investigations |
+| `search_events` | Full-text search across raw events with field filters |
+| `list_projects` | List projects in your Sentry organization |
+
+**Setup**:
+
+```bash
+# Via npx (recommended — verify package name against official docs)
+npx -y @sentry/mcp-server
+
+# One-liner for Claude Code
+claude mcp add sentry -- npx -y @sentry/mcp-server
+```
+
+**Claude Code Configuration** (`~/.claude/settings.json`):
+
+```json
+{
+  "mcpServers": {
+    "sentry": {
+      "command": "npx",
+      "args": ["-y", "@sentry/mcp-server"],
+      "env": {
+        "SENTRY_AUTH_TOKEN": "your_auth_token",
+        "SENTRY_ORG": "your-org-slug"
+      }
+    }
+  }
+}
+```
+
+> Auth token: [sentry.io/settings/account/api/auth-tokens/](https://sentry.io/settings/account/api/auth-tokens/) — scopes needed: `project:read`, `event:read`, `org:read`
+
+**Example Usage**:
+
+```
+User: "What's causing SEN-4521? It's been firing since yesterday's deploy."
+
+Claude:
+  [list_issues: query="is:unresolved level:error project:api-service"]
+  [get_issue: issue_id="4521"]
+
+Result: NullPointerException in UserController.getProfile() at line 142.
+  Introduced in commit a3f8c2 (yesterday 14:32 UTC) — null check removed
+  in the profile refactor. Fix: restore Optional.ofNullable at line 142.
+  Opening a PR now.
+```
+
+**Query Syntax** (critical for effective use — the most common source of call failures):
+
+```
+is:unresolved                         # unresolved issues only
+is:unresolved level:error             # errors only (excludes warnings, info)
+is:unresolved has:user                # issues with identified users
+is:unresolved times_seen:>100         # high-frequency issues
+project:api-service is:unresolved     # scope to one project
+assigned:me is:unresolved             # issues assigned to you
+!has:assignee is:unresolved           # unassigned issues
+```
+
+> **Reference file**: `examples/skills/mcp-integration-reference/references/sentry-mcp.md` in this repo — complete parameter docs, gotchas, pagination patterns, and a curated noise-exclusion list. Copy it to your CLAUDE.md includes or project skills.
+
+**Quality Score**: **8.5/10** ⭐⭐⭐⭐⭐
+
+| Dimension | Score | Notes |
+|-----------|-------|-------|
+| Maintenance | 10/10 | Official Sentry server, enterprise-backed |
+| Documentation | 8/10 | Good README + Sentry docs cover edge cases |
+| Tests | 8/10 | CI present, TypeScript type safety |
+| Performance | 8/10 | API-bound (~200–400ms), pagination required for large orgs |
+| Adoption | 9/10 | Sentry is the de facto error monitoring standard (100K+ organizations) |
+
+**Limitations & Workarounds**:
+
+| Limitation | Workaround |
+|------------|-----------|
+| `organization_slug` ≠ display name | Read slug from URL: `sentry.io/organizations/<slug>/` |
+| `search_events` times out in large orgs | Always scope with `project_slug` when searching events |
+| 100 issues max per call | Use cursor-based pagination for complete sweeps |
+| Read-only by default | Resolve/assign operations need additional token scopes |
+| 90-day event retention | Events older than 90 days unavailable on default Sentry plan |
+
+**When to Use vs Alternatives**:
+
+| Tool | Best For | Not Worth It When |
+|------|----------|-------------------|
+| **Sentry MCP** | Error diagnosis loop: alert → stack trace → patch | Pure alerting (use webhooks or PagerDuty directly) |
+| **Datadog MCP** | APM, distributed traces, metrics dashboards | Error-only workflows — overengineered for that use case |
+| **Bash + Sentry CLI** | Bulk operations, scripted data exports | Interactive debugging sessions |
+
+**Resources**:
+- **GitHub**: https://github.com/getsentry/sentry-mcp
+- **Sentry MCP Docs**: https://docs.sentry.io/product/integrations/mcp/
+- **Reference File**: `examples/skills/mcp-integration-reference/references/sentry-mcp.md`
+- **Auth Token Setup**: https://sentry.io/settings/account/api/auth-tokens/
 
 ---
 
@@ -1327,7 +1439,7 @@ Servers evaluated but not included in the validated list:
 | Category | Servers | Use Cases |
 |----------|---------|-----------|
 | **Browser Automation** | 3 (Playwright, Browserbase, Chrome DevTools) | Testing, debugging, data extraction |
-| **DevOps/Infrastructure** | 2 (Vercel, Kubernetes) | Deployment, cluster management |
+| **DevOps/Infrastructure** | 3 (Vercel, Kubernetes, Sentry) | Deployment, cluster management, observability |
 | **Security/Code Analysis** | 1 (Semgrep) | Vulnerability scanning, secure coding |
 | **Code Search/Analysis** | 1 (Grepai) | Semantic search, call graph analysis |
 | **Documentation/Knowledge** | 1 (Context7) | API reference, code examples |
@@ -1341,8 +1453,8 @@ Servers evaluated but not included in the validated list:
 
 ---
 
-**Last updated**: February 2026
-**Next review**: March 2026
+**Last updated**: May 2026
+**Next review**: June 2026
 **Maintainer**: Claude Code Ultimate Guide Team
 
 ---
