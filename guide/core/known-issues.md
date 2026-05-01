@@ -326,7 +326,7 @@ If experiencing excessive consumption:
 
 #### Problem
 
-Three independent harness and system-prompt changes degraded Claude Code output quality over a six-week period. None were model-level regressions; all were in the Claude Code harness layer.
+Three independent harness and system-prompt changes degraded Claude Code output quality over a six-week period. None were model-level regressions; all were in the Claude Code harness layer. The Anthropic API used directly (without the Claude Code harness) was not affected.
 
 #### Incident 1: Default Effort High to Medium (March 4, reverted April 7)
 

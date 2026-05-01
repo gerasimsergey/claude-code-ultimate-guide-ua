@@ -78,6 +78,7 @@ releases:
   - version: "2.1.116"
     date: "2026-04-21"
     highlights:
+      - "⭐ Regression fix: ends the six-week Triple Harness Incident (Mar 4–Apr 20, 2026) — all three harness-level changes (effort defaults, thinking-budget clear, verbosity instruction) reverted or fixed in this release"
       - "⭐ /resume up to 67% faster on large sessions (40MB+); handles dead-fork entries more efficiently"
       - "Thinking spinner shows inline progress: 'still thinking', 'thinking more', 'almost done thinking'"
       - "Security: sandbox auto-allow no longer bypasses dangerous-path check for rm/rmdir targeting /, $HOME, or critical directories"
