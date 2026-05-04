@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+- **Whitepapers P2 polish** (FR + EN): WP00, WP06 final consistency pass
+  - WP00 (Introduction): "9 whitepapers" → "12 livres blancs / 12 technical whitepapers" (body now matches footer); Peak Hours callout added (March 2026, faster drain 5am–11am PT weekdays); /ultrareview updated to v2.1.114+ with CI subcommand note; /usage added to essential commands list
+  - WP06 (Privacy): ZDR local cache caveat added (cache may persist 30 days locally despite 0-day server retention); Constitutional AI governance section added (priority table: safe > ethical > Anthropic compliance > helpful, with team implications)
+
 - **Whitepapers P1 major features update** (FR + EN): WP04, WP01, WP02, WP05, WP08 updated
   - WP04 (Architecture): bfs/ugrep replace Glob/Grep in native builds (v2.1.117); hook `type: "mcp_tool"` integration (v2.1.118); Triple Harness Incident postmortem (march-april 2026) callout; wp-version 1.1.0→1.2.0
   - WP01 (Effective Prompts): 9 new commands added — /proactive, /team-onboarding, /undo, /recap, /reload-plugins, /tui, /focus, /keybindings, /terminal-setup; `claude project purge` CLI subcommand
