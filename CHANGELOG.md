@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+- **Whitepapers P1 major features update** (FR + EN): WP04, WP01, WP02, WP05, WP08 updated
+  - WP04 (Architecture): bfs/ugrep replace Glob/Grep in native builds (v2.1.117); hook `type: "mcp_tool"` integration (v2.1.118); Triple Harness Incident postmortem (march-april 2026) callout; wp-version 1.1.0→1.2.0
+  - WP01 (Effective Prompts): 9 new commands added — /proactive, /team-onboarding, /undo, /recap, /reload-plugins, /tui, /focus, /keybindings, /terminal-setup; `claude project purge` CLI subcommand
+  - WP02 (Customization): alwaysLoad MCP config (v2.1.121); /config persistence to ~/.claude/settings.json (v2.1.119); ${CLAUDE_EFFORT} skill variable (v2.1.120); custom named themes (v2.1.118); type: "mcp_tool" hooks; PostToolUse output replacement (v2.1.121); version 3.38.1→3.40.0, wp-version 1.1.0→1.2.0
+  - WP05 (Team): claude ultrareview CI subcommand (v2.1.120); ${CLAUDE_EFFORT} in team skills; PostToolUse output replacement for observability; version 3.38.1→3.40.0, wp-version 1.3.0→1.4.0
+  - WP07 (Reference Guide): same 9 new commands + claude project purge added to commands tables
+  - WP08 (Agent Teams): Opus 4.6→4.7 (7 targeted updates); API change: Agent tool no longer accepts `resume` → use SendMessage({to: agentId}); /branch (v2.1.78+) documented; /ultrareview as managed review alternative; stability fixes (v2.1.114 permission dialog crash, v2.1.121 memory leaks); version 3.38.1→3.40.0, wp-version 1.3.0→1.4.0
+
 - **Whitepapers P0 critical update** (FR + EN): WP06, WP03, WP07 updated for factual accuracy
   - WP06 (Privacy): Risk 6 added (Claude Desktop silent native messaging host install — Chrome/Brave/Edge/Arc, GitHub #53864/#51949); Risk 4 added (`/bug` sends full conversation, 5-year retention, `DISABLE_BUG_COMMAND=1`); existing Risk 4 renumbered to Risk 5; 4-tier retention model (Consumer/Opt-out/Team+Enterprise+API/ZDR); encryption-at-rest disclosure + HIPAA BAA note; 3-destination data flow (Anthropic/Statsig/Sentry) with opt-out env vars; version 3.38.1 → 3.40.0, wp-version 1.1.0 → 1.2.0
   - WP03 (Security): threat-db version reference v2.1.0 → v2.16.0; "Menaces Récentes" section updated v2.11.0→v2.16.0 with T010-T027 attack techniques and 10 new CVEs (CVE-2026-0755, CVE-2026-25725, CVE-2026-25253, CVE-2025-35028, CVE-2025-15061, CVE-2026-3484, CVE-2026-33032, ADVISORY-MCP-STDIO-2026-001, CVE-2025-69256, CVE-2026-6494)
