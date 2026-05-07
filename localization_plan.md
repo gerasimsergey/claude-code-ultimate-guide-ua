@@ -26,9 +26,9 @@
 
 ### 2. Основний посібник (guide/)
 - [x] guide/ultimate-guide.md (1/1) — *Antigravity* (Зібрано 32 частини, потребує аудиту рядків)
-- [ ] guide/cheatsheet.md (0/1) — *Antigravity*
-- [ ] guide/README.md (0/1) — *Antigravity*
-- [ ] guide/cowork.md (0/1) — *Antigravity*
+- [x] guide/cheatsheet.md (1/1) — *Antigravity*
+- [x] guide/README.md (1/1) — *Antigravity*
+- [x] guide/cowork.md (1/1) — *Antigravity*
 
 ### 3. Розділ Core (guide/core/)
 - [ ] guide/core/architecture.md (0/1)

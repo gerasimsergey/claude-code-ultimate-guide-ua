@@ -1,4 +1,4 @@
-# Claude Code Ultimate Guide
+# Повний посібник з Claude Code (Claude Code Ultimate Guide)
 
 <!-- Website CTA -->
 <p align="center">
@@ -30,12 +30,12 @@
   <a href="https://github.com/hesreallyhim/awesome-claude-code"><img src="https://awesome.re/mentioned-badge-flat.svg" alt="Mentioned in Awesome Claude Code"/></a>
   <a href="https://creativecommons.org/licenses/by-sa/4.0/"><img src="https://img.shields.io/badge/License-CC%20BY--SA%204.0-blue.svg" alt="License: CC BY-SA 4.0"/></a>
   <a href="https://skills.palebluedot.live/owner/FlorianBruniaux"><img src="https://img.shields.io/badge/SkillHub-9_skills-8b5cf6.svg" alt="SkillHub Skills"/></a>
-  <a href="https://zread.ai/FlorianBruniaux/claude-code-ultimate-guide"><img src="https://img.shields.io/badge/Ask_Zread-_.svg?style=flat&color=00b0aa&labelColor=000000&logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTQuOTYxNTYgMS42MDAxSDIuMjQxNTZDMS44ODgxIDEuNjAwMSAxLjYwMTU2IDEuODg2NjQgMS42MDE1NiAyLjI0MDFWNC45NjAxQzEuNjAxNTYgNS4zMTM1NiAxLjg4ODEgNS42MDAxIDIuMjQxNTYgNS42MDAxSDQuOTYxNTZDNS4zMTUwMiA1LjYwMDEgNS42MDE1NiA1LjMxMzU2IDUuNjAxNTYgNC45NjAxVjIuMjQwMUM1LjYwMTU2IDEuODg2NjQgNS4zMTUwMiAxLjYwMDEgNC45NjE1NiAxLjYwMDFaIiBmaWxsPSIjZmZmIi8%2BCjxwYXRoIGQ9Ik00Ljk2MTU2IDEwLjM5OTlIMi4yNDE1NkMxLjg4ODEgMTAuMzk5OSAxLjYwMTU2IDEwLjY4NjQgMS42MDE1NiAxMS4wMzk5VjEzLjc1OTlDMS42MDE1NiAxNC4xMTM0IDEuODg4MSAxNC4zOTk5IDIuMjQxNTYgMTQuMzk5OUg0Ljk2MTU2QzUuMzE1MDIgMTQuMzk5OSA1LjYwMTU2IDE0LjExMzQgNS42MDE1NiAxMy43NTk5VjExLjAzOTlDNS42MDE1NiAxMC42ODY0IDUuMzE1MDIgMTAuMzk5OSA0Ljk2MTU2IDEwLjM5OTlaIiBmaWxsPSIjZmZmIi8%2BCjxwYXRoIGQ9Ik0xMy43NTg0IDEuNjAwMUgxMS4wMzg0QzEwLjY4NSAxLjYwMDEgMTAuMzk4NCAxLjg4NjY0IDEwLjM5ODQgMi4yNDAxVjQuOTYwMUMxMC4zOTg0IDUuMzEzNTYgMTAuNjg1IDUuNjAwMSAxMS4wMzg0IDUuNjAwMUgxMy43NTg0QzE0LjExMTkgNS42MDAxIDE0LjM5ODQgNS4zMTM1NiAxNC4zOTg0IDQuOTYwMVYyLjI0MDFDMTQuMzk4NCAxLjg4NjY0IDE0LjExMTkgMS42MDAxIDEzLjc1ODQgMS42MDAxWiIgZmlsbD0iI2ZmZiIvPgo8cGF0aCBkPSJNNCAxMkwxMiA0TDQgMTJaIiBmaWxsPSIjZmZmIi8%2BCjxwYXRoIGQ9Ik00IDEyTDEyIDQiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgo8L3N2Zz4K&logoColor=ffffff" alt="Ask Zread"/></a>
+  <a href="https://zread.ai/FlorianBruniaux/claude-code-ultimate-guide"><img src="https://img.shields.io/badge/Ask_Zread-_.svg?style=flat&color=00b0aa&labelColor=000000&logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTQuOTYxNTYgMS42MDAxJHIuMjQxNTZDMS44ODgxIDEuNjAwMSAxLjYwMTU2IDEuODg2NjQgMS42MDE1NiAyLjI0MDFWNC45NjAxQzEuNjAxNTYgNS4zMTM1NiAxLjg4ODEgNS42MDAxIDIuMjQxNTYgNS42MDAxSDQuOTYxNTZDNS4zMTUwMiA1LjYwMDEgNS42MDE1NiA1LjMxMzU2IDUuNjAxNTYgNC45NjAxVjIuMjQwMUM1LjYwMTU2IDEuODg2NjQgNS4zMTUwMiAxLjYwMDEgNC45NjE1NiAxLjYwMDFaIiBmaWxsPSIjZmZmIi8%2BCjxwYXRoIGQ9Ik00Ljk2MTU2IDEwLjM5OTlIMi4yNDE1NkMxLjg4ODEgMTAuMzk5OSAxLjYwMTU2IDEwLjY4NjQgMS42MDE1NiAxMS4wMzk5VjEzLjc1OTlDMS42MDE1NiAxNC4xMTM0IDEuODg4MSAxNC4zOTk5IDIuMjQxNTYgMTQuMzk5OUg0Ljk2MTU2QzUuMzE1MDIgMTQuMzk5OSA1LjYwMTU2IDE0LjExMzQgNS42MDE1NiAxMy43NTk5VjExLjAzOTlDNS42MDE1NiAxMC42ODY0IDUuMzE1MDIgMTAuMzk5OSA0Ljk2MTU2IDEwLjM5OTlaIiBmaWxsPSIjZmZmIi8%2BCjxwYXRoIGQ9Ik0xMy43NTg0IDEuNjAwMUgxMS4wMzg0QzEwLjY4NSAxLjYwMDEgMTAuMzk4NCAxLjg4NjY0IDEwLjM5ODQgMi4yNDAxVjQuOTYwMUMxMC4zOTg0IDUuMzEzNTYgMTAuNjg1IDUuNjAwMSAxMS4wMzg0IDUuNjAwMUgxMy43NTg0QzE0LjExMTkgNS42MDAxIDE0LjM5ODQgNS4zMTM1NiAxNC4zOTg0IDQuOTYwMVYyLjI0MDFDMTQuMzk4NCAxLjg4NjY0IDE0LjExMTkgMS42MDAxIDEzLjc1ODQgMS42MDAxWiIgZmlsbD0iI2ZmZiIvPgo8cGF0aCBkPSJNNCAxMkwxMiA0TDQgMTJaIiBmaWxsPSIjZmZmIi8%2BCjxwYXRoIGQ9Ik00IDEyTDEyIDQiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgo8L3N2Zz4K&logoColor=ffffff" alt="Ask Zread"/></a>
 </p>
 
-> **6 months of daily practice** distilled into a guide that teaches you the WHY, not just the what. From core concepts to production security, you learn to design your own agentic workflows instead of copy-pasting configs.
+> **6 місяців щоденної практики**, зібрані в посібник, який вчить вас ЧОМУ, а не просто що. Від основних концепцій до безпеки у продакшені — ви навчитеся проектувати власні агентні воркфлоу замість копіпасту конфігів.
 
-> **If this guide helps you, [give it a star ⭐](https://github.com/FlorianBruniaux/claude-code-ultimate-guide/stargazers)** — it helps others discover it too.
+> **Якщо цей посібник допоміг вам, [поставте йому зірочку ⭐](https://github.com/FlorianBruniaux/claude-code-ultimate-guide/stargazers)** — це допомагає іншим знайти його.
 
 ---
 
@@ -45,109 +45,109 @@
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://starmapper.bruniaux.com/api/map-image/FlorianBruniaux/claude-code-ultimate-guide?theme=dark" />
     <source media="(prefers-color-scheme: light)" srcset="https://starmapper.bruniaux.com/api/map-image/FlorianBruniaux/claude-code-ultimate-guide?theme=light" />
-    <img alt="StarMapper — see who stars this repo on a world map" src="https://starmapper.bruniaux.com/api/map-image/FlorianBruniaux/claude-code-ultimate-guide" />
+    <img alt="StarMapper — дивіться, хто ставить зірки цьому репо на мапі світу" src="https://starmapper.bruniaux.com/api/map-image/FlorianBruniaux/claude-code-ultimate-guide" />
   </picture>
 </a>
 
 ---
 
-## Choose Your Path
+## Оберіть свій шлях
 
-| Who you are | Your guide |
+| Хто ви | Ваш посібник |
 |---|---|
-| 🏗️ **Tech Lead / Engineering Manager** | [Deploying Claude Code across your team →](docs/for-tech-leads.md) |
-| 📊 **CTO / Decision Maker** | [ROI, security posture, team adoption →](docs/for-cto.md) |
-| 💼 **CIO / CEO** | [Budget, risk, what to ask your tech team (3 min) →](docs/for-cio-ceo.md) |
-| 🎨 **Product Manager / Designer** | [Vibe coding, working with AI-assisted dev teams →](docs/for-product-managers.md) |
-| ✍️ **Writer / Ops / Manager** | [Claude Cowork Guide (separate repo) →](https://github.com/FlorianBruniaux/claude-cowork-guide) |
-| 👨‍💻 **Developer (all levels)** | You're in the right place — read on ↓ |
-| 🧭 **Career pivot / new AI role** | [AI Roles & Career Paths →](guide/roles/ai-roles.md) |
+| 🏗️ **Tech Lead / Engineering Manager** | [Впровадження Claude Code у вашій команді →](docs/for-tech-leads.md) |
+| 📊 **CTO / Decision Maker** | [ROI, рівень безпеки, впровадження в команді →](docs/for-cto.md) |
+| 💼 **CIO / CEO** | [Бюджет, ризики, що запитати у тех-команди (3 хв) →](docs/for-cio-ceo.md) |
+| 🎨 **Product Manager / Designer** | [Vibe coding, робота з AI-assisted командами розробки →](docs/for-product-managers.md) |
+| ✍️ **Writer / Ops / Manager** | [Claude Cowork Guide (окремий репо) →](https://github.com/FlorianBruniaux/claude-cowork-guide) |
+| 👨‍💻 **Developer (всі рівні)** | Ви в правильному місці — читайте далі ↓ |
+| 🧭 **Career pivot / нова AI роль** | [AI ролі та кар'єрні шляхи →](guide/roles/ai-roles.md) |
 
 ---
 
-## 🎯 What You'll Learn
+## 🎯 Чого ви навчитеся
 
-**This guide teaches you to think differently about AI-assisted development:**
-- ✅ **Understand trade-offs** — When to use agents vs skills vs commands (not just how to configure them)
-- ✅ **Build mental models** — How Claude Code works internally (architecture, context flow, tool orchestration)
-- ✅ **Visualize concepts** — 48 Mermaid diagrams covering model selection, master loop, memory hierarchy, multi-agent patterns, security threats, AI fluency paths
-- ✅ **Master methodologies** — TDD, SDD, BDD with AI collaboration (not just templates)
-- ✅ **Security mindset** — Threat modeling for AI systems (only guide with 28 CVEs + 655 malicious skills database)
-- ✅ **Test your knowledge** — 271-question quiz to validate understanding (no other resource offers this)
+**Цей посібник вчить вас думати інакше про розробку з допомогою AI:**
+- ✅ **Розуміти компроміси** — коли використовувати agents vs skills vs commands (а не просто як їх конфігурувати)
+- ✅ **Будувати ментальні моделі** — як Claude Code працює всередині (архітектура, потік контексту, оркестрація інструментів)
+- ✅ **Візуалізувати концепції** — 48 Mermaid діаграм, що охоплюють вибір моделі, основний цикл (master loop), ієрархію пам'яті, багатоагентні патерни, загрози безпеці, шляхи володіння AI
+- ✅ **Опановувати методології** — TDD, SDD, BDD у співпраці з AI (а не просто шаблони)
+- ✅ **Мислення безпеки** — моделювання загроз для AI систем (єдиний посібник з базою даних 28 CVE + 655 шкідливих skills)
+- ✅ **Перевіряти свої знання** — квіз із 271 запитання для перевірки розуміння (жоден інший ресурс цього не пропонує)
 
-**Outcome**: Go from copy-pasting configs to designing your own agentic workflows with confidence.
+**Результат**: Перейдіть від копіпасту конфігів до впевненого проектування власних агентних воркфлоу.
 
 ---
 
-## 📊 When to Use This Guide vs Everything-CC
+## 📊 Коли використовувати цей посібник vs Everything-CC
 
-Both guides serve different needs. Choose based on your priority.
+Обидва посібники служать різним потребам. Обирайте залежно від вашого пріоритету.
 
-| Your Goal | This Guide | everything-claude-code |
+| Ваша мета | Цей посібник | everything-claude-code |
 |-----------|------------|------------------------|
-| **Understand why** patterns work | Deep explanations + architecture | Config-focused |
-| **Quick setup** for projects | Available but not the priority | Battle-tested production configs |
-| **Learn trade-offs** (agents vs skills) | Decision frameworks + comparisons | Lists patterns, no trade-off analysis |
-| **Security hardening** | Only threat database (28 CVEs) | Basic patterns only |
-| **Test understanding** | 271-question quiz | Not available |
-| **Methodologies** (TDD/SDD/BDD) | Full workflow guides | Not covered |
-| **Copy-paste ready** templates | 181 templates | 200+ templates |
+| **Зрозуміти чому** патерни працюють | Глибокі пояснення + архітектура | Фокус на конфігураціях |
+| **Швидке налаштування** проектів | Доступно, але не є пріоритетом | Перевірені продакшен конфіги |
+| **Вивчити компроміси** (agents vs skills) | Фреймворки прийняття рішень + порівняння | Список патернів без аналізу компромісів |
+| **Посилення безпеки** | Єдина база загроз (28 CVE) | Тільки базові патерни |
+| **Перевірка розуміння** | Квіз на 271 запитання | Недоступно |
+| **Методології** (TDD/SDD/BDD) | Повні посібники з воркфлоу | Не охоплено |
+| **Готові шаблони** для копіпасту | 181 шаблон | 200+ шаблонів |
 
-### Ecosystem Positioning
+### Позиціонування в екосистемі
 
 ```
-                    EDUCATIONAL DEPTH
+                    ОСВІТНЯ ГЛИБИНА
                            ▲
                            │
-                           │  ★ This Guide
-                           │  Security + Methodologies + 24K+ lines
+                           │  ★ Цей посібник
+                           │  Безпека + Методології + 24K+ рядків
                            │
                            │  [Everything-You-Need-to-Know]
-                           │  SDLC/BMAD beginner
-  ─────────────────────────┼─────────────────────────► READY-TO-USE
-  [awesome-claude-code]    │            [everything-claude-code]
-  (discovery, curation)    │            (plugin, 1-cmd install)
+                           │  SDLC/BMAD для початківців
+   ────────────────────────┼─────────────────────────► ГОТОВНІСТЬ ДО ВИКОРИСТАННЯ
+   [awesome-claude-code]   │            [everything-claude-code]
+   (пошук, курація)        │            (плагін, інсталяція 1 командою)
                            │
                            │  [claude-code-studio]
-                           │  Context management
+                           │  Управління контекстом
                            │
-                      SPECIALIZED
+                       СПЕЦІАЛІЗОВАНІ
 ```
 
-**5 unique gaps no competitor covers:**
-1. **Security-First** — 28 CVEs + 655 malicious skills tracked (no competitor has this depth)
-2. **Methodology Workflows** — TDD/SDD/BDD comparison + step-by-step guides
-3. **Comprehensive Reference** — 24K+ lines across 16 specialized guides (24× more reference material than everything-cc)
-4. **Educational Progression** — 271-question quiz + 7-module structured learning path (beginner → advanced)
-5. **Interactive Assessment** — `/self-assessment` skill with personalized learning path recommendations
+**5 унікальних прогалин, які не закриває жоден конкурент:**
+1. **Безпека понад усе** — відстежується 28 CVE + 655 шкідливих skills (жоден конкурент не має такої глибини)
+2. **Методологічні воркфлоу** — порівняння TDD/SDD/BDD + покрокові інструкції
+3. **Вичерпна довідка** — 24K+ рядків у 16 спеціалізованих посібниках (у 24 рази більше довідкового матеріалу, ніж у everything-cc)
+4. **Освітня прогресія** — квіз на 271 запитання + структурований навчальний шлях із 7 модулів (від початківця до профі)
+5. **Інтерактивна оцінка** — скіл `/self-assessment` з персоналізованими рекомендаціями щодо навчального шляху
 
-**Recommended workflow:**
-1. Learn concepts here (mental models, trade-offs, security)
-2. Use battle-tested configs there (quick project setup)
-3. Return here for deep dives (when something doesn't work or to design custom workflows)
+**Рекомендований воркфлоу:**
+1. Вивчайте концепції тут (ментальні моделі, компроміси, безпека)
+2. Використовуйте перевірені конфіги там (швидке налаштування проекту)
+3. Повертайтеся сюди для глибокого занурення (коли щось не працює або для проектування власних воркфлоу)
 
-**Both resources are complementary, not competitive.** Use what fits your current need.
+**Обидва ресурси доповнюють один одного, а не конкурують.** Використовуйте те, що відповідає вашим поточним потребам.
 
 ---
 
-## ⚡ Quick Start
+## ⚡ Швидкий старт
 
-**New to Claude Code?** → [**7-Module Learning Path**](./guide/learning-path/README.md) — 8-11 hours, beginner to advanced
+**Вперше з Claude Code?** → [**Навчальний шлях із 7 модулів**](./guide/learning-path/README.md) — 8-11 годин, від початківця до профі
 
-**Quickest path**: [Cheat Sheet](./guide/cheatsheet.md) — 1 printable page with daily essentials
+**Найшвидший шлях**: [Cheat Sheet](./guide/cheatsheet.md) — 1 сторінка для друку з щоденними основами
 
-**Interactive onboarding** (no setup needed):
+**Інтерактивний онбординг** (налаштування не потрібне):
 ```bash
 claude "Fetch and follow the onboarding instructions from: https://raw.githubusercontent.com/FlorianBruniaux/claude-code-ultimate-guide/main/tools/onboarding-prompt.md"
 ```
 
-**Browse directly**: [Full Guide](./guide/ultimate-guide.md) | [Learning Path](./guide/learning-path/) | [Visual Diagrams](./guide/diagrams/) | [Examples](./examples/) | [Quiz](./quiz/)
+**Переглянути безпосередньо**: [Повний посібник](./guide/ultimate-guide.md) | [Навчальний шлях](./guide/learning-path/) | [Візуальні діаграми](./guide/diagrams/) | [Приклади](./examples/) | [Квіз](./quiz/)
 
 ---
 
-## 🔌 MCP Server — Use the guide from any Claude Code session
+## 🔌 MCP Server — використовуйте посібник у будь-якій сесії Claude Code
 
-No cloning needed. Add to `~/.claude.json` and ask questions directly from any session:
+Клонування не потрібне. Додайте до `~/.claude.json` і ставте запитання безпосередньо з будь-якої сесії:
 
 ```json
 {
@@ -161,9 +161,9 @@ No cloning needed. Add to `~/.claude.json` and ask questions directly from any s
 }
 ```
 
-17 tools: `search_guide`, `read_section`, `get_cheatsheet`, `get_digest`, `get_example`, `list_examples`, `search_examples`, `get_release`, `get_changelog`, `compare_versions`, `list_topics`, `get_threat`, `list_threats`, plus `init_official_docs`, `refresh_official_docs`, `diff_official_docs`, `search_official_docs` (v1.1.0 — official Anthropic docs tracker) — plus 13 slash commands `/ccguide:*` and a Haiku agent.
+17 інструментів: `search_guide`, `read_section`, `get_cheatsheet`, `get_digest`, `get_example`, `list_examples`, `search_examples`, `get_release`, `get_changelog`, `compare_versions`, `list_topics`, `get_threat`, `list_threats`, плюс `init_official_docs`, `refresh_official_docs`, `diff_official_docs`, `search_official_docs` (v1.1.0 — трекер офіційної документації Anthropic) — плюс 13 slash commands `/ccguide:*` та агент Haiku.
 
-**Onboarding one-liner** (once MCP is configured):
+**Онбординг одним рядком** (після налаштування MCP):
 ```bash
 claude "Use the claude-code-guide MCP server. Activate the claude-code-expert prompt, then run a personalized onboarding: ask me 3 questions about my goal, experience level, and preferred tone — then build a custom learning path using search_guide and read_section to navigate the guide with live source links."
 ```
@@ -172,19 +172,19 @@ claude "Use the claude-code-guide MCP server. Activate the claude-code-expert pr
 
 ---
 
-## 📁 Repository Structure
+## 📁 Структура репозиторію
 
 ```mermaid
 graph LR
-    root[📦 Repository<br/>Root]
+    root[📦 Корінь<br/>репозиторію]
 
-    root --> guide[📖 guide/<br/>24K+ lines]
-    root --> learning[🎓 learning-path/<br/>7 modules]
-    root --> examples[📋 examples/<br/>181 templates]
-    root --> quiz[🧠 quiz/<br/>271 questions]
-    root --> tools[🔧 tools/<br/>utils]
-    root --> machine[🤖 machine-readable/<br/>AI index]
-    root --> docs[📚 docs/<br/>151 evaluations]
+    root --> guide[📖 guide/<br/>24K+ рядків]
+    root --> learning[🎓 learning-path/<br/>7 модулів]
+    root --> examples[📋 examples/<br/>181 шаблон]
+    root --> quiz[🧠 quiz/<br/>271 запитання]
+    root --> tools[🔧 tools/<br/>утиліти]
+    root --> machine[🤖 machine-readable/<br/>AI індекс]
+    root --> docs[📚 docs/<br/>151 оцінка]
 
     style root fill:#d35400,stroke:#e67e22,stroke-width:3px,color:#fff
     style guide fill:#2980b9,stroke:#3498db,stroke-width:2px,color:#fff
@@ -197,389 +197,384 @@ graph LR
 ```
 
 <details>
-<summary><strong>Detailed Structure (Text View)</strong></summary>
+<summary><strong>Детальна структура (текстовий вигляд)</strong></summary>
 
 ```
 📦 claude-code-ultimate-guide/
 │
-├─ 📖 guide/              Core Documentation (24K+ lines)
-│  ├─ learning-path/      7-Module Learning Path (beginners → advanced)
-│  ├─ ultimate-guide.md   Complete reference, 10 sections
-│  ├─ cheatsheet.md       1-page printable
-│  ├─ architecture.md     How Claude Code works internally
-│  ├─ methodologies.md    TDD, SDD, BDD workflows
-│  ├─ diagrams/           48 Mermaid diagrams (10 thematic files)
-│  ├─ third-party-tools.md  Community tools (RTK, ccusage, Entire CLI)
-│  ├─ mcp-servers-ecosystem.md  Official & community MCP servers
-│  └─ workflows/          Step-by-step guides
+├─ 📖 guide/              Основна документація (24K+ рядків)
+│  ├─ learning-path/      Навчальний шлях із 7 модулів (від початківців до профі)
+│  ├─ ultimate-guide.md   Повна довідка, 10 розділів
+│  ├─ cheatsheet.md       1 сторінка для друку
+│  ├─ architecture.md     Як Claude Code працює всередині
+│  ├─ methodologies.md    Воркфлоу TDD, SDD, BDD
+│  ├─ diagrams/           48 Mermaid діаграм (10 тематичних файлів)
+│  ├─ third-party-tools.md  Інструменти спільноти (RTK, ccusage, Entire CLI)
+│  ├─ mcp-servers-ecosystem.md  Офіційні та спільнотні MCP сервери
+│  └─ workflows/          Покрокові інструкції
 │
-├─ 📋 examples/           181 Production Templates
-│  ├─ CATALOG.md          Auto-generated index by complexity, time, domain
-│  ├─ agents/             23 custom AI personas
+├─ 📋 examples/           181 Продакшен Шаблон
+│  ├─ CATALOG.md          Автоматично згенерований індекс за складністю, часом, доменом
+│  ├─ agents/             23 кастомні AI персони
 │  ├─ commands/           52 slash commands
-│  ├─ hooks/              37 hooks (bash + PowerShell)
-│  ├─ skills/             64 skills (9 on SkillHub)
-│  └─ scripts/            Utility scripts (audit, search)
+│  ├─ hooks/              37 хуків (bash + PowerShell)
+│  ├─ skills/             64 скіли (9 на SkillHub)
+│  └─ scripts/            Скрипти утиліт (аудит, пошук)
 │
-├─ 🧠 quiz/               271 Questions
-│  ├─ 9 categories        Setup, Agents, MCP, Trust, Advanced...
-│  ├─ 4 profiles          Junior, Senior, Power User, PM
-│  └─ Instant feedback    Doc links + score tracking
+├─ 🧠 quiz/               271 Запитання
+│  ├─ 9 категорій         Setup, Agents, MCP, Trust, Advanced...
+│  ├─ 4 профілі           Junior, Senior, Power User, PM
+│  └─ Миттєвий фідбек     Посилання на доки + відстеження балів
 │
-├─ 🔧 tools/              Interactive Utilities
-│  ├─ onboarding-prompt   Personalized guided tour
-│  └─ audit-prompt        Setup audit & recommendations
+├─ 🔧 tools/              Інтерактивні утиліти
+│  ├─ onboarding-prompt   Персоналізований гід по проекту
+│  └─ audit-prompt        Аудит налаштувань та рекомендації
 │
-├─ 🤖 machine-readable/   AI-Optimized Index
-│  ├─ reference.yaml      Structured index (~2K tokens) — powers landing site CMD+K search
-│  ├─ claude-code-releases.yaml  Structured releases changelog
-│  └─ llms.txt            Standard LLM context file
+├─ 🤖 machine-readable/   Оптимізований для AI індекс
+│  ├─ reference.yaml      Структурований індекс (~2K токенів) — забезпечує пошук CMD+K на сайті
+│  ├─ claude-code-releases.yaml  Структурований чейнджлог релізів
+│  └─ llms.txt            Стандартний файл контексту для LLM
 │
-└─ 📚 docs/               151 Resource Evaluations
-   └─ resource-evaluations/  5-point scoring, source attribution
+└─ 📚 docs/               151 Оцінка Ресурсів
+   └─ resource-evaluations/  5-бальна оцінка, атрибуція джерел
 ```
 
 </details>
 
 ---
 
-## 🎯 What Makes This Guide Unique
+## 🎯 Що робить цей посібник унікальним
 
-### 🎓 Deep Understanding Over Configuration
+### 🎓 Глибоке розуміння понад конфігурацією
 
-**Outcome**: Design your own workflows instead of copy-pasting blindly.
+**Результат**: Проектуйте власні воркфлоу замість сліпого копіпасту.
 
-**We teach how Claude Code works and why patterns matter**:
-- [Architecture](./guide/core/architecture.md) — Internal mechanics (context flow, tool orchestration, memory management)
-- [Trade-offs](./guide/ultimate-guide.md#when-to-use-what) — Decision frameworks for agents vs skills vs commands
-- [Configuration Decision Guide](./guide/ultimate-guide.md#27-configuration-decision-guide) — Unified "which mechanism for what?" map across all 7 config layers
-- [Pitfalls](./guide/ultimate-guide.md#common-mistakes) — Common failure modes + prevention strategies
+**Ми вчимо, як працює Claude Code і чому патерни мають значення:**
+- [Архітектура](./guide/core/architecture.md) — внутрішня механіка (потік контексту, оркестрація інструментів, управління пам'яттю)
+- [Компроміси](./guide/ultimate-guide.md#when-to-use-what) — фреймворки прийняття рішень для agents vs skills vs commands
+- [Посібник з прийняття рішень щодо конфігурації](./guide/ultimate-guide.md#27-configuration-decision-guide) — єдина карта «який механізм для чого?» на всіх 7 рівнях конфігурації
+- [Пастки](./guide/ultimate-guide.md#common-mistakes) — типові сценарії невдач + стратегії запобігання
 
-**What this means for you**: Troubleshoot issues independently, optimize for your specific use case, know when to deviate from patterns.
-
----
-
-### 🖼️ Visual Diagrams Series (48 Mermaid Diagrams)
-
-**Outcome**: Grasp complex concepts instantly through visual mental models.
-
-**48 interactive diagrams** across 10 thematic files — GitHub-native Mermaid rendering + ASCII fallback for every diagram:
-- [Foundations](./guide/diagrams/01-foundations.md) — 4-layer context model, 9-step pipeline, permission modes
-- [Architecture](./guide/diagrams/04-architecture-internals.md) — Master loop, tool categories, system prompt assembly
-- [Multi-Agent](./guide/diagrams/07-multi-agent-patterns.md) — 3 topologies, worktrees, dual-instance, horizontal scaling
-- [Security](./guide/diagrams/08-security-and-production.md) — 3-layer defense, MCP rug pull attack chain, verification paradox
-- [Cost & Models](./guide/diagrams/09-cost-and-optimization.md) — Model selection tree, token reduction pipeline
-
-[Browse all 48 diagrams →](./guide/diagrams/)
-
-**What this means for you**: Understand the master loop before reading 24K+ lines, see multi-agent topologies at a glance, share visual security threat models with your team.
+**Що це означає для вас**: Самостійно усувайте проблеми, оптимізуйте під свій конкретний випадок, знайте, коли відхилятися від патернів.
 
 ---
 
-### 🛡️ Security Threat Intelligence (Only Comprehensive Database)
+### 🖼️ Серія візуальних діаграм (48 Mermaid діаграм)
 
-**Outcome**: Protect production systems from AI-specific attacks.
+**Результат**: Миттєво опановуйте складні концепції через візуальні ментальні моделі.
 
-**Only guide with systematic threat tracking**:
-- **28 CVE-mapped vulnerabilities** — Prompt injection, data exfiltration, code injection
-- **655 malicious skills catalogued** — Unicode injection, hidden instructions, auto-execute patterns
-- **Production hardening workflows** — MCP vetting, injection defense, audit automation
+**48 інтерактивних діаграм** у 10 тематичних файлах — нативний рендеринг Mermaid на GitHub + ASCII версія для кожної діаграми:
+- [Основи](./guide/diagrams/01-foundations.md) — 4-рівнева модель контексту, 9-кроковий пайплайн, режими дозволів
+- [Архітектура](./guide/diagrams/04-architecture-internals.md) — основний цикл (master loop), категорії інструментів, збірка системного промпту
+- [Multi-Agent](./guide/diagrams/07-multi-agent-patterns.md) — 3 топології, worktrees, dual-instance, горизонтальне масштабування
+- [Безпека](./guide/diagrams/08-security-and-production.md) — 3-рівневий захист, ланцюжок атак MCP rug pull, парадокс верифікації
+- [Вартість та Моделі](./guide/diagrams/09-cost-and-optimization.md) — дерево вибору моделі, пайплайн скорочення токенів
 
-[Threat Database →](./examples/commands/resources/threat-db.yaml) | [Security Guide →](./guide/security/security-hardening.md)
+[Переглянути всі 48 діаграм →](./guide/diagrams/)
 
-**What this means for you**: Vet MCP servers before trusting them, detect attack patterns in configs, comply with security audits.
+**Що це означає для вас**: Зрозумійте основний цикл розробки перед читанням 24K+ рядків, побачте багатоагентні топології одним поглядом, діліться візуальними моделями загроз зі своєю командою.
 
 ---
 
-### 📝 271-Question Knowledge Validation (Unique in Ecosystem)
+### 🛡️ Розвідка загроз безпеці (Єдина вичерпна база даних)
 
-**Outcome**: Verify your understanding + identify knowledge gaps.
+**Результат**: Захистіть продакшен системи від специфічних для AI атак.
 
-**Only comprehensive assessment available** — test across 9 categories:
+**Єдиний посібник із систематичним відстеженням загроз:**
+- **28 вразливостей, відображених у CVE** — Prompt injection, витік даних, ін'єкція коду
+- **655 каталогізованих шкідливих skills** — ін'єкції Unicode, приховані інструкції, патерни автовиконання
+- **Воркфлоу посилення безпеки в продакшені** — перевірка MCP, захист від ін'єкцій, автоматизація аудиту
+
+[База даних загроз →](./examples/commands/resources/threat-db.yaml) | [Посібник з безпеки →](./guide/security/security-hardening.md)
+
+**Що це означає для вас**: Перевіряйте MCP сервери перед тим, як довіряти їм, виявляйте патерни атак у конфігах, відповідайте вимогам аудитів безпеки.
+
+---
+
+### 📝 Перевірка знань із 271 запитання (Унікально в екосистемі)
+
+**Результат**: Перевірте своє розуміння + виявіть прогалини в знаннях.
+
+**Єдина доступна комплексна оцінка** — тестування у 9 категоріях:
 - Setup & Configuration, Agents & Sub-Agents, MCP Servers, Trust & Verification, Advanced Patterns
 
-**Features**: 4 skill profiles (Junior/Senior/Power User/PM), instant feedback with doc links, weak area identification
+**Особливості**: 4 профілі навичок (Junior/Senior/Power User/PM), миттєвий фвідбек із посиланнями на доки, виявлення слабких місць
 
-[Try Quiz Online →](https://florianbruniaux.github.io/claude-code-ultimate-guide-landing/quiz/) | [Run Locally](./quiz/)
+[Спробувати Квіз онлайн →](https://florianbruniaux.github.io/claude-code-ultimate-guide-landing/quiz/) | [Запустити локально](./quiz/)
 
-**What this means for you**: Know what you don't know, track learning progress, prepare for team adoption discussions.
-
----
-
-### 🤖 Agent Teams Coverage (v2.1.32+ Experimental)
-
-**Outcome**: Parallelize work on large codebases (Fountain: 50% faster, CRED: 2x speed).
-
-**Only comprehensive guide to Anthropic's multi-agent coordination**:
-- Production metrics from real companies (autonomous C compiler, 500K hours saved)
-- 5 validated workflows (multi-layer review, parallel debugging, large-scale refactoring)
-- Decision framework: Teams vs Multi-Instance vs Dual-Instance vs Beads
-
-[Agent Teams Workflow →](./guide/workflows/agent-teams.md) | [Section 9.20 →](./guide/ultimate-guide.md#920-agent-teams-multi-agent-coordination)
-
-**What this means for you**: Break monolithic tasks into parallelizable work, coordinate multi-file refactors, review your own AI-generated code.
+**Що це означає для вас**: Знайте, чого ви не знаєте, відстежуйте прогрес навчання, готуйтеся до обговорень впровадження в команді.
 
 ---
 
-### 🔬 Methodologies (Structured Development Workflows)
+### 🤖 Покриття Agent Teams (v2.1.32+ Experimental)
 
-**Outcome**: Maintain code quality while working with AI.
+**Результат**: Паралелізуйте роботу над великими кодобазами (Fountain: на 50% швидше, CRED: у 2 рази швидше).
 
-Complete guides with rationale and examples:
-- [TDD](./guide/core/methodologies.md#1-tdd-test-driven-development-with-claude) — Test-Driven Development (Red-Green-Refactor with AI)
-- [SDD](./guide/core/methodologies.md#2-sdd-specification-driven-development) — Specification-Driven Development (Design before code)
-- [BDD](./guide/core/methodologies.md#3-bdd-behavior-driven-development) — Behavior-Driven Development (User stories → tests)
-- [GSD](./guide/core/methodologies.md#gsd-get-shit-done) — Get Shit Done (Pragmatic delivery)
+**Єдиний вичерпний посібник з багатоагентної координації Anthropic:**
+- Метрики продакшену від реальних компаній (автономний компилятор C, збережено 500K годин)
+- 5 перевірених воркфлоу (багаторівневе рев'ю, паралельне налагодження, масштабний рефакторинг)
+- Фреймворк прийняття рішень: Teams vs Multi-Instance vs Dual-Instance vs Beads
 
-**What this means for you**: Choose the right workflow for your team culture, integrate AI into existing processes, avoid technical debt from AI over-reliance.
+[Agent Teams Workflow →](./guide/workflows/agent-teams.md) | [Розділ 9.20 →](./guide/ultimate-guide.md#920-agent-teams-multi-agent-coordination)
+
+**Що це означає для вас**: Розбивайте монолітні завдання на роботу, яку можна паралелізувати, координуйте багатофайлові рефакторинги, робіть рев'ю власного коду, створеного AI.
 
 ---
 
-### 📚 181 Annotated Templates
+### 🔬 Методології (Структуровані воркфлоу розробки)
 
-**Outcome**: Learn patterns, not just configs.
+**Результат**: Підтримуйте якість коду під час роботи з AI.
 
-Educational templates with explanations:
+Повні посібники з обґрунтуванням та прикладами:
+- [TDD](./guide/core/methodologies.md#1-tdd-test-driven-development-with-claude) — розробка через тестування (Red-Green-Refactor з AI)
+- [SDD](./guide/core/methodologies.md#2-sdd-specification-driven-development) — розробка на основі специфікацій (проектування перед кодом)
+- [BDD](./guide/core/methodologies.md#3-bdd-behavior-driven-development) — розробка на основі поведінки (User stories → тести)
+- [GSD](./guide/core/methodologies.md#gsd-get-shit-done) — Get Shit Done (прагматична доставка)
+
+**Що це означає для вас**: Обирайте правильний воркфлоу для культури вашої команди, інтегруйте AI в існуючі процеси, уникайте технічного боргу через надмірну залежність від AI.
+
+---
+
+### 📚 181 анотований шаблон
+
+**Результат**: Вивчайте патерни, а не просто конфіги.
+
+Освітні шаблони з поясненнями:
 - Agents (23), Commands (52), Hooks (37), Skills (64)
-- Comments explaining **why** each pattern works (not just what it does)
-- Gradual complexity progression (simple → advanced)
+- Коментарі, що пояснюють **чому** кожен патерн працює (а не просто що він робить)
+- Поступове зростання складності (від простого до просунутого)
 
-[Browse Catalog →](./examples/)
+[Переглянути каталог →](./examples/)
 
-**What this means for you**: Understand the reasoning behind patterns, adapt templates to your context, create your own custom patterns.
-
----
-
-### 🔍 151 Resource Evaluations
-
-**Outcome**: Trust our recommendations are evidence-based.
-
-Systematic assessment of external resources (5-point scoring):
-- Articles, videos, tools, frameworks
-- Honest assessments with source attribution (no marketing fluff)
-- Integration recommendations with trade-offs
-
-[See Evaluations →](./docs/resource-evaluations/)
-
-**What this means for you**: Save time vetting resources, understand limitations before adopting tools, make informed decisions.
+**Що це означає для вас**: Розумійте логіку патернів, адаптуйте шаблони до свого контексту, створюйте власні кастомні патерни.
 
 ---
 
-## 🎯 Learning Paths
+### 🔍 151 оцінка ресурсів
+
+**Результат**: Довіряйте тому, що наші рекомендації базуються на доказах.
+
+Систематична оцінка зовнішніх ресурсів (5-бальна шкала):
+- Статті, відео, інструменти, фреймворки
+- Чесні оцінки з атрибуцією джерел (без маркетингової "води")
+- Рекомендації щодо інтеграції з аналізом компромісів
+
+[Дивитися оцінки →](./docs/resource-evaluations/)
+
+**Що це означає для вас**: Заощаджуйте час на перевірці ресурсів, розумійте обмеження перед впровадженням інструментів, приймайте обґрунтовані рішення.
+
+---
+
+## 🎯 Навчальні шляхи
 
 <details>
-<summary><strong>Junior Developer</strong> — Foundation path (7 steps)</summary>
+<summary><strong>Junior Developer</strong> — базовий шлях (7 кроків)</summary>
 
-1. [Quick Start](./guide/ultimate-guide.md#1-quick-start-day-1) — Install & first workflow
-2. [Essential Commands](./guide/ultimate-guide.md#13-essential-commands) — The 7 commands
-3. [Context Management](./guide/ultimate-guide.md#22-context-management) — Critical concept
-4. [Memory Files](./guide/ultimate-guide.md#31-memory-files-claudemd) — Your first CLAUDE.md
-5. [Learning with AI](./guide/roles/learning-with-ai.md) — Use AI without becoming dependent ⭐
-6. [TDD Workflow](./guide/workflows/tdd-with-claude.md) — Test-first development
-7. [Cheat Sheet](./guide/cheatsheet.md) — Print this
+1. [Швидкий старт](./guide/ultimate-guide.md#1-quick-start-day-1) — встановлення та перший воркфлоу
+2. [Основні команди](./guide/ultimate-guide.md#13-essential-commands) — 7 головних команд
+3. [Управління контекстом](./guide/ultimate-guide.md#22-context-management) — критична концепція
+4. [Файли пам'яті](./guide/ultimate-guide.md#31-memory-files-claudemd) — ваш перший CLAUDE.md
+5. [Навчання з AI](./guide/roles/learning-with-ai.md) — використовуйте AI, не стаючи залежними ⭐
+6. [TDD воркфлоу](./guide/workflows/tdd-with-claude.md) — розробка через тестування
+7. [Cheat Sheet](./guide/cheatsheet.md) — роздрукуйте це
 
 </details>
 
 <details>
-<summary><strong>Senior Developer</strong> — Intermediate path (6 steps)</summary>
+<summary><strong>Senior Developer</strong> — проміжний шлях (6 кроків)</summary>
 
-1. [Core Concepts](./guide/ultimate-guide.md#2-core-concepts) — Mental model
-2. [Plan Mode](./guide/ultimate-guide.md#23-plan-mode) — Safe exploration
-3. [Methodologies](./guide/core/methodologies.md) — TDD, SDD, BDD reference
-4. [Agents](./guide/ultimate-guide.md#4-agents) — Custom AI personas
-5. [Hooks](./guide/ultimate-guide.md#7-hooks) — Event automation
-6. [CI/CD Integration](./guide/ultimate-guide.md#93-cicd-integration) — Pipelines
+1. [Основні концепції](./guide/ultimate-guide.md#2-core-concepts) — ментальна модель
+2. [Plan Mode](./guide/ultimate-guide.md#23-plan-mode) — безпечне дослідження
+3. [Методології](./guide/core/methodologies.md) — довідка по TDD, SDD, BDD
+4. [Agents](./guide/ultimate-guide.md#4-agents) — кастомні AI персони
+5. [Hooks](./guide/ultimate-guide.md#7-hooks) — автоматизація подій
+6. [Інтеграція з CI/CD](./guide/ultimate-guide.md#93-cicd-integration) — пайплайни
 
 </details>
 
 <details>
-<summary><strong>Power User</strong> — Comprehensive path (8 steps)</summary>
+<summary><strong>Power User</strong> — комплексний шлях (8 кроків)</summary>
 
-1. [Complete Guide](./guide/ultimate-guide.md) — End-to-end
-2. [Architecture](./guide/core/architecture.md) — How Claude Code works
-3. [Security Hardening](./guide/security/security-hardening.md) — MCP vetting, injection defense
-4. [MCP Servers](./guide/ultimate-guide.md#8-mcp-servers) — Extended capabilities
-5. [Trinity Pattern](./guide/ultimate-guide.md#91-the-trinity) — Advanced workflows
-6. [Observability](./guide/ops/observability.md) — Monitor costs & sessions
-7. [Agent Teams](./guide/workflows/agent-teams.md) — Multi-agent coordination (Opus 4.7+ experimental)
-8. [Examples](./examples/) — Production templates
+1. [Повний посібник](./guide/ultimate-guide.md) — від початку до кінця
+2. [Архітектура](./guide/core/architecture.md) — як працює Claude Code
+3. [Посилення безпеки](./guide/security/security-hardening.md) — перевірка MCP, захист від ін'єкцій
+4. [MCP сервери](./guide/ultimate-guide.md#8-mcp-servers) — розширені можливості
+5. [Trinity патерн](./guide/ultimate-guide.md#91-the-trinity) — просунуті воркфлоу
+6. [Спостережуваність](./guide/ops/observability.md) — моніторинг витрат та сесій
+7. [Agent Teams](./guide/workflows/agent-teams.md) — багатоагентна координація (Opus 4.7+ experimental)
+8. [Приклади](./examples/) — продакшен шаблони
 
 </details>
 
 <details>
 <summary><strong>Product Manager / DevOps / Designer</strong></summary>
 
-**Product Manager** (5 steps):
-1. [What's Inside](#-whats-inside) — Scope overview
-2. [Golden Rules](#-golden-rules) — Key principles
-3. [Data Privacy](./guide/security/data-privacy.md) — Retention & compliance
-4. [Adoption Approaches](./guide/roles/adoption-approaches.md) — Team strategies
-5. [PM FAQ](./guide/ultimate-guide.md#can-product-managers-use-claude-code) — Code-adjacent vs non-coding PMs
+**Product Manager** (5 кроків):
+1. [Що всередині](#-що-всередині) — огляд обсягу
+2. [Золоті правила](#-золоті-правила) — ключові принципи
+3. [Конфіденційність даних](./guide/security/data-privacy.md) — зберігання та відповідність
+4. [Підходи до впровадження](./guide/roles/adoption-approaches.md) — стратегії для команд
+5. [PM FAQ](./guide/ultimate-guide.md#can-product-managers-use-claude-code) — для PM, які кодують та не кодують
 
-**Note**: Non-coding PMs should consider [Claude Cowork Guide](https://github.com/FlorianBruniaux/claude-cowork-guide) instead.
+**Примітка**: PM, які не кодують, варто розглянути [Claude Cowork Guide](https://github.com/FlorianBruniaux/claude-cowork-guide).
 
-**DevOps / SRE** (5 steps):
-1. [DevOps & SRE Guide](./guide/ops/devops-sre.md) — FIRE framework
-2. [K8s Troubleshooting](./guide/ops/devops-sre.md#kubernetes-troubleshooting) — Symptom-based prompts
-3. [Incident Response](./guide/ops/devops-sre.md#pattern-incident-response) — Workflows
-4. [IaC Patterns](./guide/ops/devops-sre.md#pattern-infrastructure-as-code) — Terraform, Ansible
-5. [Guardrails](./guide/ops/devops-sre.md#guardrails--adoption) — Security boundaries
+**DevOps / SRE** (5 кроків):
+1. [Гід для DevOps & SRE](./guide/ops/devops-sre.md) — FIRE фреймворк
+2. [K8s Troubleshooting](./guide/ops/devops-sre.md#kubernetes-troubleshooting) — промпти на основі симптомів
+3. [Реагування на інциденти](./guide/ops/devops-sre.md#pattern-incident-response) — воркфлоу
+4. [IaC патерни](./guide/ops/devops-sre.md#pattern-infrastructure-as-code) — Terraform, Ansible
+5. [Guardrails](./guide/ops/devops-sre.md#guardrails--adoption) — межі безпеки
 
-**Product Designer** (5 steps):
-1. [Working with Images](./guide/ultimate-guide.md#24-working-with-images) — Image analysis
-2. [Wireframing Tools](./guide/ultimate-guide.md#wireframing-tools) — ASCII/Excalidraw
-3. [Figma MCP](./guide/ultimate-guide.md#figma-mcp) — Design file access
-4. [Design-to-Code Workflow](./guide/workflows/design-to-code.md) — Figma → Claude
-5. [Cheat Sheet](./guide/cheatsheet.md) — Print this
+**Product Designer** (5 кроків):
+1. [Робота із зображеннями](./guide/ultimate-guide.md#24-working-with-images) — аналіз зображень
+2. [Інструменти прототипування](./guide/ultimate-guide.md#wireframing-tools) — ASCII/Excalidraw
+3. [Figma MCP](./guide/ultimate-guide.md#figma-mcp) — доступ до файлів дизайну
+4. [Design-to-Code воркфлоу](./guide/workflows/design-to-code.md) — Figma → Claude
+5. [Cheat Sheet](./guide/cheatsheet.md) — роздрукуйте це
 
 </details>
 
-### Progressive Journey
+### Прогресивна подорож
 
-- **Week 1**: Foundations (install, CLAUDE.md, first agent)
-- **Week 2**: Core Features (skills, hooks, trust calibration)
-- **Week 3**: Advanced (MCP servers, methodologies)
-- **Month 2+**: Production mastery (CI/CD, observability)
+- **Тиждень 1**: Основи (встановлення, CLAUDE.md, перший агент)
+- **Тиждень 2**: Ключові функції (скіли, хуки, калібрування довіри)
+- **Тиждень 3**: Просунутий рівень (MCP сервери, методології)
+- **Місяць 2+**: Майстерність у продакшені (CI/CD, спостережуваність)
 
 ---
 
-## 🔧 Rate Limits & Cost Savings
+## 🔧 Ліміти та економія витрат
 
-**cc-copilot-bridge** routes Claude Code through GitHub Copilot Pro+ for flat-rate access ($10/month instead of per-token billing).
+**cc-copilot-bridge** направляє Claude Code через GitHub Copilot Pro+ для доступу за фіксованою ціною ($10/місяць замість по-токенної оплати).
 
 ```bash
-# Install
+# Встановлення
 git clone https://github.com/FlorianBruniaux/cc-copilot-bridge.git && cd cc-copilot-bridge && ./install.sh
 
-# Use
-ccc   # Copilot mode (flat $10/month)
-ccd   # Direct Anthropic mode (per-token)
-cco   # Offline mode (Ollama, 100% local)
+# Використання
+ccc   # Режим Copilot (фіксовано $10/місяць)
+ccd   # Прямий режим Anthropic (оплата за токени)
+cco   # Офлайн режим (Ollama, 100% локально)
 ```
 
-**Benefits**: Multi-provider switching, rate limit bypass, 99%+ cost savings on heavy usage.
+**Переваги**: перемикання між провайдерами, обхід лімітів, економія 99%+ на інтенсивному використанні.
 
 → **[cc-copilot-bridge](https://github.com/FlorianBruniaux/cc-copilot-bridge)**
 
 ---
 
-## 🔑 Golden Rules
+## 🔑 Золоті правила
 
-### 1. Verify Trust Before Use
+### 1. Перевіряйте довіру перед використанням
 
-Claude Code can generate 1.75x more logic errors than human-written code ([ACM 2025](https://dl.acm.org/doi/10.1145/3716848)). Every output must be verified. Use `/insights` commands and verify patterns through tests.
+Claude Code може генерувати в 1.75 рази більше логічних помилок, ніж людина ([ACM 2025](https://dl.acm.org/doi/10.1145/3716848)). Кожен результат має бути перевірений. Використовуйте команди `/insights` та перевіряйте патерни через тести.
 
-**Strategy:** Solo dev (verify logic + edge cases). Team (systematic peer review). Production (mandatory gating tests).
-
----
-
-### 2. Never Approve MCPs from Unknown Sources
-
-28 CVEs identified in Claude Code ecosystem. 655 malicious skills in supply chain. MCP servers can read/write your codebase.
-
-**Strategy:** Systematic audit (5-min checklist). Community-vetted MCP Safe List. Vetting workflow documented in guide.
+**Стратегія:** Solo розробник (перевірка логіки + крайових випадків). Команда (систематичне рев'ю колегами). Продакшен (обов'язкові тести).
 
 ---
 
-### 3. Context Pressure Changes Behavior
+### 2. Ніколи не схвалюйте MCP із невідомих джерел
 
-At 70% context, Claude starts losing precision. At 85%, hallucinations increase. At 90%+, responses become erratic.
+В екосистемі Claude Code виявлено 28 CVE. 655 шкідливих скілів у ланцюжку поставок. MCP сервери можуть читати/писати ваш код.
 
-**Strategy:** 0-50% (work freely). 50-70% (attention). 70-90% (`/compact`). 90%+ (`/clear` mandatory).
-
----
-
-### 4. Start Simple, Scale Smart
-
-Start with basic CLAUDE.md + a few commands. Test in production for 2 weeks. Add agents/skills only if need is proven.
-
-**Strategy:** Phase 1 (basic). Phase 2 (commands + hooks if needed). Phase 3 (agents if multi-context). Phase 4 (MCP servers if truly required).
+**Стратегія:** Систематичний аудит (5-хвилинний чек-лист). Список безпечних MCP від спільноти. Воркфлоу перевірки задокументований у посібнику.
 
 ---
 
-### 5. Methodologies Matter More with AI
+### 3. Тиск контексту змінює поведінку
 
-TDD/SDD/BDD are not optional with Claude Code. AI accelerates bad code as much as good code.
+При 70% заповнення контексту Claude починає втрачати точність. При 85% — зростають галюцинації. При 90%+ — відповіді стають непередбачуваними.
 
-**Strategy:** TDD (critical logic). SDD (architecture upfront). BDD (PM/dev collaboration). GSD (throwaway prototypes).
+**Стратегія:** 0-50% (вільна робота). 50-70% (увага). 70-90% (`/compact`). 90%+ (обов'язкова команда `/clear`).
 
 ---
 
-### Quick Reference
+### 4. Починайте з простого, масштабуйте розумно
 
-| # | Rule | Key Metric | Action |
+Почніть з базового CLAUDE.md + кількох команд. Тестуйте в продакшені 2 тижні. Додавайте агентів/скіли лише якщо потреба доведена.
+
+**Стратегія:** Фаза 1 (базова). Фаза 2 (команди + хуки за потреби). Фаза 3 (агенти для мульти-контексту). Фаза 4 (MCP сервери, якщо справді необхідно).
+
+---
+
+### 5. Методології мають більше значення з AI
+
+TDD/SDD/BDD не є опціональними з Claude Code. AI прискорює створення поганого коду так само, як і хорошого.
+
+**Стратегія:** TDD (критична логіка). SDD (архітектура наперед). BDD (співпраця PM/розробник). GSD (швидкі прототипи).
+
+---
+
+### Швидка довідка
+
+| # | Правило | Ключова метрика | Дія |
 |---|------|------------|--------|
-| 1 | Verify Trust | 1.75x more logic errors | Test everything, peer review |
-| 2 | Vet MCPs | 28 CVEs, 655 malicious skills | 5-min audit checklist |
-| 3 | Manage Context | 70% = precision loss | `/compact` at 70%, `/clear` at 90% |
-| 4 | Start Simple | 2-week test period | Phase 1→4 progressive adoption |
-| 5 | Use Methodologies | AI amplifies good AND bad | TDD/SDD/BDD by context |
+| 1 | Перевіряйте довіру | в 1.75 рази більше помилок логіки | Тестуйте все, рев'ю колег |
+| 2 | Перевіряйте MCP | 28 CVE, 655 шкідливих скілів | 5-хв чек-лист аудиту |
+| 3 | Керуйте контекстом | 70% = втрата точності | `/compact` на 70%, `/clear` на 90% |
+| 4 | Починайте з простого | 2-тижневий тестовий період | Прогресивне впровадження Фази 1→4 |
+| 5 | Використовуйте методології | AI посилює і добре, і погане | TDD/SDD/BDD залежно від контексту |
 
-> Context management is critical. See the [Cheat Sheet](./guide/cheatsheet.md#context-management-critical) for thresholds and actions.
+> Управління контекстом є критичним. Дивіться [Cheat Sheet](./guide/cheatsheet.md#context-management-critical) для порогових значень та дій.
 
 ---
 
-## 🤖 For AI Assistants
+## 🤖 Для AI асистентів
 
-| Resource | Purpose | Tokens |
+| Ресурс | Призначення | Токени |
 |----------|---------|--------|
-| **[llms.txt](./machine-readable/llms.txt)** | Standard context file | ~1K |
-| **[reference.yaml](./machine-readable/reference.yaml)** | Structured index with line numbers | ~2K |
+| **[llms.txt](./machine-readable/llms.txt)** | Стандартний файл контексту | ~1K |
+| **[reference.yaml](./machine-readable/reference.yaml)** | Структурований індекс із рядками | ~2K |
 
-**Quick load**: `curl -sL https://raw.githubusercontent.com/FlorianBruniaux/claude-code-ultimate-guide/main/machine-readable/reference.yaml`
+**Швидке завантаження**: `curl -sL https://raw.githubusercontent.com/FlorianBruniaux/claude-code-ultimate-guide/main/machine-readable/reference.yaml`
 
-### reference.yaml — Structure & Landing Site Search
+### reference.yaml — Структура та пошук на сайті
 
-`reference.yaml` is organized into several top-level sections:
+`reference.yaml` організований у кілька розділів верхнього рівня:
 
-| Section | Content |
+| Розділ | Вміст |
 |---------|---------|
-| `lines` | Line number references for key sections in `ultimate-guide.md` |
-| `deep_dive` | Key → file path mappings for all guides, examples, hooks, agents, commands |
-| `decide` | Decision tree (when to use what) |
-| `stats` | Counters (templates, questions, CVEs…) |
+| `lines` | Посилання на номери рядків для ключових розділів в `ultimate-guide.md` |
+| `deep_dive` | Відображення Ключ → Шлях до файлу для всіх посібників, прикладів, хуків, агентів, команд |
+| `decide` | Дерево прийняття рішень (коли що використовувати) |
+| `stats` | Лічильники (шаблони, запитання, CVE…) |
 
-**The `deep_dive` section powers the [landing site](https://cc.bruniaux.com) CMD+K search.** The build script (`scripts/build-guide-index.mjs`) parses it to generate 160 search entries.
+**Розділ `deep_dive` забезпечує пошук CMD+K на [сайті](https://cc.bruniaux.com).** Скрипт збірки (`scripts/build-guide-index.mjs`) парсить його для генерації 160 записів пошуку.
 
-#### How the search index works
+#### Як працює індекс пошуку
 
-The CMD+K search on the landing site is an **explicit index** — not a full-text search. Only entries listed in `deep_dive` are indexed. Keywords are derived mechanically from the key name and file path, not from the file content.
+Пошук CMD+K на сайті — це **явний індекс**, а не повнотекстовий пошук. Індексуються лише записи, перелічені в `deep_dive`. Ключові слова виводяться механічно з назви ключа та шляху до файлу, а не з вмісту файлу.
 
-**Consequence**: adding a new guide section requires explicitly adding an entry to `deep_dive`, then running `pnpm build:search` in the landing repo.
+**Наслідок**: додавання нового розділу посібника вимагає явного додавання запису в `deep_dive`, а потім запуску `pnpm build:search` у репозиторії сайту.
 
-#### Maintaining reference.yaml
+#### Підтримка reference.yaml
 
-**Adding a new entry** to `deep_dive`:
+**Додавання нового запису** до `deep_dive`:
 ```yaml
 deep_dive:
-  # existing entries...
-  my_new_section: "guide/my-new-file.md"          # local guide file
-  my_hook_example: "examples/hooks/bash/foo.sh"   # example file
-  my_section_ref: "guide/ultimate-guide.md:1234"  # with line number anchor
+  # існуючі записи...
+  my_new_section: "guide/my-new-file.md"          # локальний файл посібника
+  my_hook_example: "examples/hooks/bash/foo.sh"   # файл прикладу
+  my_section_ref: "guide/ultimate-guide.md:1234"  # з якорем на номер рядка
 ```
 
-**Critical: avoid duplicate keys.** If a key appears twice in `deep_dive`, the YAML parser fails and the landing site search index becomes empty (0 entries). The build exits with a warning but no hard error:
+**Критично: уникайте дублювання ключів.** Якщо ключ з'являється двічі в `deep_dive`, YAML-парсер видає помилку, і індекс пошуку на сайті стає порожнім (0 записів).
 
-```
-[build-guide-index] ERROR: Failed to parse YAML: duplicated mapping key
-[build-guide-index] Generating empty guide-search-entries.ts
-```
-
-Use distinct names — e.g. if you need both a line-number reference and a file path for the same concept, suffix the line-number key with `_line`:
+Використовуйте унікальні імена — наприклад, якщо вам потрібне і посилання на рядок, і шлях до файлу для однієї концепції, додайте суфікс `_line` до ключа з номером рядка:
 ```yaml
-security_gate_hook_line: 6907                              # line number ref
-security_gate_hook: "examples/hooks/bash/security-gate.sh" # file path ref
+security_gate_hook_line: 6907                              # посилання на рядок
+security_gate_hook: "examples/hooks/bash/security-gate.sh" # посилання на файл
 ```
 
 ---
 
 ## 📄 Whitepapers (FR + EN)
 
-11 focused whitepapers covering Claude Code in depth — PDF + EPUB, available in French and English. 472 pages total.
+11 спеціалізованих whitepapers, що глибоко охоплюють Claude Code — PDF + EPUB, доступні французькою та англійською мовами. Всього 472 сторінки.
 
-> **Coming soon** — currently in private access. Public release planned.
+> **Незабаром** — наразі у приватному доступі. Планується публічний реліз.
 
-| # | FR | EN | Pages |
+| # | FR | EN | Сторінки |
 |---|----|----|-------|
 | **00** | *De Zéro à Productif* | *From Zero to Productive* | 20 |
 | **01** | *Prompts qui Marchent* | *Prompts That Work* | 40 |
@@ -590,209 +585,209 @@ security_gate_hook: "examples/hooks/bash/security-gate.sh" # file path ref
 | **06** | *Privacy & Compliance* | *Privacy & Compliance* | 29 |
 | **07** | *Guide de Référence* | *Reference Guide* | 87 |
 | **08** | *Agent Teams* | *Agent Teams* | 42 |
-| **09** | *Apprendre avec l'IA* | *Learning with AI* — UVAL protocol, comprehension debt | 49 |
-| **10** | *Convaincre son Employeur* | *Making the Case for AI* — ROI dossier for CEO/CTO/CFO | 27 |
+| **09** | *Apprendre avec l'IA* | *Learning with AI* — протокол UVAL, борг розуміння | 49 |
+| **10** | *Convaincre son Employeur* | *Making the Case for AI* — досьє ROI для CEO/CTO/CFO | 27 |
 
-## 🗂️ Recap Cards (FR, EN coming)
+## 🗂️ Recap Cards (FR, EN у процесі)
 
-57 single-page A4 reference cards — printable, one concept per card. Available in French; English version in progress.
+57 односторінкових карток A4 — для друку, одна концепція на картку. Доступні французькою; англійська версія в розробці.
 
-> **Browse online**: [cc.bruniaux.com/cheatsheets/](https://cc.bruniaux.com/cheatsheets/)
+> **Перегляд онлайн**: [cc.bruniaux.com/cheatsheets/](https://cc.bruniaux.com/cheatsheets/)
 
-- **Technique (22 cards)** — Commands, permissions, configuration, MCP, models, context window
-- **Méthodologie (22 cards)** — Daily workflow, agents, hooks, CI/CD, multi-agent, debug
-- **Conception (13 cards)** — Mental models, prompting, security by design, cost patterns
+- **Технічні (22 картки)** — команди, дозволи, конфігурація, MCP, моделі, вікно контексту
+- **Методологічні (22 картки)** — щоденний воркфлоу, агенти, хуки, CI/CD, багатоагентність, дебаг
+- **Концептуальні (13 карток)** — ментальні моделі, промптинг, безпека за дизайном, патерни вартості
 
 ---
 
-## 🌍 Ecosystem
+## 🌍 Екосистема
 
-### Claude Cowork (Non-Developers)
+### Claude Cowork (Для тих, хто не кодує)
 
-**Claude Cowork** is the companion guide for non-technical users (knowledge workers, assistants, managers).
+**Claude Cowork** — це посібник-супутник для технічних фахівців (knowledge workers, асистентів, менеджерів).
 
-Same agentic capabilities as Claude Code, but through a visual interface with no coding required.
+Ті ж агентні можливості, що й у Claude Code, але через візуальний інтерфейс без потреби в кодуванні.
 
-→ **[Claude Cowork Guide](https://github.com/FlorianBruniaux/claude-cowork-guide)** — File organization, document generation, automated workflows
+→ **[Claude Cowork Guide](https://github.com/FlorianBruniaux/claude-cowork-guide)** — організація файлів, генерація документів, автоматизовані воркфлоу
 
-**Status**: Research preview (Pro $20/mo or Max $100-200/mo, macOS only, **VPN incompatible**)
+**Статус**: Research preview (Pro $20/міс або Max $100-200/міс, тільки macOS, **VPN несумісний**)
 
 ### Claude Code Plugins (Marketplace)
 
-All 181 templates from this guide packaged as installable Claude Code plugins — hooks auto-wired, no manual config:
+Усі 181 шаблон із цього посібника упаковані як плагіни Claude Code, що встановлюються — хуки підключаються автоматично, без ручного налаштування:
 
 ```bash
-# Add the marketplace
+# Додати маркетплейс
 claude plugin marketplace add FlorianBruniaux/claude-code-plugins
 
-# Install the plugins you need
-claude plugin install security-suite       # OWASP auditing, cyber-defense pipeline, 13 hooks
+# Встановити потрібні плагіни
+claude plugin install security-suite       # OWASP аудит, cyber-defense pipeline, 13 хуків
 claude plugin install devops-pipeline      # CI/CD, git worktrees, GitHub Actions
-claude plugin install release-automation   # Changelog + release notes + social content
-claude plugin install code-quality         # SOLID refactoring, TDD, GoF patterns, 6 agents
-claude plugin install pr-workflow          # Planning gates, PR/issue triage, handoffs
-claude plugin install session-tools        # ccboard monitoring, voice refinement, 11 hooks
-claude plugin install ai-methodology       # Scaffolding, 6-stage talk pipeline, context-engineering
-claude plugin install session-summary      # Session analytics dashboard (15 sections)
+claude plugin install release-automation   # Changelog + нотатки до релізу + контент для соцмереж
+claude plugin install code-quality         # SOLID рефакторинг, TDD, GoF патерни, 6 агентів
+claude plugin install pr-workflow          # Гейти планування, тріаж PR/issue, передача завдань
+claude plugin install session-tools        # ccboard моніторинг, голос, 11 хуків
+claude plugin install ai-methodology       # Скеффолдинг, 6-стадійний пайплайн виступів
+claude plugin install session-summary      # Дашборд аналітики сесії (15 розділів)
 ```
 
-> **[FlorianBruniaux/claude-code-plugins](https://github.com/FlorianBruniaux/claude-code-plugins)** — 8 plugins, 181 templates, one marketplace
+> **[FlorianBruniaux/claude-code-plugins](https://github.com/FlorianBruniaux/claude-code-plugins)** — 8 плагінів, 181 шаблон, один маркетплейс
 
-### Complementary Resources
+### Додаткові ресурси
 
-| Project | Focus | Best For |
+| Проект | Фокус | Найкраще для |
 |---------|-------|----------|
-| [everything-claude-code](https://github.com/affaan-m/everything-claude-code) | Production configs (45k+ stars) | Quick setup, battle-tested patterns |
-| [claude-code-templates](https://github.com/davila7/claude-code-templates) | Distribution (200+ templates) | CLI installation (17k stars) |
-| [anthropics/skills](https://github.com/anthropics/skills) | Official Anthropic skills (60K+ stars) | Documents, design, dev templates |
-| [anthropics/claude-plugins-official](https://skills.sh/anthropics/claude-plugins-official) | Plugin dev tools (3.1K installs) | CLAUDE.md audit, automation discovery |
-| [skills.sh](https://skills.sh/) | Skills marketplace | One-command install (Vercel Labs) |
-| [awesome-claude-code](https://github.com/hesreallyhim/awesome-claude-code) | Curation | Resource discovery |
-| [awesome-claude-skills](https://github.com/BehiSecc/awesome-claude-skills) | Skills taxonomy | 62 skills across 12 categories |
-| [awesome-claude-md](https://github.com/josix/awesome-claude-md) | CLAUDE.md examples | Annotated configs with scoring |
-| [AI Coding Agents Matrix](https://coding-agents-matrix.dev) | Technical comparison | Comparing 23+ alternatives |
+| [everything-claude-code](https://github.com/affaan-m/everything-claude-code) | Продакшен конфіги (45k+ зірок) | Швидке налаштування, перевірені патерни |
+| [claude-code-templates](https://github.com/davila7/claude-code-templates) | Дистрибуція (200+ шаблонів) | Інсталяція через CLI (17k зірок) |
+| [anthropics/skills](https://github.com/anthropics/skills) | Офіційні скіли Anthropic (60K+ зірок) | Документи, дизайн, шаблони розробки |
+| [anthropics/claude-plugins-official](https://skills.sh/anthropics/claude-plugins-official) | Інструменти розробки плагінів | Аудит CLAUDE.md, пошук автоматизацій |
+| [skills.sh](https://skills.sh/) | Маркетплейс скілів | Встановлення однією командою (Vercel Labs) |
+| [awesome-claude-code](https://github.com/hesreallyhim/awesome-claude-code) | Курація | Пошук ресурсів |
+| [awesome-claude-skills](https://github.com/BehiSecc/awesome-claude-skills) | Таксономія скілів | 62 скіли у 12 категоріях |
+| [awesome-claude-md](https://github.com/josix/awesome-claude-md) | Приклади CLAUDE.md | Анотовані конфіги з оцінкою |
+| [AI Coding Agents Matrix](https://coding-agents-matrix.dev) | Технічне порівняння | Порівняння 23+ альтернатив |
 
-**Community**: 🇫🇷 [Dev With AI](https://www.devw.ai/) — 1500+ devs on Slack, meetups in Paris, Bordeaux, Lyon
+**Спільнота**: 🇫🇷 [Dev With AI](https://www.devw.ai/) — 1500+ розробників у Slack, мітапи в Парижі, Бордо, Ліоні
 
-→ **[AI Ecosystem Guide](./guide/ecosystem/ai-ecosystem.md)** — Complete integration patterns with complementary AI tools
+→ **[AI Ecosystem Guide](./guide/ecosystem/ai-ecosystem.md)** — повні патерни інтеграції з додатковими AI інструментами
 
 ---
 
-## 🛡️ Security
+## 🛡️ Безпека
 
-**Comprehensive MCP security coverage** — the only guide with a threat intelligence database and production hardening workflows.
+**Вичерпне покриття безпеки MCP** — єдиний посібник з базою даних розвідки загроз та воркфлоу посилення безпеки у продакшені.
 
-### Official Security Tools
+### Офіційні інструменти безпеки
 
-| Tool | Purpose | Maintained By |
+| Інструмент | Призначення | Хто підтримує |
 |------|---------|---------------|
-| [claude-code-security-review](https://github.com/anthropics/claude-code-security-review) | GitHub Action for automated security scanning | Anthropic (official) |
-| This Guide's Threat DB | Intelligence layer (28 CVEs, 655 malicious skills) | Community |
+| [claude-code-security-review](https://github.com/anthropics/claude-code-security-review) | GitHub Action для автоматичного сканування безпеки | Anthropic (офіційно) |
+| База загроз цього посібника | Шар інтелекту (28 CVE, 655 шкідливих скілів) | Спільнота |
 
-**Workflow**: Use GitHub Action for automation → Consult Threat DB for threat intelligence.
+**Воркфлоу**: Використовуйте GitHub Action для автоматизації → Консультуйтеся з Базою загроз для отримання актуальних даних.
 
-### Threat Database
+### База даних загроз
 
-**28 CVE-mapped vulnerabilities** and **655 malicious skills** tracked in [`examples/commands/resources/threat-db.yaml`](./examples/commands/resources/threat-db.yaml):
+**28 CVE-картованих вразливостей** та **655 шкідливих скілів**, що відстежуються в [`examples/commands/resources/threat-db.yaml`](./examples/commands/resources/threat-db.yaml):
 
-| Threat Category | Count | Examples |
+| Категорія загрози | Кількість | Приклади |
 |----------------|-------|----------|
 | **Code/Command Injection** | 5 CVEs | CLI bypass (CVE-2025-66032), child_process exec |
 | **Path Traversal & Access** | 4 CVEs | Symlink escape (CVE-2025-53109), prefix bypass |
 | **RCE & Prompt Hijacking** | 4 CVEs | MCP Inspector RCE (CVE-2025-49596), session hijack |
 | **SSRF & DNS Rebinding** | 4 CVEs | WebFetch SSRF (CVE-2026-24052), DNS rebinding |
 | **Data Leakage** | 1 CVE | Cross-client response leak (CVE-2026-25536) |
-| **Malicious Skills** | 655 patterns | Unicode injection, hidden instructions, auto-execute |
+| **Malicious Skills** | 655 патернів | Ін'єкції Unicode, приховані інструкції, автовиконання |
 
-**Taxonomies**: 10 attack surfaces × 11 threat types × 8 impact levels
+**Таксономія**: 10 поверхонь атак × 11 типів загроз × 8 рівнів впливу
 
-### Hardening Resources
+### Ресурси посилення безпеки (Hardening)
 
-| Resource | Purpose | Time |
+| Ресурс | Призначення | Час |
 |----------|---------|------|
-| **[Security Hardening Guide](./guide/security/security-hardening.md)** | MCP vetting, injection defense, audit workflow | 25 min |
-| **[Data Privacy Guide](./guide/security/data-privacy.md)** | Retention policies (5yr → 30d → 0), GDPR compliance | 10 min |
-| **[Sandbox Isolation](./guide/security/sandbox-isolation.md)** | Docker sandboxes for untrusted MCP servers | 10 min |
-| **[Production Safety](./guide/security/production-safety.md)** | Infrastructure locks, port stability, DB safety | 20 min |
+| **[Security Hardening Guide](./guide/security/security-hardening.md)** | Перевірка MCP, захист від ін'єкцій, воркфлоу аудиту | 25 хв |
+| **[Data Privacy Guide](./guide/security/data-privacy.md)** | Політики зберігання (5р → 30д → 0), відповідність GDPR | 10 хв |
+| **[Sandbox Isolation](./guide/security/sandbox-isolation.md)** | Docker пісочниці для недовірених MCP серверів | 10 хв |
+| **[Production Safety](./guide/security/production-safety.md)** | Блокування інфраструктури, стабільність портів, безпека БД | 20 хв |
 
-### Security Commands
+### Команди безпеки
 
 ```bash
-/security-check      # Quick scan config vs known threats (~30s)
-/security-audit      # Full 6-phase audit with score /100 (2-5min)
-/update-threat-db    # Research & update threat intelligence
-/audit-agents-skills # Quality audit with security checks
+/security-check      # Швидке сканування конфігу на відомі загрози (~30с)
+/security-audit      # Повний 6-фазний аудит з оцінкою /100 (2-5хв)
+/update-threat-db    # Дослідження та оновлення бази загроз
+/audit-agents-skills # Аудит якості з перевірками безпеки
 ```
 
-### Security Hooks
+### Хуки безпеки
 
-**37 production hooks** (bash + PowerShell) in [`examples/hooks/`](./examples/hooks/):
+**37 продакшен хуків** (bash + PowerShell) у [`examples/hooks/`](./examples/hooks/):
 
-| Hook | Purpose |
+| Хук | Призначення |
 |------|---------|
-| [dangerous-actions-blocker](./examples/hooks/bash/dangerous-actions-blocker.sh) | Block `rm -rf`, force-push, production ops |
-| [prompt-injection-detector](./examples/hooks/bash/prompt-injection-detector.sh) | Detect injection patterns in CLAUDE.md/prompts |
-| [unicode-injection-scanner](./examples/hooks/bash/unicode-injection-scanner.sh) | Detect hidden Unicode (zero-width, RTL override) |
-| [output-secrets-scanner](./examples/hooks/bash/output-secrets-scanner.sh) | Prevent API keys/tokens in Claude responses |
+| [dangerous-actions-blocker](./examples/hooks/bash/dangerous-actions-blocker.sh) | Блокування `rm -rf`, force-push, операцій у продакшені |
+| [prompt-injection-detector](./examples/hooks/bash/prompt-injection-detector.sh) | Виявлення патернів ін'єкцій у CLAUDE.md/промптах |
+| [unicode-injection-scanner](./examples/hooks/bash/unicode-injection-scanner.sh) | Виявлення прихованого Unicode (zero-width, RTL override) |
+| [output-secrets-scanner](./examples/hooks/bash/output-secrets-scanner.sh) | Запобігання потраплянню API ключів/токенів у відповіді Claude |
 
-**[Browse All Security Hooks →](./examples/hooks/)**
+**[Переглянути всі хуки безпеки →](./examples/hooks/)**
 
-### MCP Vetting Workflow
+### Воркфлоу перевірки MCP
 
-**Systematic evaluation before trusting MCP servers:**
+**Систематична оцінка перед тим, як довіряти MCP серверам:**
 
-1. **Provenance**: GitHub verified, 100+ stars, active maintenance
-2. **Code Review**: Minimal privileges, no obfuscation, open-source
-3. **Permissions**: Whitelist-only filesystem access, network restrictions
-4. **Testing**: Isolated Docker sandbox first, monitor tool calls
-5. **Monitoring**: Session logs, error tracking, regular re-audits
+1. **Походження**: перевірено GitHub, 100+ зірок, активна підтримка
+2. **Рев'ю коду**: мінімальні привілеї, відсутність обфускації, відкритий код
+3. **Дозволи**: доступ до файлової системи лише за білим списком, обмеження мережі
+4. **Тестування**: спочатку ізольована пісочниця Docker, моніторинг викликів інструментів
+5. **Моніторинг**: логи сесій, відстеження помилок, регулярні повторні аудити
 
-**[Full MCP Security Workflow →](./guide/security/security-hardening.md#vetting-mcp-servers)**
+**[Повний воркфлоу безпеки MCP →](./guide/security/security-hardening.md#vetting-mcp-servers)**
 
 ---
 
-## 📖 About
+## 📖 Про проект
 
-This guide is the result of **6 months of daily practice** with Claude Code. The goal isn't to be exhaustive (the tool evolves too fast), but to share what works in production.
+Цей посібник — результат **6 місяців щоденної практики** з Claude Code. Мета не в тому, щоб бути вичерпним (інструмент розвивається занадто швидко), а в тому, щоб поділитися тим, що працює в реальних умовах.
 
-**What you'll find:**
-- Patterns verified in production (not theory)
-- Trade-off explanations (not just "here's how to do it")
-- Security first (28 CVEs tracked)
-- Transparency on limitations (Claude Code isn't magic)
+**Що ви знайдете:**
+- Патерни, перевірені в продакшені (не теорія)
+- Пояснення компромісів (а не просто "ось як це зробити")
+- Пріоритет безпеки (відстежується 28 CVE)
+- Прозорість щодо обмежень (Claude Code — не магія)
 
-**What you won't find:**
-- Definitive answers (tool is too new)
-- Universal configs (every project is different)
-- Marketing promises (zero bullshit)
+**Чого ви НЕ знайдете:**
+- Остаточних відповідей (інструмент занадто новий)
+- Універсальних конфігів (кожен проект індивідуальний)
+- Маркетингових обіцянок (нуль булшиту)
 
-Use this guide critically. Experiment. Share what works for you.
+Використовуйте цей посібник критично. Експериментуйте. Діліться тим, що працює для вас.
 
-**Feedback welcome:** [GitHub Issues](https://github.com/FlorianBruniaux/claude-code-ultimate-guide/issues)
+**Фідбек вітається**: [GitHub Issues](https://github.com/FlorianBruniaux/claude-code-ultimate-guide/issues)
 
-### About the Author
+### Про автора
 
-**Florian Bruniaux** — Founding Engineer @ [Méthode Aristote](https://methode-aristote.fr) (EdTech + AI). 12 years in tech (Dev → Lead → EM → VP Eng → CTO). Current focus: Rust CLI tools, MCP servers, AI developer tooling.
+**Florian Bruniaux** — Founding Engineer @ [Méthode Aristote](https://methode-aristote.fr) (EdTech + AI). 12 років у тех (Dev → Lead → EM → VP Eng → CTO). Поточний фокус: Rust CLI інструменти, MCP сервери, AI інструментарій розробника.
 
-| Project | Description | Links |
+| Проект | Опис | Посилання |
 |---------|-------------|-------|
-| **RTK** | CLI proxy — 60-90% LLM token reduction | [GitHub](https://github.com/rtk-ai/rtk) · [Site](https://www.rtk-ai.app/) |
-| **ccboard** | Real-time TUI/Web dashboard for Claude Code | [GitHub](https://github.com/FlorianBruniaux/ccboard) · [Demo](https://ccboard.bruniaux.com/) |
-| **Claude Cowork Guide** | 26 business workflows for non-coders | [GitHub](https://github.com/FlorianBruniaux/claude-cowork-guide) · [Site](https://cowork.bruniaux.com/) |
-| **cc-copilot-bridge** | Bridge between Claude Code & GitHub Copilot | [GitHub](https://github.com/FlorianBruniaux/cc-copilot-bridge) · [Site](https://ccbridge.bruniaux.com/) |
-| **Agent Academy** | MCP server for AI agent learning | [GitHub](https://github.com/FlorianBruniaux/agent-academy) |
-| **techmapper** | Tech stack mapping & visualization | [GitHub](https://github.com/FlorianBruniaux/techmapper) |
+| **RTK** | CLI проксі — скорочення токенів LLM на 60-90% | [GitHub](https://github.com/rtk-ai/rtk) · [Site](https://www.rtk-ai.app/) |
+| **ccboard** | TUI/Web дашборд реального часу для Claude Code | [GitHub](https://github.com/FlorianBruniaux/ccboard) · [Demo](https://ccboard.bruniaux.com/) |
+| **Claude Cowork Guide** | 26 бізнес-воркфлоу для тих, хто не кодує | [GitHub](https://github.com/FlorianBruniaux/claude-cowork-guide) · [Site](https://cowork.bruniaux.com/) |
+| **cc-copilot-bridge** | Міст між Claude Code та GitHub Copilot | [GitHub](https://github.com/FlorianBruniaux/cc-copilot-bridge) · [Site](https://ccbridge.bruniaux.com/) |
+| **Agent Academy** | MCP сервер для вивчення AI агентів | [GitHub](https://github.com/FlorianBruniaux/agent-academy) |
+| **techmapper** | Картування та візуалізація тех-стеку | [GitHub](https://github.com/FlorianBruniaux/techmapper) |
 
 [GitHub](https://github.com/FlorianBruniaux) · [LinkedIn](https://www.linkedin.com/in/florian-bruniaux-43408b83/) · [Portfolio](https://florian.bruniaux.com/)
 
 ---
 
-## 📚 What's Inside
+## 📚 Що всередині
 
-### Core Documentation
+### Основна документація
 
-| File | Purpose | Time |
+| Файл | Призначення | Час |
 |------|---------|------|
-| **[Ultimate Guide](./guide/ultimate-guide.md)** | Complete reference (24K+ lines), 10 sections | 30-40h (full) • Most consult sections |
-| **[Cheat Sheet](./guide/cheatsheet.md)** | 1-page printable reference | 5 min |
-| **[Visual Reference](./guide/core/visual-reference.md)** | 20 ASCII diagrams for key concepts | 5 min |
-| **[Architecture](./guide/core/architecture.md)** | How Claude Code works internally | 25 min |
-| **[Methodologies](./guide/core/methodologies.md)** | TDD, SDD, BDD reference | 20 min |
-| **[Workflows](./guide/workflows/)** | Practical guides (TDD, Plan-Driven, Task Management) | 30 min |
-| **[Data Privacy](./guide/security/data-privacy.md)** | Retention & compliance | 10 min |
-| **[Security Hardening](./guide/security/security-hardening.md)** | MCP vetting, injection defense | 25 min |
-| **[Sandbox Isolation](./guide/security/sandbox-isolation.md)** | Docker Sandboxes, cloud alternatives, safe autonomy | 10 min |
-| **[Production Safety](./guide/security/production-safety.md)** | Port stability, DB safety, infrastructure lock | 20 min |
-| **[DevOps & SRE](./guide/ops/devops-sre.md)** | FIRE framework, K8s troubleshooting, incident response | 30 min |
-| **[AI Ecosystem](./guide/ecosystem/ai-ecosystem.md)** | Complementary AI tools & integration patterns | 20 min |
-| **[AI Traceability](./guide/ops/ai-traceability.md)** | Code attribution & provenance tracking | 15 min |
-| **[Search Tools Cheatsheet](./guide/cheatsheet.md)** | Grep, Serena, ast-grep, grepai comparison | 5 min |
-| **[Learning with AI](./guide/roles/learning-with-ai.md)** | Use AI without becoming dependent | 15 min |
-| **[Claude Code Releases](./guide/core/claude-code-releases.md)** | Official release history | 10 min |
-| **[Credits](./guide/core/credits.md)** | Open-source inspirations and pattern attributions | 2 min |
+| **[Ultimate Guide](./guide/ultimate-guide.md)** | Повна довідка (24K+ рядків), 10 розділів | 30-40г (повна) • Звернення до розділів |
+| **[Cheat Sheet](./guide/cheatsheet.md)** | Довідка на 1 сторінку для друку | 5 хв |
+| **[Visual Reference](./guide/core/visual-reference.md)** | 20 ASCII діаграм ключових концепцій | 5 хв |
+| **[Architecture](./guide/core/architecture.md)** | Як Claude Code працює всередині | 25 хв |
+| **[Methodologies](./guide/core/methodologies.md)** | Довідка по TDD, SDD, BDD | 20 хв |
+| **[Workflows](./guide/workflows/)** | Практичні посібники (TDD, Plan-Driven тощо) | 30 хв |
+| **[Data Privacy](./guide/security/data-privacy.md)** | Зберігання та відповідність вимогам | 10 хв |
+| **[Security Hardening](./guide/security/security-hardening.md)** | Перевірка MCP, захист від ін'єкцій | 25 хв |
+| **[Sandbox Isolation](./guide/security/sandbox-isolation.md)** | Пісочниці Docker, хмарні альтернативи | 10 хв |
+| **[Production Safety](./guide/security/production-safety.md)** | Стабільність портів, безпека БД, локи інфраструктури | 20 хв |
+| **[DevOps & SRE](./guide/ops/devops-sre.md)** | FIRE фреймворк, K8s, інциденти | 30 хв |
+| **[AI Ecosystem](./guide/ecosystem/ai-ecosystem.md)** | Додаткові AI інструменти та патерни | 20 хв |
+| **[AI Traceability](./guide/ops/ai-traceability.md)** | Атрибуція коду та відстеження походження | 15 хв |
+| **[Search Tools Cheatsheet](./guide/cheatsheet.md)** | Порівняння Grep, Serena, ast-grep, grepai | 5 хв |
+| **[Learning with AI](./guide/roles/learning-with-ai.md)** | Використовуйте AI, не стаючи залежними | 15 хв |
+| **[Claude Code Releases](./guide/core/claude-code-releases.md)** | Офіційна історія релізів | 10 хв |
+| **[Credits](./guide/core/credits.md)** | Натхнення з open-source та атрибуція патернів | 2 хв |
 
 <details>
-<summary><strong>Examples Library</strong> (181 templates)</summary>
+<summary><strong>Бібліотека прикладів</strong> (181 шаблон)</summary>
 
 **Agents** (23): [code-reviewer](./examples/agents/code-reviewer.md), [test-writer](./examples/agents/test-writer.md), [security-auditor](./examples/agents/security-auditor.md), [refactoring-specialist](./examples/agents/refactoring-specialist.md), [output-evaluator](./examples/agents/output-evaluator.md), [devops-sre](./examples/agents/devops-sre.md) ⭐
 
@@ -800,51 +795,51 @@ Use this guide critically. Experiment. Share what works for you.
 
 **Security Hooks** (37): [dangerous-actions-blocker](./examples/hooks/bash/dangerous-actions-blocker.sh), [prompt-injection-detector](./examples/hooks/bash/prompt-injection-detector.sh), [unicode-injection-scanner](./examples/hooks/bash/unicode-injection-scanner.sh), [output-secrets-scanner](./examples/hooks/bash/output-secrets-scanner.sh)...
 
-**Skills** (64): [Claudeception](https://github.com/blader/Claudeception) — Meta-skill that auto-generates skills from session discoveries ⭐
+**Skills** (64): [Claudeception](https://github.com/blader/Claudeception) — мета-скіл, що автоматично генерує скіли ⭐
 
-**Plugins** (1): [SE-CoVe](./examples/plugins/se-cove.md) — Chain-of-Verification for independent code review (Meta AI, ACL 2024)
+**Plugins** (1): [SE-CoVe](./examples/plugins/se-cove.md) — Chain-of-Verification для незалежного рев'ю
 
-**Utility Scripts**: [session-search.sh](./examples/scripts/session-search.sh), [audit-scan.sh](./examples/scripts/audit-scan.sh)
+**Утиліти**: [session-search.sh](./examples/scripts/session-search.sh), [audit-scan.sh](./examples/scripts/audit-scan.sh)
 
 **GitHub Actions**: [claude-pr-auto-review.yml](./examples/github-actions/claude-pr-auto-review.yml), [claude-security-review.yml](./examples/github-actions/claude-security-review.yml), [claude-issue-triage.yml](./examples/github-actions/claude-issue-triage.yml)
 
-**Integrations** (1): [Agent Vibes TTS](./examples/integrations/agent-vibes/) - Text-to-speech narration for Claude Code responses
+**Інтеграції** (1): [Agent Vibes TTS](./examples/integrations/agent-vibes/) - озвучення відповідей Claude Code
 
-**[Browse Complete Catalog](./examples/README.md)** | **[Interactive Catalog](./examples/index.html)**
+**[Переглянути повний каталог](./examples/README.md)** | **[Інтерактивний каталог](./examples/index.html)**
 
 </details>
 
 <details>
-<summary><strong>Knowledge Quiz</strong> (271 questions)</summary>
+<summary><strong>Knowledge Quiz</strong> (271 запитання)</summary>
 
-Test your Claude Code knowledge with an interactive CLI quiz covering all guide sections.
+Перевірте свої знання Claude Code за допомогою інтерактивного CLI квізу.
 
 ```bash
 cd quiz && npm install && npm start
 ```
 
-**Features**: 4 profiles (Junior/Senior/Power User/PM), 10 topic categories, immediate feedback with doc links, score tracking with weak area identification.
+**Особливості**: 4 профілі (Junior/Senior/Power User/PM), 10 категорій тем, миттєвий фідбек із посиланнями на доки, відстеження результатів.
 
-**[Quiz Documentation](./quiz/README.md)** | **[Contribute Questions](./quiz/templates/question-template.yaml)**
+**[Документація квізу](./quiz/README.md)** | **[Запропонувати запитання](./quiz/templates/question-template.yaml)**
 
 </details>
 
 <details>
-<summary><strong>Resource Evaluations</strong> (151 assessments)</summary>
+<summary><strong>Оцінка ресурсів</strong> (151 оцінка)</summary>
 
-Systematic evaluation of external resources (tools, methodologies, articles) before integration into the guide.
+Систематична оцінка зовнішніх ресурсів (інструментів, методологій, статей) перед інтеграцією в посібник.
 
-**Methodology**: 5-point scoring system (Critical → Low) with technical review and challenge phase for objectivity.
+**Методологія**: 5-бальна система оцінювання (Critical → Low) з технічним рев'ю для об'єктивності.
 
-**Evaluations**: GSD methodology, Worktrunk, Boris Cowork video, AST-grep, ClawdBot analysis, and more.
+**Оцінки**: методологія GSD, Worktrunk, відео Boris Cowork, AST-grep, аналіз ClawdBot та багато іншого.
 
-**[Browse Evaluations](./docs/resource-evaluations/)** | **[Evaluation Methodology](./docs/resource-evaluations/README.md)**
+**[Переглянути оцінки](./docs/resource-evaluations/)** | **[Методологія оцінювання](./docs/resource-evaluations/README.md)**
 
 </details>
 
 ---
 
-## ⭐ Star History
+## ⭐ Історія зірок
 
 [![Star History Chart](https://api.star-history.com/svg?repos=FlorianBruniaux/claude-code-ultimate-guide&type=Date)](https://www.star-history.com/#FlorianBruniaux/claude-code-ultimate-guide&Date)
 
@@ -853,91 +848,94 @@ Systematic evaluation of external resources (tools, methodologies, articles) bef
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="https://starmapper.bruniaux.com/api/map-image/FlorianBruniaux/claude-code-ultimate-guide?theme=dark" />
       <source media="(prefers-color-scheme: light)" srcset="https://starmapper.bruniaux.com/api/map-image/FlorianBruniaux/claude-code-ultimate-guide?theme=light" />
-      <img alt="StarMapper — see who stars this repo on a world map" src="https://starmapper.bruniaux.com/api/map-image/FlorianBruniaux/claude-code-ultimate-guide" />
+      <img alt="StarMapper — дивіться, хто ставить зірки цьому репо на мапі світу" src="https://starmapper.bruniaux.com/api/map-image/FlorianBruniaux/claude-code-ultimate-guide" />
     </picture>
   </a>
 </p>
 
 ---
 
-## 🤝 Contributing
+## 🤝 Контрибуція
 
-We welcome:
-- ✅ Corrections and clarifications
-- ✅ New quiz questions
-- ✅ Methodologies and workflows
-- ✅ Resource evaluations (see [process](./docs/resource-evaluations/README.md))
-- ✅ Educational content improvements
+Ми вітаємо:
+- ✅ Виправлення та уточнення
+- ✅ Нові запитання для квізу
+- ✅ Методології та воркфлоу
+- ✅ Оцінки ресурсів (див. [процес](./docs/resource-evaluations/README.md))
+- ✅ Покращення освітнього контенту
 
-See [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines.
+Дивіться [CONTRIBUTING.md](./CONTRIBUTING.md) для отримання інструкцій.
 
-**Ways to Help**: Star the repo • Report issues • Submit PRs • Share workflows in [Discussions](../../discussions)
-
----
-
-## 📄 License & Support
-
-**Guide**: [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) — Educational content is open for reuse with attribution.
-
-**Templates**: [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/) — Copy-paste freely, no attribution needed.
-
-**Author**: [Florian BRUNIAUX](https://github.com/FlorianBruniaux) | Founding Engineer [@Méthode Aristote](https://methode-aristote.fr)
-
-**Stay Updated**: [Watch releases](../../releases) | [Discussions](../../discussions) | [Connect on LinkedIn](https://www.linkedin.com/in/florian-bruniaux-43408b83/)
+**Як допомогти**: поставте зірку репо • повідомляйте про проблеми • надсилайте PR • діліться воркфлоу в [Discussions](../../discussions)
 
 ---
 
-## 📚 Further Reading
+## 📄 Ліцензія та підтримка
 
-### This Guide
-- **[CHANGELOG](./CHANGELOG.md)** — Guide version history (what's new in each release)
-- [Claude Code Releases](./guide/core/claude-code-releases.md) — Official Claude Code release tracking
+**Посібник**: [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) — освітній контент відкритий для повторного використання з атрибуцією.
 
-### Official Resources
-- [Claude Code CLI](https://code.claude.com) — Official website
-- [Documentation](https://code.claude.com/docs) — Official docs
-- [Anthropic CHANGELOG](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md) — Official Claude Code changelog
-- [GitHub Issues](https://github.com/anthropics/claude-code/issues) — Bug reports & feature requests
+**Шаблони**: [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/) — копіюйте вільно, атрибуція не потрібна.
 
-### Research & Industry Reports
+**Автор**: [Florian BRUNIAUX](https://github.com/FlorianBruniaux) | Founding Engineer [@Méthode Aristote](https://methode-aristote.fr)
 
-- **[2026 Agentic Coding Trends Report](https://resources.anthropic.com/hubfs/2026%20Agentic%20Coding%20Trends%20Report.pdf)** (Anthropic, Feb 2026)
-  - 8 trends prospectifs (foundation/capability/impact)
-  - Case studies: Fountain (50% faster), Rakuten (7h autonomous), CRED (2x speed), TELUS (500K hours saved)
-  - Research data: 60% AI usage, 0-20% full delegation, 67% more PRs merged/day
-  - **Evaluation**: [`docs/resource-evaluations/anthropic-2026-agentic-coding-trends.md`](docs/resource-evaluations/anthropic-2026-agentic-coding-trends.md) (score 4/5)
-  - **Integration**: Diffused across sections 9.17 (Multi-Instance ROI), 9.20 (Agent Teams adoption), 9.11 (Enterprise Anti-Patterns), Section 9 intro
-
-- **[AI Fluency Index](https://www.anthropic.com/research/AI-fluency-index)** (Anthropic, Feb 23, 2026)
-  - Research on 9,830 Claude.ai conversations: iteration multiplies fluency behaviors 2× (2.67 vs 1.33)
-  - **Artifact Paradox**: polished outputs (code, files) reduce critical evaluation — −5.2pp missing context, −3.7pp fact-checking, −3.1pp reasoning challenge
-  - Only 30% of users set collaboration terms explicitly — CLAUDE.md addresses this structurally
-  - **Evaluation**: [`docs/resource-evaluations/2026-02-23-anthropic-ai-fluency-index.md`](docs/resource-evaluations/2026-02-23-anthropic-ai-fluency-index.md) (score 4/5)
-  - **Integration**: 3 callouts in §2.3 (plan review), §3.1 (CLAUDE.md), §9.11 (Artifact Paradox) + [diagram](./guide/diagrams/06-development-workflows.md#ai-fluency--high-vs-low-fluency-paths)
-
-- **[Outcome Engineering — o16g Manifesto](https://o16g.com/)** (Cory Ondrejka, Feb 2026)
-  - 16 principles for shifting from "software engineering" to "outcome engineering"
-  - Author: CTO Onebrief, co-creator Second Life, ex-VP Google/Meta
-  - Cultural positioning: numeronym naming (o16g like i18n, k8s), Honeycomb endorsement
-  - **Status**: Emerging — on [watch list](./docs/resource-evaluations/watch-list.md) for community adoption tracking
-
-### Community Resources
-- [everything-claude-code](https://github.com/affaan-m/everything-claude-code) — Production configs (45k+⭐)
-- [awesome-claude-code](https://github.com/hesreallyhim/awesome-claude-code) — Curated links
-- [SuperClaude Framework](https://github.com/SuperClaude-Org/SuperClaude_Framework) — Behavioral modes
-
-### Tools
-- [Ask Zread](https://zread.ai/FlorianBruniaux/claude-code-ultimate-guide) — Ask questions about this guide
-- [Interactive Quiz](./quiz/) — 271 questions
-- [Landing Site](https://cc.bruniaux.com) — Visual navigation, cheat sheets, ebooks, quiz
-- [RSS Feed](https://cc.bruniaux.com/rss.xml) — Subscribe to guide updates, new content, and CC releases
+**Будьте в курсі**: [Стежте за релізами](../../releases) | [Обговорення](../../discussions) | [Зв'язок у LinkedIn](https://www.linkedin.com/in/florian-bruniaux-43408b83/)
 
 ---
 
-*Version 3.40.0 | Updated daily · mai 3, 2026 | Crafted with Claude*
+## 📚 Додаткове читання
+
+### Цей посібник
+- **[CHANGELOG](./CHANGELOG.md)** — історія версій посібника (що нового в кожному релізі)
+- [Claude Code Releases](./guide/core/claude-code-releases.md) — офіційне відстеження релізів Claude Code
+
+### Офіційні ресурси
+- [Claude Code CLI](https://code.claude.com) — офіційний сайт
+- [Документація](https://code.claude.com/docs) — офіційні доки
+- [Anthropic CHANGELOG](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md) — офіційний чейнджлог Claude Code
+- [GitHub Issues](https://github.com/anthropics/claude-code/issues) — звіти про помилки та запити на функції
+
+### Дослідження та галузеві звіти
+
+- **[2026 Agentic Coding Trends Report](https://resources.anthropic.com/hubfs/2026%20Agentic%20Coding%20Trends%20Report.pdf)** (Anthropic, лютий 2026)
+  - 8 перспективних трендів (foundation/capability/impact)
+  - Кейси: Fountain (на 50% швидше), Rakuten (7г автономно), CRED (у 2 рази швидше), TELUS (збережено 500K годин)
+  - Дані досліджень: 60% використання AI, 0-20% повне делегування, на 67% більше PR/день
+  - **Оцінка**: [`docs/resource-evaluations/anthropic-2026-agentic-coding-trends.md`](docs/resource-evaluations/anthropic-2026-agentic-coding-trends.md) (бал 4/5)
+  - **Інтеграція**: Розподілено за розділами 9.17 (Multi-Instance ROI), 9.20 (Agent Teams), 9.11 (Enterprise Anti-Patterns)
+
+- **[AI Fluency Index](https://www.anthropic.com/research/AI-fluency-index)** (Anthropic, 23 лютого 2026)
+  - Дослідження 9,830 діалогів Claude.ai: ітерація подвоює поведінку вільного володіння AI (2.67 vs 1.33)
+  - **Artifact Paradox**: «відшліфовані» результати (код, файли) знижують критичну оцінку
+  - Лише 30% користувачів явно встановлюють умови співпраці — CLAUDE.md вирішує це структурно
+  - **Оцінка**: [`docs/resource-evaluations/2026-02-23-anthropic-ai-fluency-index.md`](docs/resource-evaluations/2026-02-23-anthropic-ai-fluency-index.md) (бал 4/5)
+  - **Інтеграція**: винесення у §2.3 (plan review), §3.1 (CLAUDE.md), §9.11 (Artifact Paradox)
+
+- **[Outcome Engineering — o16g Manifesto](https://o16g.com/)** (Cory Ondrejka, лютий 2026)
+  - 16 принципів переходу від "software engineering" до "outcome engineering"
+  - Автор: ex-VP Google/Meta, співтворець Second Life
+  - **Статус**: на [watch list](./docs/resource-evaluations/watch-list.md) для відстеження впровадження спільнотою
+
+### Ресурси спільноти
+- [everything-claude-code](https://github.com/affaan-m/everything-claude-code) — продакшен конфіги (45k+⭐)
+- [awesome-claude-code](https://github.com/hesreallyhim/awesome-claude-code) — курація посилань
+- [SuperClaude Framework](https://github.com/SuperClaude-Org/SuperClaude_Framework) — поведінкові режими
+
+### Інструменти
+- [Ask Zread](https://zread.ai/FlorianBruniaux/claude-code-ultimate-guide) — ставте запитання по цьому гайду
+- [Interactive Quiz](./quiz/) — 271 запитання
+- [Landing Site](https://cc.bruniaux.com) — візуальна навігація, шпаргалки, квіз
+- [RSS Feed](https://cc.bruniaux.com/rss.xml) — підписка на оновлення гайду та релізи CC
+
+---
+
+*Версія 3.40.0 | Оновлюється щодня · 3 травня 2026 | Створено з допомогою Claude*
 
 <!-- SEO Keywords -->
 <!-- claude code, claude code tutorial, anthropic cli, ai coding assistant, claude code mcp,
 claude code agents, claude code hooks, claude code skills, agentic coding, ai pair programming,
 tdd ai, test driven development ai, sdd spec driven development, bdd claude, development methodologies,
 claude code architecture, data privacy anthropic, claude code workflows, ai coding workflows -->
+
+---
+**Локалізація**: [Serhii (MacPlus Software)](https://macplus-software.com)
+*Остання синхронізація: Травень 2026*
