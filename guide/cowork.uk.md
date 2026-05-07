@@ -89,4 +89,8 @@ tags: [guide, agents, workflows, ukrainian]
 
 ---
 
+**Локалізація**: [Serhii (MacPlus Software)](https://macplus-software.com) | **Остання синхронізація**: Травень 2026
+
+---
+
 *Назад до [Гайду по Екосистемі](./ai-ecosystem.md) | [Повного Посібника](./ultimate-guide.md) | [Головного README](../README.md)*

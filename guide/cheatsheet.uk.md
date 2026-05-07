@@ -207,6 +207,8 @@ argument-hint: "<аргумент> [--прапорець]"
 
 ---
 
-**Автор оригіналу**: Florian BRUNIAUX | [@Méthode Aristote](https://methode-aristote.fr)
-**Локалізація**: [Serhii (MacPlus Software)](https://macplus-software.com)
-*Оновлено: Травень 2026 | Версія 3.40.0*
+**Локалізація**: [Serhii (MacPlus Software)](https://macplus-software.com) | **Остання синхронізація**: Травень 2026
+
+---
+
+*Назад до [Головного посібника](./ultimate-guide.md) | [Екосистеми ШІ](./ai-ecosystem.md) | [README](../README.md)*
