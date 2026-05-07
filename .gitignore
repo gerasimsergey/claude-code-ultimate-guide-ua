@@ -61,3 +61,4 @@ mcp-server/node_modules/
 .vitals/
 .worktrees/
 .fastembed_cache/
+graphify-out/
